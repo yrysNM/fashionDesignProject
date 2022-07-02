@@ -1,0 +1,71 @@
+@import "./variables.scss";
+
+@import "./base/linkCircle";
+@import "./base/title";
+@import "./base/circleDescr";
+
+* {
+    margin: 0; 
+    padding: 0 ; 
+    box-sizing: border-box;
+    font-family: 'Bad Script', cursive;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color:#FFFDF5; 
+    overflow-x: hidden;
+}
+
+ul , li, dl {
+    list-style-type: none; 
+    margin: 0 ; 
+    padding:0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit; 
+    display: inline-block;
+    &:hover {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+p {
+    margin:0; 
+    padding:  0; 
+
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
+.container {
+    width: 1205px;
+    margin: 0 auto;
+
+    &_slide {
+        width: calc(309px + 66%);
+        margin: 0 0 0 auto;
+    }
+}
+
+.mt150 {
+    margin-top: 150px ;
+}
+
+
+
+
+@import "./blocks/pageup";
+@import "./blocks/bgCircle";
+@import "./blocks/form";

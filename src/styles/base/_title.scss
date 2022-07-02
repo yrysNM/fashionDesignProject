@@ -1,0 +1,32 @@
+.title {
+    width: 630px;
+    position: relative;
+    z-index: 10;
+    &.pb94 {
+        padding-bottom: 94px;
+    }
+    
+    &_text {
+        font-weight: 300;
+        font-size: 40px;
+        line-height: 87.3%;
+        color: #121212;
+        &.pb60{
+            padding-bottom: 60px;
+        }
+    }
+}
+
+.subtitle {
+    margin-top: 0px;
+    padding-right: 17px;
+    font-family: 'Bad Script';
+    font-weight: 400;
+    font-size: 40px;
+    color: #514A7E;
+    display: block;
+    text-align: right;
+    &.pr270 {
+        padding-right: 270px;
+    }
+}

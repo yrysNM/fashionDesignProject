@@ -1,0 +1,15 @@
+.rightCircle {
+    position: absolute; 
+    top: -217px; 
+    right: -217px; 
+
+    &_circle {
+        border: 1px solid #514A7E; 
+        border-radius: 100%;
+        &.w429 {
+            width: 429px;
+            height: 429px;
+
+        }
+    }
+}

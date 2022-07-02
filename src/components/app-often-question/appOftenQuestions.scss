@@ -1,0 +1,42 @@
+.oftenQuestions {
+    min-height: 550px;
+    position: relative; 
+    // position: relative;
+    &__wrap {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__list {
+        padding-top: 26px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding-bottom: 18px;
+        border: none;
+        border-bottom: 0.5px solid #7D7D7D;
+
+        &_text {
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 23px;
+
+            color: #121212;
+
+        }
+
+        &_plus {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            // position: relative;
+            z-index: 20;
+        
+        }
+    }
+
+
+
+}

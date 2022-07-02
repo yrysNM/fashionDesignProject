@@ -1,0 +1,65 @@
+@import "../../styles/variables.scss";
+
+.promo {
+    min-height: 755px; 
+    position: relative;
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+
+        &_welcome {
+            display: flex;
+            flex-direction: column;
+            width: 537px;
+
+            img {
+                filter: drop-shadow(0px 4px 10px rgba(81, 74, 126, 0.4));
+                cursor: pointer; 
+                transition: all 0.6s;
+                &:hover {
+                    filter: drop-shadow(0px 4px 10px rgba(81, 74, 126, 0.8));    
+                }
+
+            }
+
+
+        }
+        &_txtWel {
+            padding-top: 60px; 
+        }
+
+        &_title {
+            font-weight: 300;
+            font-size: 60px;
+            line-height: 52px;
+            color: #121212;
+            span {
+                font-family: "Bad Script", sans-serif;
+                line-height: 90px;
+                font-weight: 400;
+                color: $main-color;
+            }
+        }
+
+        &_descr {
+            width: 300px;
+            padding-top: 60px; 
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 118%;
+            color: $text-color;
+        }
+
+        &_img2 {
+            img {
+                cursor: pointer;
+                filter: drop-shadow(0px 4px 10px rgba(81, 74, 126, 0.4));
+                transition: all 0.6s;
+                &:hover {
+                    filter: drop-shadow(0px 4px 10px rgba(81, 74, 126, 0.8));    
+                }
+            }
+
+        }
+    }
+}

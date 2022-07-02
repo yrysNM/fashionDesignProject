@@ -1,0 +1,103 @@
+@import "../../styles/variables.scss";
+
+.footer {
+    min-height: 380px;
+    background-color: $main-color ;
+    position: relative;
+    &_logoImg {
+        width: 124px;
+        height: 124px;
+        position: absolute;
+        right: 200px ;
+        bottom: 60px;
+        transition: all 0.6s ease-out;
+        cursor: pointer;
+        img {
+            border-radius: 100%; 
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &:hover {
+            transform: scale(2);
+        }
+    }
+    &__info-row {
+        padding-top: 82px;
+        padding-bottom: 85px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-gap: 20px;
+    }
+
+    &__info-column {
+        display: flex;
+        flex-direction: column;
+        text-align-last: left;
+        margin-left: 60px;
+
+    }
+
+    &__info-block-column_heading {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        color: #FFFDF5;
+        margin-bottom: 10px;
+    }
+
+    &__info-block-column_link {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        color: #FFFDF5;
+
+        a {
+            margin-top: 10px;
+        }
+    }
+
+    &__info-block-column_descr {
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 15px;
+        width: 250px;
+        color: #FFFDF5;
+    }
+
+    &__info-block-column_socialIcon {
+        margin-top: 21px;
+
+        img {
+            margin-right: 15px;
+
+            &:last-child {
+                margin: 0;
+            }
+
+        }
+    }
+
+    &__info-block-column_info {
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        &-link {
+            margin-left: 13px;  
+            font-weight: 300;
+            font-size: 12px;
+            line-height: 14px;
+            color: #FFFDF5;
+        }
+
+        &-text {
+            font-weight: 300;
+            font-size: 12px;
+            line-height: 14px;
+            margin-left: 13px;
+            color: #FFFDF5;
+        }
+    }
+
+}

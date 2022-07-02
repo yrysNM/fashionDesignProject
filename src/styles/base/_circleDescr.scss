@@ -1,0 +1,48 @@
+.circle__descrSmall {
+    position: absolute;
+    display: block;
+    border-radius: 100%;
+    right: 48px;
+    top: 17px;
+    width: 28px;
+    height: 28px;
+    background: #514A7E;
+    box-shadow: 0px 4px 10px rgba(81, 74, 126, 0.4);
+    z-index: 10;
+    transition: all 0.6s ease; 
+    cursor: pointer;
+    &.posTopRight {
+        top: -5px; 
+        right: -10px;
+       
+    }
+
+    &:hover{
+        transform: scale(1.7);
+    }
+  
+}
+
+.circle__descrMiddle {
+    width: 48px;
+    height: 48px;
+    display: block;
+    position: absolute; 
+    right: -17px; 
+    top: 17px;
+    border-radius: 100%;
+    background: #514A7E;
+    box-shadow: 0px 4px 10px rgba(81, 74, 126, 0.4);
+    z-index: 10;
+    transition: all 0.6s ease;
+    cursor: pointer;
+    &.posTopRight {
+        top: -29px; 
+        right: -29px;
+      
+    }
+
+    &:hover{
+        transform: scale(0.5);
+    }
+}
