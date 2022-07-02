@@ -82,14 +82,14 @@ class AppHeader extends Component {
 
                                 <nav className="header__aside_nav">
                                     <ul className="header__aside_list">
-                                        <li onClick={this.switchHamburger} ><a href="#">Женщинам </a></li>
-                                        <li onClick={this.switchHamburger} ><a href="#">Мужчинам</a></li>
-                                        <li onClick={this.switchHamburger} ><a href="#">Детям </a></li>
-                                        <li onClick={this.switchHamburger} ><a href="#">Обувь </a></li>
-                                        <li onClick={this.switchHamburger} ><a href="#">Аксессуары </a></li>
-                                        <li onClick={this.switchHamburger} ><a href="#">Большие размеры </a></li>
-                                        <li onClick={this.switchHamburger} ><a href="#">Дополнительно </a></li>
-                                        <li onClick={this.switchHamburger} ><a href="#">Акции </a></li>
+                                        <li onClick={this.switchHamburger} ><a href="#fomen">Женщинам </a></li>
+                                        <li onClick={this.switchHamburger} ><a href="#man">Мужчинам</a></li>
+                                        <li onClick={this.switchHamburger} ><a href="#kids">Детям </a></li>
+                                        <li onClick={this.switchHamburger} ><a href="#a">Обувь </a></li>
+                                        <li onClick={this.switchHamburger} ><a href="#a">Аксессуары </a></li>
+                                        <li onClick={this.switchHamburger} ><a href="#a">Большие размеры </a></li>
+                                        <li onClick={this.switchHamburger} ><a href="#a">Дополнительно </a></li>
+                                        <li onClick={this.switchHamburger} ><a href="#a">Акции </a></li>
                                     </ul>
                                 </nav>
                             </div>

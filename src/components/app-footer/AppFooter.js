@@ -18,25 +18,25 @@ const AppFooter = () => {
                             Информация
                         </div>
                         <div className="footer__info-block-column_link">
-                            <a href="#">Главная</a>
+                            <a href="#a">Главная</a>
                         </div>
                         <div className="footer__info-block-column_link">
-                            <a href="#">Акции</a>
+                            <a href="#a">Акции</a>
                         </div>
                         <div className="footer__info-block-column_link">
-                            <a href="#">Каталог</a>
+                            <a href="#a">Каталог</a>
                         </div>
                         <div className="footer__info-block-column_link">
-                            <a href="#">Доставка</a>
+                            <a href="#a">Доставка</a>
                         </div>
                         <div className="footer__info-block-column_link">
-                            <a href="#">Партнёрам</a>
+                            <a href="#a">Партнёрам</a>
                         </div>
                         <div className="footer__info-block-column_link">
-                            <a href="#">Способы оплаты</a>
+                            <a href="#a">Способы оплаты</a>
                         </div>
                         <div className="footer__info-block-column_link">
-                            <a href="#">Как сделать заказ?</a>
+                            <a href="#a">Как сделать заказ?</a>
                         </div>
                     </div>
                     <div className="footer__info-column">
@@ -44,16 +44,16 @@ const AppFooter = () => {
                             Мой кабинет
                         </div>
                         <div className="footer__info-block-column_link">
-                            <a href="#">Мои заказы</a>
+                            <a href="#a">Мои заказы</a>
                         </div>
                         <div className="footer__info-block-column_link">
-                            <a href="#">Мои адреса</a>
+                            <a href="#a">Мои адреса</a>
                         </div>
                         <div className="footer__info-block-column_link">
-                            <a href="#">Мои скидки</a>
+                            <a href="#a">Мои скидки</a>
                         </div>
                         <div className="footer__info-block-column_link">
-                            <a href="#">Моя информация</a>
+                            <a href="#a">Моя информация</a>
                         </div>
                     </div>
                     <div className="footer__info-column">
@@ -80,7 +80,7 @@ const AppFooter = () => {
                         </div>
                         <div className="footer__info-block-column_info">
                             <img src={phoneIcon} alt="phone call" />
-                            <a tel="+375255990755" className="footer__info-block-column_info-link">+375255990755</a>
+                            <a href="tel:375255990755" className="footer__info-block-column_info-link">+375255990755</a>
                         </div>
                         <div className="footer__info-block-column_info">
                             <img src={timeIcon} alt="phone call" />
