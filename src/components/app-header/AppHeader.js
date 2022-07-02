@@ -59,7 +59,7 @@ class AppHeader extends Component {
                         <div className="header__icons">
                             <div className="header__icons_search">
                                 <img src={searchIcon} alt="searchIcon" />
-                                <form action="." className="header__icons_form">
+                                <form className="header__icons_form">
                                     <input type="search" name="search" className="header__icons_form_searchInput" placeholder="Поиск" />
                                 </form>
 

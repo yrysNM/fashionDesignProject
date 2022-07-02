@@ -14,7 +14,7 @@ const AppFormDelivery = () => {
                         Приглашаем  к сотрудничеству производителей и поставщиков одежды, обуви и аксессуаров
                     </div>
 
-                    <form action="." className="form mt40">
+                    <form  className="form mt40">
 
                         <div className="form-inputsLabels">
                             <input type="text" name="name" className="form-input" placeholder="Ваше имя" />
