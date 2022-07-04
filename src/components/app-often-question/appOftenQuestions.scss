@@ -1,3 +1,4 @@
+@import "../../styles/variables.scss";
 .oftenQuestions {
     min-height: 550px;
     position: relative; 
@@ -12,6 +13,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
         width: 100%;
         padding-bottom: 18px;
         border: none;
@@ -26,13 +28,57 @@
 
         }
 
+        &_descr {
+           display: none;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            width: 100%;
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 118%;
+            color: #7D7D7D;
+            transition: all .6s ease;
+
+        }
+
         &_plus {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            --b: 1px; /* the thickness */
+            width: 40px; /* the size */
+            aspect-ratio: 1;
+            border: 10px solid #FFFDF5; /* the outer space */
+            background:
+              conic-gradient(from 90deg at var(--b) var(--b),#000 90deg,#FFFDF5 0) 
+              calc(100% + var(--b)/2) calc(100% + var(--b)/2)/
+              calc(50%  + var(--b))   calc(50%  + var(--b));
+            display: inline-block;
             cursor: pointer;
-            // position: relative;
             z-index: 20;
+
+            &.alt {
+                transition: all .6s ease;
+                border-color: #FFFDF5;
+                background:
+                  conic-gradient(from 90deg at var(--b) var(--b),#fff 90deg,$main-color 0) 
+                  calc(100% + var(--b)/2) calc(100% + var(--b)/2)/
+                  calc(50%  + var(--b))   calc(50%  + var(--b));
+            }
+
+            &.close {
+              
+                background: linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, #514A7E 50%, #514A7E 53%, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0) 100%), linear-gradient(135deg, #FFFDF5 0%, #FFFDF5 43%, #514A7E 45%, #514A7E 51%, #FFFDF5 45%, #FFFDF5 100%);
+            }
+
+            &:hover + .oftenQuestions__list_descr {
+                display: block;
+  
+            }
+
+            &:hover{
+                &.alt {
+                    
+                    background: linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, #514A7E 50%, #514A7E 53%, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0) 100%), linear-gradient(135deg, #FFFDF5 0%, #FFFDF5 43%, #514A7E 45%, #514A7E 51%, #FFFDF5 45%, #FFFDF5 100%);
+                }
+            }
         
         }
     }

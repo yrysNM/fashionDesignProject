@@ -12,6 +12,27 @@
     font-family: 'Roboto', sans-serif;
 }
 
+html
+{
+	font-size: 62.5%;
+	overflow-x: hidden;
+	scroll-padding-top: 9rem;
+	scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+    width: .8rem;
+}
+
+html::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+    background: rgba(167, 165, 159, 0.7);
+    border-radius: 5rem;
+}
+
 body {
     background-color:#FFFDF5; 
     overflow-x: hidden;

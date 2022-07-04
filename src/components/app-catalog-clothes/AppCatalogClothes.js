@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
-import axios from "axios";
 import catalogImg1 from "../../resources/img/catalogImgs/catalogImg1.png";
 import catalogImg2 from "../../resources/img/catalogImgs/catalogImg2.png";
 import catalogImg3 from "../../resources/img/catalogImgs/catalogImg3.png";
@@ -14,13 +12,7 @@ import "swiper/css/navigation";
 
 
 
-const AppCatalogClothes = () => {
-    const [products, setProducts] = useState([]);
-    useEffect(() => {
-        axios.get("http://localhost:4000/products")
-            .then(res => setProducts(res.data));
-    }, []);
-
+const AppCatalogClothes = (props) => {
 
     return (
         <section className="catalog mt150">
@@ -38,12 +30,12 @@ const AppCatalogClothes = () => {
 
                         <Swiper slidesPerView={4} navigation={true} spaceBetween={80} modules={[Navigation]}>
                             {
-                                products.map((item) => {
+                                props.products.map((item) => {
                                     return (
                                         
                                         
-                                        <SwiperSlide>
-                                            <div className="catalog__wrapper" key={item.id}>
+                                        <SwiperSlide key={item.id}>
+                                            <div className="catalog__wrapper">
                                                 <div className="catalog__wrapper_img">
                                                     <img src={item.image} alt="catalog img" width={300} height="319" />
                                                 </div>

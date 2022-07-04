@@ -1,4 +1,5 @@
 import { Component } from "react";
+import axios from "axios";
 import AppHeader from "../app-header/AppHeader";
 import AppPromo from "../app-promo/AppPromo";
 import AppAbout from "../app-about/AppAbout";
@@ -8,9 +9,23 @@ import AppOftenQuestion from "../app-often-question/AppOftenQuestion";
 import AppCooperation from "../app-cooperation/AppCooperation";
 import AppFormDelivery from "../app-form-delivery/AppFormDelivery";
 import AppFooter from "../app-footer/AppFooter";
+
 class App extends Component {
 
-  
+    state = {
+        products: []
+    };
+    
+    componentDidMount() {
+        this.getProducts();
+    }
+
+    getProducts = () => {
+        
+        axios.get("http://localhost:4000/products")
+            .then(res => this.setState(({products: res.data})));
+    }
+
     
     render() {
         return(
@@ -21,7 +36,7 @@ class App extends Component {
 
                 <AppAbout />
 
-                <AppCatalogClothes /> 
+                <AppCatalogClothes products={this.state.products} /> 
 
                 <AppReview />
 
