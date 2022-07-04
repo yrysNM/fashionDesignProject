@@ -84,7 +84,7 @@ const AppOftenQuestion = () => {
                 </div>
             </div>
             <div className="rightCircle">
-                <div className="rightCircle_circle w429">
+                <div className="rightCircle_circle w380">
                     
                 </div>
             </div>

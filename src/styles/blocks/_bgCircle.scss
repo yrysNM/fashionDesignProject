@@ -3,6 +3,10 @@
     top: -217px; 
     right: -217px; 
 
+    &-footer {
+        top: -350px;
+    }
+
     &_circle {
         border: 1px solid #514A7E; 
         border-radius: 100%;
@@ -11,5 +15,21 @@
             height: 429px;
 
         }
+        &.w380 {
+            width: 380px; 
+            height: 380px;
+
+        }
+    }
+    &_bgCircle {
+
+        width: 200px;
+        position: absolute;
+        height: 200px;
+        background: #514A7E;
+        border: 1px solid #514A7E;
+        border-radius: 100%;
+        left: 65px;
+        top: -65px;
     }
 }

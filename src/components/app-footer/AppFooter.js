@@ -94,6 +94,12 @@ const AppFooter = () => {
                     <img src="https://bestprofilepictures.com/wp-content/uploads/2021/08/Anime-Girl-Images.jpg" alt="logo img" />
                 </div>
             </div>
+            <div className="rightCircle rightCircle-footer">
+                <div className="rightCircle_bgCircle"></div>
+                <div className="rightCircle_circle w380">
+                    
+                </div>
+            </div>
         </footer>
     );
 }
