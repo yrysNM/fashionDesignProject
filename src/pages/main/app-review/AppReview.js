@@ -1,8 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 
-import profileImg1 from "../../resources/img/profileImg/profileImg.png";
-import profileImg2 from "../../resources/img/profileImg/profileImg2.png";
+import profileImg1 from "../../../resources/img/profileImg/profileImg.png";
+import profileImg2 from "../../../resources/img/profileImg/profileImg2.png";
 import "./appReview.scss";
 
 const AppReview = () => {

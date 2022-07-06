@@ -1,10 +1,10 @@
 import { Component } from "react";
 
-import searchIcon from "../../resources/icons/search.svg";
-import heartIcon from "../../resources/icons/heart.svg";
-import packageIcon from "../../resources/icons/package.svg";
-import profileIcon from "../../resources/icons/profile.svg";
-import logoImg     from "../../resources/img/logoImg.png"; 
+import searchIcon from "../../../resources/icons/search.svg";
+import heartIcon from "../../../resources/icons/heart.svg";
+import packageIcon from "../../../resources/icons/package.svg";
+import profileIcon from "../../../resources/icons/profile.svg";
+import logoImg     from "../../../resources/img/logoImg.png"; 
 import "./appHeaders.scss";
 
 

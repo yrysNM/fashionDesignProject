@@ -1,9 +1,9 @@
-import timeIcon from "../../resources/icons/footerIcons/time.svg";
-import phoneIcon from "../../resources/icons/footerIcons/carbon_phone-voice.svg";
-import telegram from "../../resources/icons/socialIcons/telegram.svg";
-import phone from "../../resources/icons/socialIcons/phone.svg";
-import instagram from "../../resources/icons/socialIcons/instagram.svg";
-import message from "../../resources/icons/socialIcons/message.svg";
+import timeIcon from "../../../resources/icons/footerIcons/time.svg";
+import phoneIcon from "../../../resources/icons/footerIcons/carbon_phone-voice.svg";
+import telegram from "../../../resources/icons/socialIcons/telegram.svg";
+import phone from "../../../resources/icons/socialIcons/phone.svg";
+import instagram from "../../../resources/icons/socialIcons/instagram.svg";
+import message from "../../../resources/icons/socialIcons/message.svg";
 
 
 import "./appFooter.scss";

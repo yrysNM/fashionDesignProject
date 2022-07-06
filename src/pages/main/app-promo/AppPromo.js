@@ -1,6 +1,7 @@
 import {  Link } from "react-router-dom";
-import promoImg1 from "../../resources/img/promoImg1.png";
-import promoImg2 from "../../resources/img/promoImg2.png";
+
+import promoImg1 from "../../../resources/img/promoImg1.png";
+import promoImg2 from "../../../resources/img/promoImg2.png";
 
 import "./appPromo.scss";
 

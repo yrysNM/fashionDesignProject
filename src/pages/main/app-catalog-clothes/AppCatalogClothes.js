@@ -1,11 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
-import catalogImg1 from "../../resources/img/catalogImgs/catalogImg1.png";
-import catalogImg2 from "../../resources/img/catalogImgs/catalogImg2.png";
-import catalogImg3 from "../../resources/img/catalogImgs/catalogImg3.png";
-import catalogImg4 from "../../resources/img/catalogImgs/catalogImg4.png";
-import heartIcon from "../../resources/icons/heart.svg";
-import packageIcon from "../../resources/icons/package.svg";
+import catalogImg1 from "../../../resources/img/catalogImgs/catalogImg1.png";
+import catalogImg2 from "../../../resources/img/catalogImgs/catalogImg2.png";
+import catalogImg3 from "../../../resources/img/catalogImgs/catalogImg3.png";
+import catalogImg4 from "../../../resources/img/catalogImgs/catalogImg4.png";
+import heartIcon from "../../../resources/icons/heart.svg";
+import packageIcon from "../../../resources/icons/package.svg";
 import "swiper/css/bundle";
 import "./appCatalogClothes.scss";
 import "swiper/css/navigation";

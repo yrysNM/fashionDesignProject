@@ -1,7 +1,7 @@
-import iconList from "../../resources/icons/cooperationIcons/clarity_list-line.svg";
-import coinBag from "../../resources/icons/cooperationIcons/coin-bag-line.svg";
-import peopleIcon from "../../resources/icons/cooperationIcons/people.svg";
-import settingIcon from "../../resources/icons/cooperationIcons/cog-line-settings.svg";
+import iconList from "../../../resources/icons/cooperationIcons/clarity_list-line.svg";
+import coinBag from "../../../resources/icons/cooperationIcons/coin-bag-line.svg";
+import peopleIcon from "../../../resources/icons/cooperationIcons/people.svg";
+import settingIcon from "../../../resources/icons/cooperationIcons/cog-line-settings.svg";
 import "./appCooperation.scss";
 
 const AppCooperation = () => {

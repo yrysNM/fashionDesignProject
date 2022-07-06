@@ -1,4 +1,5 @@
-
+import { Component } from "react";
+import axios from "axios";
 import AppHeader from "../app-header/AppHeader";
 import AppPromo from "../app-promo/AppPromo";
 import AppAbout from "../app-about/AppAbout";
@@ -9,30 +10,47 @@ import AppCooperation from "../app-cooperation/AppCooperation";
 import AppFormDelivery from "../app-form-delivery/AppFormDelivery";
 import AppFooter from "../app-footer/AppFooter";
 
-const MainApp = (props) => {
-    return (
+class MainApp extends Component {
 
-        <div className="app">
-            <AppHeader />
+    state = {
+        products: []
+    };
 
-            <AppPromo />
+    componentDidMount() {
+        this.getProducts();
+    }
 
-            <AppAbout />
+    getProducts = () => {
+        axios.get("http://localhost:4000/products")
+            .then(res => this.setState(({ products: res.data })));
+    }
 
-            <AppCatalogClothes products={props.products} />
+    render() {
 
-            <AppReview />
+        return (
 
-            <AppOftenQuestion />
+            <div className="app">
+                <AppHeader />
 
-            <AppCooperation />
+                <AppPromo />
 
-            <AppFormDelivery />
+                <AppAbout />
 
-            <AppFooter />
+                <AppCatalogClothes products={this.state.products} />
 
-            
-        </div>
-    );
+                <AppReview />
+
+                <AppOftenQuestion />
+
+                <AppCooperation />
+
+                <AppFormDelivery />
+
+                <AppFooter />
+
+
+            </div>
+        );
+    }
 }
 export default MainApp;
