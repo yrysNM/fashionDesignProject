@@ -1,55 +1,35 @@
 import { Component } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
-import AppHeader from "../app-header/AppHeader";
-import AppPromo from "../app-promo/AppPromo";
-import AppAbout from "../app-about/AppAbout";
-import AppCatalogClothes from "../app-catalog-clothes/AppCatalogClothes";
-import AppReview from "../app-review/AppReview";
-import AppOftenQuestion from "../app-often-question/AppOftenQuestion";
-import AppCooperation from "../app-cooperation/AppCooperation";
-import AppFormDelivery from "../app-form-delivery/AppFormDelivery";
-import AppFooter from "../app-footer/AppFooter";
+import MainApp from "../../pages/main/app/MainApp";
+import Catalogs from "../../pages/Catalog/app/CatalogsApp.js";
 
 class App extends Component {
-
     state = {
         products: []
     };
-    
+
     componentDidMount() {
         this.getProducts();
     }
 
     getProducts = () => {
-        
+
         axios.get("http://localhost:4000/products")
-            .then(res => this.setState(({products: res.data})));
+            .then(res => this.setState(({ products: res.data })));
     }
 
-    
     render() {
         return(
-            <div className="app">
-                <AppHeader />    
+            <Router>
 
-                <AppPromo />
-
-                <AppAbout />
-
-                <AppCatalogClothes products={this.state.products} /> 
-
-                <AppReview />
-
-                <AppOftenQuestion />
-
-                <AppCooperation />
-
-                <AppFormDelivery />
-
-                <AppFooter />
-            </div>
+                <Routes>
+                <Route path="/" element={<MainApp products={this.state.products} />} />
+                    <Route path="catalogs" element={<Catalogs />} />
+                </Routes>
+            </Router>
         );
-    } 
+    }
 }
 
 export default App;

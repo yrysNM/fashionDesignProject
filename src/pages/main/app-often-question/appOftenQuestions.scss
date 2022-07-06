@@ -58,7 +58,7 @@
                 transition: all .6s ease;
                 border-color: #FFFDF5;
                 background:
-                  conic-gradient(from 90deg at var(--b) var(--b),#fff 90deg,$main-color 0) 
+                  conic-gradient(from 90deg at var(--b) var(--b),#FFFDF5 90deg,$main-color 0) 
                   calc(100% + var(--b)/2) calc(100% + var(--b)/2)/
                   calc(50%  + var(--b))   calc(50%  + var(--b));
             }

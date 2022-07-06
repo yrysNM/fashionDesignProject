@@ -93,6 +93,9 @@ class AppHeader extends Component {
                                     </ul>
                                 </nav>
                             </div>
+                            <div className="header__aside_hiddenMenu">
+                                
+                            </div>
                         </div>
                     </div>
                 </div>

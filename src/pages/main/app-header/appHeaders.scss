@@ -127,11 +127,15 @@
 
         &_list {
             a {
-                padding-bottom: 20px;
+                margin-bottom: 25px;
                 font-weight: 300;
                 font-size: 14px;
                 color: #FFFDF5;
-
+                transition: all .6s;
+                &:hover {   
+                    transform: scale(1.3);
+                    color: lighthen(#FFFDF5, 50%);
+                }   
             }
             li {
 
