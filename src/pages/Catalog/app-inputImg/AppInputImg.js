@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { usePalette } from "react-palette";
 
 const AppInputImg = ({ getImgSrc, getColorImgInput }) => {
     const [imgSrc, setImgSrc] = useState("");
@@ -17,14 +16,6 @@ const AppInputImg = ({ getImgSrc, getColorImgInput }) => {
         
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [imgSrc]);
-
-    const { data} = usePalette(imgSrc);
-
-    useEffect(() => {
-        getColorImgInput(data.vibrant);
-        console.log(data);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [data])
 
     return (
         <>

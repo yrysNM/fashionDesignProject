@@ -1,49 +1,62 @@
 import { Component } from "react";
-import { ColorExtractor } from "react-color-extractor";
+import axios from "axios";
+import TestImg from "../testImg/testImg";
+import AppInputImg from "../app-inputImg/AppInputImg";
+
 
 class CatalogsApp extends Component {
-    state = {
-        colors: [],
-    } 
+  state = {
+    products: [],
+    imgSrc: "",
+    colors: []
+  }
 
-    renderSwatches = () => {
-        const {colors} = this.state;
+  
 
-        return colors.map((color, id) => {
-            return(
-                <div key={id} style={{backgroundColor: color, width: 100, height: 100}} />
+  componentDidMount() {
+    this.getData();
+  }
+ 
+  setColors = (color) => {
+    return this.setState(({colors}) => ({
+        colors: [...colors, color]
+    }))
+  }
 
-            );
-        });
-    }
+  getData = () => {
+    axios.get("http://localhost:4000/products")
+      .then(res => {
+        this.setState(({ products }) => {
+          return {
+            products:  res.data
+          }
+        })
+      }).catch((e) => console.log(e));
+  }
 
-    getColors = colors => {
-        this.setState(state => ({
-            colors: [...state.colors, ...colors]
-        }))
 
-    }
-    render() {
-        return(
-            <div>
-            <ColorExtractor getColors={this.getColors}>
-              <img
-                src="https://i.pinimg.com/736x/cc/3b/77/cc3b770949eb3c8216a3e8d4c43e71c5.jpg"
-                style={{ objectFit: "cover" }}
-              alt="test img"/>
-            </ColorExtractor>
-            <div
-              style={{
-                marginTop: 20,
-                display: 'flex',
-                justifyContent: 'center'
-              }}
-            >
-              {this.renderSwatches()}
-            </div>
-          </div>
-        );
-    }
-}   
+  getImgSrc = (imgSrc) => {
+    this.setState(({imgSrc: imgSrc}));
+  }
+
+ 
+  render() {
+    const { products } = this.state;
+    let res = products.map(item => {
+      return (
+        <div key={item.id}>
+          <TestImg getUrl={item.image} setColors={this.setColors} />
+        </div>
+      );
+    });
+    return (
+      <div>
+        <AppInputImg getImgSrc={this.getImgSrc} />
+        <TestImg getUrl={this.state.imgSrc} setColors={this.setColors} />
+        {res}
+      </div>
+    );
+  }
+}
 
 export default CatalogsApp 
