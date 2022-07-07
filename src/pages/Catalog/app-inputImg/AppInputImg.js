@@ -15,12 +15,15 @@ const AppInputImg = ({ getImgSrc, getColorImgInput }) => {
     useEffect(() => {
         getImgSrc(imgSrc);
         
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [imgSrc]);
 
     const { data} = usePalette(imgSrc);
 
     useEffect(() => {
         getColorImgInput(data.vibrant);
+        console.log(data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data])
 
     return (
@@ -28,8 +31,6 @@ const AppInputImg = ({ getImgSrc, getColorImgInput }) => {
             <form>
                 <input onChange={(e) => getSrcImg(e)} type="file" name="image" />
             </form>
-
-         
         </>
     );
 }

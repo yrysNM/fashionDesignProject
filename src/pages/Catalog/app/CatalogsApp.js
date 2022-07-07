@@ -12,7 +12,7 @@ const CatalogsApp = () => {
 
 
     useEffect(() => {
-        axios.get("http://localhost:4000/product/62c18a8f9a2d167d02fc8a4a")
+        axios.get("http://localhost:4000/products")
             .then(res => {
                 setProduct(res.data);
                 res.data.map(item => {
@@ -20,6 +20,15 @@ const CatalogsApp = () => {
                 })
             }).catch((e) => console.log(e));
     }, []);
+
+
+    /**
+     * 
+     * @param {TODO create compare color in images and change state !dataImgURL!} imgSrc 
+     * 
+     * 
+     */
+
 
 
     const getImgSrc = (imgSrc) => {
@@ -32,7 +41,6 @@ const CatalogsApp = () => {
 
     const { data} = usePalette(dataImgUrl);
 
-    // console.log(data, loading, error);
     return (
         <section className="catalogs">
             <div className="container">
@@ -46,14 +54,11 @@ const CatalogsApp = () => {
                 <div className="blocktest">
                     {
                         product.map(item => {
-                            // console.log(item.options[0].values);
+                            console.log(data.vibrant === colorImgInput, data, colorImgInput);
+                            const res = (colorImgInput) ?  <img src={imgSrc} alt="input img" /> : (data.vibrant === colorImgInput) ?   <img src={item.image} alt={item.type} /> : null;
                             return (
                                 <div key={item.id} className="imgList">
-
-                                    <img src={imgSrc} alt="inputImg" />
-                                   
-                                    <img src={item.image} alt={item.type} />
-
+                                    {res}
                                 </div>
                             );
 
