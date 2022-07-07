@@ -4,12 +4,13 @@ import { usePalette } from 'react-palette'
 import AppInputImg from "../app-inputImg/AppInputImg";
 
 const CatalogsApp = () => {
-    
+
     const [product, setProduct] = useState([]);
     const [imgSrc, setImgSrc] = useState("");
     const [dataImgUrl, setDataImgUrl] = useState("");
+    const [colorImgInput, setColorImgInput] = useState("");
 
-    
+
     useEffect(() => {
         axios.get("http://localhost:4000/product/62c18a8f9a2d167d02fc8a4a")
             .then(res => {
@@ -25,11 +26,13 @@ const CatalogsApp = () => {
         setImgSrc(imgSrc);
     }
 
-    
-    
-    const { data, loading, error } = usePalette(dataImgUrl);
+    const getColorImgInput = (color) => {
+        setColorImgInput(color);
+    }
 
-    console.log(data);
+    const { data} = usePalette(dataImgUrl);
+
+    // console.log(data, loading, error);
     return (
         <section className="catalogs">
             <div className="container">
@@ -38,7 +41,7 @@ const CatalogsApp = () => {
                     <a href="/">back main</a>
                 </button>
 
-                <AppInputImg getImgSrc={getImgSrc} />
+                <AppInputImg getImgSrc={getImgSrc} getColorImgInput={getColorImgInput} />
 
                 <div className="blocktest">
                     {
@@ -47,21 +50,24 @@ const CatalogsApp = () => {
                             return (
                                 <div key={item.id} className="imgList">
 
-                                    <img src={item.image} alt={item.type} />
-                                    
                                     <img src={imgSrc} alt="inputImg" />
-                                </div>       
+                                   
+                                    <img src={item.image} alt={item.type} />
+
+                                </div>
                             );
 
-                        })  
+                        })
                     }
                 </div>
-                
-                <div style={{ "color": data.vibrant, "fontSize": 50  }}>
+
+                <div style={{ "color": data.vibrant, "fontSize": 50 }}>
                     Text with the data color
                 </div>
 
-              
+                <div style={{ "color": colorImgInput, "fontSize": 50 }}>
+                    Test text for color input
+                </div>
             </div >
         </section >
     );

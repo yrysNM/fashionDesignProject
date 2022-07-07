@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePalette } from "react-palette";
 
-const AppInputImg = ({ getImgSrc }) => {
+const AppInputImg = ({ getImgSrc, getColorImgInput }) => {
     const [imgSrc, setImgSrc] = useState("");
 
     const getSrcImg = (e) => {
@@ -11,11 +11,17 @@ const AppInputImg = ({ getImgSrc }) => {
 
     }
 
-    getImgSrc(imgSrc);
+    
+    useEffect(() => {
+        getImgSrc(imgSrc);
+        
+    }, [imgSrc]);
 
-    const { data, loading, error } = usePalette(imgSrc);
+    const { data} = usePalette(imgSrc);
 
-    console.log(data);
+    useEffect(() => {
+        getColorImgInput(data.vibrant);
+    }, [data])
 
     return (
         <>
@@ -23,9 +29,7 @@ const AppInputImg = ({ getImgSrc }) => {
                 <input onChange={(e) => getSrcImg(e)} type="file" name="image" />
             </form>
 
-            <div style={{ "color": data.vibrant, "fontSize": 50 }}>
-                Test text for color input
-            </div>
+         
         </>
     );
 }
