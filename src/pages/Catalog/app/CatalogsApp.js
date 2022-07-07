@@ -1,29 +1,35 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { usePalette } from 'react-palette'
+import AppInputImg from "../app-inputImg/AppInputImg";
 
 const CatalogsApp = () => {
-
+    
     const [product, setProduct] = useState([]);
     const [imgSrc, setImgSrc] = useState("");
+    const [dataImgUrl, setDataImgUrl] = useState("");
 
-
+    
     useEffect(() => {
-        axios.get("http://localhost:4000/product/62c18a8f9a2d167d02fc8a46")
-            .then(res => setProduct(res.data)).catch((e) => console.log(e));
+        axios.get("http://localhost:4000/product/62c18a8f9a2d167d02fc8a4a")
+            .then(res => {
+                setProduct(res.data);
+                res.data.map(item => {
+                    return setDataImgUrl(item.image)
+                })
+            }).catch((e) => console.log(e));
     }, []);
 
-    const getInfoImg = (e) => {
-        const file = e.target.files[0];
-            
-        setImgSrc( URL.createObjectURL(file));
-     
+
+    const getImgSrc = (imgSrc) => {
+        setImgSrc(imgSrc);
     }
 
     
     
-    const { data, loading, error } = usePalette(imgSrc)
+    const { data, loading, error } = usePalette(dataImgUrl);
 
+    console.log(data);
     return (
         <section className="catalogs">
             <div className="container">
@@ -32,9 +38,7 @@ const CatalogsApp = () => {
                     <a href="/">back main</a>
                 </button>
 
-                <form>
-                    <input onChange={(e) => getInfoImg(e)} type="file" name="image" />
-                </form>
+                <AppInputImg getImgSrc={getImgSrc} />
 
                 <div className="blocktest">
                     {
@@ -44,19 +48,20 @@ const CatalogsApp = () => {
                                 <div key={item.id} className="imgList">
 
                                     <img src={item.image} alt={item.type} />
+                                    
                                     <img src={imgSrc} alt="inputImg" />
-                                </div>
-
+                                </div>       
                             );
 
                         })  
                     }
                 </div>
                 
-                
                 <div style={{ "color": data.vibrant, "fontSize": 50  }}>
-                    Text with the vibrant color
+                    Text with the data color
                 </div>
+
+              
             </div >
         </section >
     );
