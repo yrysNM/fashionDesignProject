@@ -11,15 +11,15 @@ class CatalogsApp extends Component {
     colors: []
   }
 
-  
+
 
   componentDidMount() {
     this.getData();
   }
- 
+
   setColors = (color) => {
-    return this.setState(({colors}) => ({
-        colors: [...colors, color]
+    return this.setState(({ colors }) => ({
+      colors: [...colors, color]
     }))
   }
 
@@ -28,18 +28,46 @@ class CatalogsApp extends Component {
       .then(res => {
         this.setState(({ products }) => {
           return {
-            products:  res.data
+            products: res.data
           }
         })
       }).catch((e) => console.log(e));
   }
 
+  compareSameColors = () => {
 
-  getImgSrc = (imgSrc) => {
-    this.setState(({imgSrc: imgSrc}));
+    if (this.state.colors.length === 11) {
+      const compareColors = this.state.colors[10];
+
+      this.state.colors.map((color, j) => {
+        if (j !== 10) {
+          for (let k = 0; k < compareColors.length; k++) {
+            for (let i = 0; i < color.length; i++) {
+
+              let currentColor = color[i];
+              let currentComapreColors = compareColors[k];
+              // console.log(currentComapreColors, color);
+              if ((currentComapreColors[1] === currentColor[1] && currentComapreColors[2] === currentColor[2]) ||
+                (currentComapreColors[3] === currentColor[3] && currentComapreColors[4] === currentColor[4]) || 
+                (currentComapreColors[5] === currentColor[5] && currentComapreColors[6] === currentColor[6])) {
+                console.log(currentComapreColors, currentColor, color);
+                return color;
+              }
+            }
+          }
+        }
+      })
+    
+
+    }
+  
   }
 
- 
+  getImgSrc = (imgSrc) => {
+    this.setState(({ imgSrc: imgSrc }));
+  }
+
+
   render() {
     const { products } = this.state;
     let res = products.map(item => {
@@ -53,6 +81,7 @@ class CatalogsApp extends Component {
       <div>
         <AppInputImg getImgSrc={this.getImgSrc} />
         <TestImg getUrl={this.state.imgSrc} setColors={this.setColors} />
+        {this.compareSameColors()}
         {res}
       </div>
     );

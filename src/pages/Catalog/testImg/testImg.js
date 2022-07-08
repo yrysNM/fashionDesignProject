@@ -10,8 +10,6 @@ class TestImg extends Component {
         };
     }
 
-    componentDidMount() {
-    }
     renderSwatches = () => {
         const { colors } = this.state;
 
