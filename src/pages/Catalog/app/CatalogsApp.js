@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AppInputImg from "../app-inputImg/AppInputImg";
 
-const _apiKey = "a1422ff51fa403f9393fb41ec4cfbac33609b447";
+const _apiKey = "893820e241bb8001b92af0652b67f52a42725bc2";
 
 
 
@@ -18,17 +18,18 @@ const CatalogsApp = () => {
   useEffect(() => {
     if (inputImgBase64) getDataBase64(inputImgBase64);
 
-    if(infoInputImg.length !== 0) {
-      
-      itemProducts.map((product) => {
-        
-        getDataUrl(product.image, product.id);
-        
-     
-      }); 
-    }
+  }, [inputImgBase64]);
 
-  }, [inputImgBase64, itemProducts, infoInputImg.length]);
+  useEffect(() => {
+      if(infoInputImg.length > 0) {
+          for(let i = 0; i < itemProducts.length; i++) {
+            getDataUrl(itemProducts[i].image, itemProducts[i].id); 
+          }
+      }
+
+          
+
+  }, [infoInputImg]);
 
 
   useEffect(() => {
@@ -61,13 +62,7 @@ const CatalogsApp = () => {
     let products = [...metaData.records];
     
     products[productId] = {...products[productId] };
-    console.log(products);
-    // for(let i = 0; i < products.length; i++) {
-    //   let newProducts = products[i];
-    //   if(newProducts === null) {
-    //     delete products[i];
-    //   }
-    // }
+ 
     const firstEl = products[0];
     const lastEl = products.length - 1;
     const newProducts =  {
@@ -75,12 +70,7 @@ const CatalogsApp = () => {
       "data": firstEl
     };
       setInfoItemProducts((infoItemProducts) => [...infoItemProducts, newProducts]);
-    // console.log(metaData, infoInputImg._tags.Color.name );
-    // if(infoInputImg._tags.Color.name === metaData._tags.Color.name) {
-    //   console.log(metaData);
-    // }
-
-    // setInfoInputImg(metaData.records);
+  
   }
 
   async function getDataBase64(imgBase) {
@@ -117,23 +107,19 @@ const CatalogsApp = () => {
       });
   }
 
-  const findSameColors = (metaData) => {
+  const findSameColors = () => {
       
-    // for(let j = 0; j < itemProducts.length; j++) {
-      
-      if(infoInputImg.length !== 0 && infoItemProducts.length !== 0) {
-        for(let i = 0; i < infoItemProducts.length; i++) {
-          if(infoItemProducts[i][0]._tags.Color) {
-            if(infoItemProducts[i][0]._tags.Color[0].name === infoInputImg[0]._tags.Color[0].name) {
-              console.log(itemProducts, infoItemProducts[i][0]._tags.Color[0].name);
-            }
+    if(infoInputImg.length !== 0 && infoItemProducts.length !== 0) {
+      for(let i = 0; i < infoItemProducts.length; i++) {
+        if(infoItemProducts[i].data._tags.Color) {
+          if(infoItemProducts[i].data._tags.Color[0].name === infoInputImg[0]._tags.Color[0].name) {
+            const  res = itemProducts.filter(product => product.id ===  infoItemProducts[i].id);
+            // console.log(res);
+            setSameProduct((sameProduct) => [...res, ...sameProduct]);
           }
         }
       }
-    // }
-    // infoItemProducts.map((product) => {
-
-    // });
+    }   
   };
 
 
@@ -153,12 +139,21 @@ const CatalogsApp = () => {
 
       <button onClick={findSameColors}>Find same clothes like yours</button>
 
+      <div className="sameProduct">
+          {
+            sameProduct.map((taggingProduct, i) => {
+              return(
+                <img key={taggingProduct._id} src={taggingProduct.image} alt={taggingProduct.type} />
+              );
+            })
+          }
+      </div>
+
+
       <div className="listProduct">
         {
           itemProducts.map(product => {
-            // if(infoInputImg.length !== 0) {
-            //   getDataUrl(product.image);  //infinity loop
-            // }
+          
               return(
                 <img key={product._id} src={product.image} alt={product.type} />
               );
