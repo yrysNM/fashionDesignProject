@@ -79,10 +79,16 @@ class AppHeader extends Component {
                                 <div className="header__aside_img">
                                     <img src={logoImg} alt="logo img" />
                                 </div>
+                                
 
+                                {
+                                    /**
+                                     * @param {TODO--show hide subMenu}
+                                     */
+                                }
                                 <nav className="header__aside_nav">
                                     <ul className="header__aside_list">
-                                        <li onClick={this.switchHamburger} ><a href="#fomen">Женщинам </a></li>
+                                        <li onClick={this.switchHamburger} ><a href="#fomen" className="link">Женщинам </a></li>
                                         <li onClick={this.switchHamburger} ><a href="#man">Мужчинам</a></li>
                                         <li onClick={this.switchHamburger} ><a href="#kids">Детям </a></li>
                                         <li onClick={this.switchHamburger} ><a href="#a">Обувь </a></li>
@@ -91,10 +97,26 @@ class AppHeader extends Component {
                                         <li onClick={this.switchHamburger} ><a href="#a">Дополнительно </a></li>
                                         <li onClick={this.switchHamburger} ><a href="#a">Акции </a></li>
                                     </ul>
+
+                                    <ul className="header__aside-hiddenMenu_list">
+                                            <li onClick={this.switchHamburger}><a href="#a">Майки</a></li>
+                                            <li onClick={this.switchHamburger}><a href="#a">Костюмы</a></li>
+                                            <li onClick={this.switchHamburger}><a href="#a">Брюки</a></li>
+                                            <li onClick={this.switchHamburger}><a href="#a">Джинсы</a></li>
+                                            <li onClick={this.switchHamburger}><a href="#a">Юбки</a></li>
+                                            <li onClick={this.switchHamburger}><a href="#a">Шорты</a></li>
+                                            <li onClick={this.switchHamburger}><a href="#a">Свитшоты, худи</a></li>
+                                            <li onClick={this.switchHamburger}><a href="#a">Блузки и рубашки</a></li>
+                                            <li onClick={this.switchHamburger}><a href="#a">Пиджаки и жакеты</a></li>
+                                            <li onClick={this.switchHamburger}><a href="#a">Платья и сарафаны</a></li>
+                                            <li onClick={this.switchHamburger}><a href="#a">Верхняя одежда</a></li>
+                                        </ul>
                                 </nav>
-                            </div>
-                            <div className="header__aside_hiddenMenu">
-                                
+                                <div className="header__aside-hiddenMenu">
+                                    <nav className="header__aside-hiddenMenu_nav">
+                                       
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>

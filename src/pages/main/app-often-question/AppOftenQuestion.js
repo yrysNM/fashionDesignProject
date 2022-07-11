@@ -1,5 +1,6 @@
 import Fade from 'react-reveal/Fade';
 import "./appOftenQuestions.scss";
+import plusIcon from "../../../resources/icons/plus.svg";
 
 const AppOftenQuestion = () => {
     return (
@@ -18,7 +19,7 @@ const AppOftenQuestion = () => {
                         </div>
                         {/**close */}
                         <div className="oftenQuestions__list_plus alt">
-
+                            <img src={plusIcon} alt="plus icon" width="20" height="20"/>
                         </div>
                         <Fade bottom>
                             <div className="oftenQuestions__list_descr">
@@ -31,48 +32,78 @@ const AppOftenQuestion = () => {
                             Способы оплаты
                         </div>
                         <div className="oftenQuestions__list_plus alt">
-
+                            <img src={plusIcon} alt="plus icon" width="20" height="20"/>
                         </div>
+                        <Fade bottom>
+                            <div className="oftenQuestions__list_descr">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, sunt porro! Voluptas, voluptates excepturi praesentium nisi nam eum harum, labore fugit sint, veniam libero earum illo enim at placeat commodi.
+                            </div>
+                        </Fade>
                     </div>
                     <div className="oftenQuestions__list">
                         <div className="oftenQuestions__list_text">
                             Доставка
                         </div>
                         <div className="oftenQuestions__list_plus alt">
-
+                            <img src={plusIcon} alt="plus icon" width="20" height="20"/>
                         </div>
+                        <Fade bottom>
+                            <div className="oftenQuestions__list_descr">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, sunt porro! Voluptas, voluptates excepturi praesentium nisi nam eum harum, labore fugit sint, veniam libero earum illo enim at placeat commodi.
+                            </div>
+                        </Fade>
                     </div>
                     <div className="oftenQuestions__list">
                         <div className="oftenQuestions__list_text">
                             Сроки доставки
                         </div>
                         <div className="oftenQuestions__list_plus alt">
-
+                            <img src={plusIcon} alt="plus icon" width="20" height="20"/>
                         </div>
+                        <Fade bottom>
+                            <div className="oftenQuestions__list_descr">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, sunt porro! Voluptas, voluptates excepturi praesentium nisi nam eum harum, labore fugit sint, veniam libero earum illo enim at placeat commodi.
+                            </div>
+                        </Fade>
                     </div>
                     <div className="oftenQuestions__list">
                         <div className="oftenQuestions__list_text">
                             Как сделать обмен?
                         </div>
                         <div className="oftenQuestions__list_plus alt">
-
+                            <img src={plusIcon} alt="plus icon" width="20" height="20"/>
                         </div>
+                        <Fade bottom>
+                            <div className="oftenQuestions__list_descr">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, sunt porro! Voluptas, voluptates excepturi praesentium nisi nam eum harum, labore fugit sint, veniam libero earum illo enim at placeat commodi.
+                            </div>
+                        </Fade>
                     </div>
                     <div className="oftenQuestions__list">
                         <div className="oftenQuestions__list_text">
                             Как сделать возврат?
                         </div>
                         <div className="oftenQuestions__list_plus alt">
-
+                            <img src={plusIcon} alt="plus icon" width="20" height="20"/>
                         </div>
+                        <Fade bottom>
+                            <div className="oftenQuestions__list_descr">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, sunt porro! Voluptas, voluptates excepturi praesentium nisi nam eum harum, labore fugit sint, veniam libero earum illo enim at placeat commodi.
+                            </div>
+                        </Fade>
                     </div>
                     <div className="oftenQuestions__list">
                         <div className="oftenQuestions__list_text">
                             Куда и когда вернутся деньги за возвращённый товар?
                         </div>
                         <div className="oftenQuestions__list_plus alt">
-
+                            <img src={plusIcon} alt="plus icon" width="20" height="20"/>
                         </div>
+                        <Fade bottom>
+                            <div className="oftenQuestions__list_descr">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, sunt porro! Voluptas, voluptates excepturi praesentium nisi nam eum harum, labore fugit sint, veniam libero earum illo enim at placeat commodi.
+                            </div>
+                        </Fade>
                     </div>
                 </div>
             </div>
