@@ -55,6 +55,7 @@ const CatalogsApp = () => {
 
     const response = await fetch("https://api.ximilar.com/tagging/fashion/v2/tags", {
       method: "POST",
+      cache: "reload",
       headers: header,
       body: dataString
     });
@@ -91,6 +92,7 @@ const CatalogsApp = () => {
 
     const response = await fetch("https://api.ximilar.com/tagging/fashion/v2/tags", {
       method: "POST",
+      cache: "reload",
       headers: header,
       body: dataString
     });
