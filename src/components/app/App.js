@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainApp from "../../pages/main/app/MainApp";
-import Catalogs from "../../pages/Catalog/app/TemplateCatalogs";
+import Catalogs from "../../pages/Catalog/app/Catalogs";
 
 function App() {
   return (
