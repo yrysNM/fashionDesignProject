@@ -1,17 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainApp from "../../pages/main/app/MainApp";
-/**
- * @param {TODO- create  style for catalog}
- */
-import CatalogsApp from "../../pages/Catalog/app/CatalogsApp.js";
-import TemplateCtalogs from "../../pages/Catalog/app/TemplateCatalogs";
+import Catalogs from "../../pages/Catalog/app/TemplateCatalogs";
+
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<MainApp />} />
-        <Route path="catalogs" element={<TemplateCtalogs />} />
-        {/* <Route path="catalogs" element={<CatalogsApp />} /> */}
+        <Route path="catalogs" element={<Catalogs />} />
       </Routes>
     </Router>
   );

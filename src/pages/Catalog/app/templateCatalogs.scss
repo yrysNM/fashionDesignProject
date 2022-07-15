@@ -12,7 +12,14 @@
         &-list {
             width: calc(100% - 178px);
             display: flex; 
-            justify-content: space-around; 
+            flex-wrap: wrap;
+            justify-content: space-around;
+            &_wrapper {
+            margin-top: 70px;
+            &:nth-child(1), &:nth-child(2), &:nth-child(3) {
+                margin: 0
+            } 
+        }
         }
     }   
 }
@@ -33,7 +40,17 @@
     &_text {
         cursor: pointer;
         margin-left: 15px;
-        
+        transition: all 1.6s ease;
+        &:hover {
+            text-decoration: underline;
+        }
+        a {
+        cursor: pointer;
+        transition: all 1.6s ease;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
     }
     // width: 100%;
 }
