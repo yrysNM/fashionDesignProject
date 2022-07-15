@@ -10,7 +10,30 @@
 
         }
         &-list {
-            margin-left: 19px;
+            width: calc(100% - 178px);
+            display: flex; 
+            justify-content: space-around; 
         }
+    }   
+}
+
+.filters-block {
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 10px;
+    width: 100%;    
+    &_img {
+        width: 25px;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
     }
+    &_text {
+        cursor: pointer;
+        margin-left: 15px;
+        
+    }
+    // width: 100%;
 }
