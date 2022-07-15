@@ -16,10 +16,7 @@ class AppHeader extends Component {
     isSubHeaderActive2: false,
     isSubHeaderActive3: false,
     isSubHeaderActive4: false,
-    isSubHeaderActive5: false,
-    isSubHeaderActive6: false,
-    isSubHeaderActive7: false,
-    isSubHeaderActive8: false,
+    // isSubHeaderActive5: false,
   };
 
   switchHamburger = () => {
@@ -44,10 +41,7 @@ class AppHeader extends Component {
         isSubHeaderActive2: false,
         isSubHeaderActive3: false,
         isSubHeaderActive4: false,
-        isSubHeaderActive5: false,
-        isSubHeaderActive6: false,
-        isSubHeaderActive7: false,
-        isSubHeaderActive8: false,
+        // isSubHeaderActive5: false,
       });
     }
   };
@@ -61,10 +55,7 @@ class AppHeader extends Component {
       isSubHeaderActive2: false,
       isSubHeaderActive3: false,
       isSubHeaderActive4: false,
-      isSubHeaderActive5: false,
-      isSubHeaderActive6: false,
-      isSubHeaderActive7: false,
-      isSubHeaderActive8: false,
+      // isSubHeaderActive5: false,
     });
   };
 
@@ -74,10 +65,7 @@ class AppHeader extends Component {
       isSubHeaderActive2: false,
       isSubHeaderActive3: false,
       isSubHeaderActive4: false,
-      isSubHeaderActive5: false,
-      isSubHeaderActive6: false,
-      isSubHeaderActive7: false,
-      isSubHeaderActive8: false,
+      // isSubHeaderActive5: false,
     });
   };
   showSubHeader2 = () => {
@@ -86,42 +74,36 @@ class AppHeader extends Component {
       isSubHeaderActive1: false,
       isSubHeaderActive3: false,
       isSubHeaderActive4: false,
-      isSubHeaderActive5: false,
-      isSubHeaderActive6: false,
-      isSubHeaderActive7: false,
-      isSubHeaderActive8: false,
+      // isSubHeaderActive5: false,
     });
   };
   showSubHeader3 = () => {
     this.setState({
       isSubHeaderActive3: !this.state.isSubHeaderActive3,
+      isSubHeaderActive2: false,
+      isSubHeaderActive1: false,
+      isSubHeaderActive4: false,
+      // isSubHeaderActive5: false,
     });
   };
   showSubHeader4 = () => {
     this.setState({
       isSubHeaderActive4: !this.state.isSubHeaderActive4,
+      isSubHeaderActive2: false,
+      isSubHeaderActive3: false,
+      isSubHeaderActive1: false,
+      // isSubHeaderActive5: false,
     });
   };
-  showSubHeader5 = () => {
-    this.setState({
-      isSubHeaderActive5: !this.state.isSubHeaderActive5,
-    });
-  };
-  showSubHeader6 = () => {
-    this.setState({
-      isSubHeaderActive6: !this.state.isSubHeaderActive6,
-    });
-  };
-  showSubHeader7 = () => {
-    this.setState({
-      isSubHeaderActive7: !this.state.isSubHeaderActive7,
-    });
-  };
-  showSubHeader8 = () => {
-    this.setState({
-      isSubHeaderActive8: !this.state.isSubHeaderActive8,
-    });
-  };
+  // showSubHeader5 = () => {
+  //   this.setState({
+  //     isSubHeaderActive5: !this.state.isSubHeaderActive5,
+  //     isSubHeaderActive2: false,
+  //     isSubHeaderActive3: false,
+  //     isSubHeaderActive4: false,
+  //     isSubHeaderActive1: false,
+  //   });
+  // };
 
   render() {
     const {
@@ -132,10 +114,6 @@ class AppHeader extends Component {
       isSubHeaderActive2,
       isSubHeaderActive3,
       isSubHeaderActive4,
-      isSubHeaderActive5,
-      isSubHeaderActive6,
-      isSubHeaderActive7,
-      isSubHeaderActive8,
     } = this.state;
     return (
       <header className="header">
@@ -292,16 +270,74 @@ class AppHeader extends Component {
                       </ul>
                     </li>
                     <li>
-                      <a href="#kids">Детям </a>
+                      <a
+                        href="#kids"
+                        onClick={this.showSubHeader3}
+                        className={`link ${
+                          isSubHeaderActive3 ? "tagAHover" : null
+                        }`}
+                      >
+                        Детям{" "}
+                      </a>
+                      <ul
+                        className={`header__aside-hiddenMenu_list ${
+                          isSubHeaderActive3 ? "active" : null
+                        }`}
+                      >
+                        <Fade left opposite when={isSubHeaderActive3}>
+                          <li onClick={this.hiddenMenu}>
+                            <a href="#a">Майки</a>
+                          </li>
+                          <li>
+                            <a href="#a">Костюмы</a>
+                          </li>
+                          <li>
+                            <a href="#a">Брюки</a>
+                          </li>
+                          <li>
+                            <a href="#a">Джинсы</a>
+                          </li>
+
+                          <li>
+                            <a href="#a">Шорты</a>
+                          </li>
+
+                          <li>
+                            <a href="#a">Верхняя одежда</a>
+                          </li>
+                        </Fade>
+                      </ul>
                     </li>
                     <li>
-                      <a href="#a">Обувь </a>
+                      <a
+                        href="#a"
+                        onClick={this.showSubHeader4}
+                        className={`link ${
+                          isSubHeaderActive4 ? "tagAHover" : null
+                        }`}
+                      >
+                        Обувь{" "}
+                      </a>
+                      <ul
+                        className={`header__aside-hiddenMenu_list ${
+                          isSubHeaderActive4 ? "active" : null
+                        }`}
+                      >
+                        <Fade left opposite when={isSubHeaderActive4}>
+                          <li onClick={this.hiddenMenu}>
+                            <a href="#a">Кроссовки</a>
+                          </li>
+                          <li>
+                            <a href="#a">Туфли</a>
+                          </li>
+                          <li>
+                            <a href="#a">Кеды</a>
+                          </li>
+                        </Fade>
+                      </ul>
                     </li>
                     <li>
                       <a href="#a">Аксессуары </a>
-                    </li>
-                    <li>
-                      <a href="#a">Большие размеры </a>
                     </li>
                     <li>
                       <a href="#a">Дополнительно </a>
