@@ -2,8 +2,8 @@
     width: 630px;
     position: relative;
     z-index: 10;
-    &.pb94 {
-        padding-bottom: 94px;
+    &.mt94 {
+        margin-bottom: 94px;
     }
     
     &_text {
@@ -11,7 +11,7 @@
         font-size: 40px;
         line-height: 87.3%;
         color: #121212;
-        &.pb60{
+        &.mt60{
             padding-bottom: 60px;
         }
     }

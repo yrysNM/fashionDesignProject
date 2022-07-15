@@ -166,9 +166,6 @@ class AppHeader extends Component {
                   <img src={logoImg} alt="logo img" />
                 </div>
 
-                {/**
-                 * @param {TODO--show hide subMenu}
-                 */}
                 <nav className="header__aside_nav">
                   <ul className="header__aside_list">
                     <li>

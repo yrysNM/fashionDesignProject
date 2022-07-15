@@ -1,0 +1,16 @@
+.catalog {
+    position: relative;
+
+    &__section {
+        display: flex; 
+        // justify-content: space-between;
+        
+        &-filters {
+            width: 178px;
+
+        }
+        &-list {
+            margin-left: 19px;
+        }
+    }
+}
