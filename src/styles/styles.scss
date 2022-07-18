@@ -5,87 +5,90 @@
 @import "./base/circleDescr";
 @import "./base/btLine";
 * {
-    margin: 0; 
-    padding: 0 ; 
-    box-sizing: border-box;
-    font-family: 'Bad Script', cursive;
-    font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Bad Script", cursive;
+  font-family: "Roboto", sans-serif;
 }
 
-html
-{
-	font-size: 62.5%;
-	scroll-padding-top: 9rem;
-	scroll-behavior: smooth;
+html {
+  font-size: 62.5%;
+  scroll-padding-top: 9rem;
+  scroll-behavior: smooth;
 }
 
-html::-webkit-scrollbar{
-    width: .8rem;
+html::-webkit-scrollbar {
+  width: 0.8rem;
 }
 
-html::-webkit-scrollbar-track{
-    background: transparent;
+html::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-html::-webkit-scrollbar-thumb{
-    background: rgba(167, 165, 159, 0.7);
-    border-radius: 5rem;
+html::-webkit-scrollbar-thumb {
+  background: rgba(167, 165, 159, 0.7);
+  border-radius: 5rem;
 }
 
 body {
-    background-color:#FFFDF5; 
-    overflow-x: hidden;
+  background-color: #fffdf5;
+  overflow-x: hidden;
 }
 
-ul , li, dl {
-    list-style-type: none; 
-    margin: 0 ; 
-    padding:0;
+ul,
+li,
+dl {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
 }
 
 a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  &:hover {
     text-decoration: none;
-    color: inherit; 
-    display: inline-block;
-    &:hover {
-        text-decoration: none;
-        color: inherit;
-    }
+    color: inherit;
+  }
 }
 
 p {
-    margin:0; 
-    padding:  0; 
-
+  margin: 0;
+  padding: 0;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0; 
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .container {
-    width: 1205px;
-    margin: 0 auto;
+  width: 1205px;
+  margin: 0 auto;
 
-    &_slide {
-        width: calc(309px + 66%);
-        margin: 0 0 0 auto;
-    }
+  &_slide {
+    width: calc(309px + 66%);
+    margin: 0 0 0 auto;
+  }
 }
 
 .mt150 {
-    margin-top: 150px ;
+  margin-top: 150px;
 }
-
-
-
 
 @import "./blocks/pageup";
 @import "./blocks/bgCircle";
 @import "./blocks/form";
+@import "./blocks//buttons";

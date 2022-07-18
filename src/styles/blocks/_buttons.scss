@@ -1,0 +1,39 @@
+.btn {
+  padding: 15px 10px;
+  background-color: $main-color;
+  border: 0.5px solid #514a7e;
+  outline: none;
+  cursor: pointer;
+  color: #fffdf5;
+  width: 100%;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.6s ease;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  margin-top: 20px;
+  &.mt40 {
+    margin-top: 40px;
+  }
+
+  svg {
+    margin-left: 10px;
+    path {
+      fill: #fffdf5;
+    }
+  }
+
+  &:hover {
+    background-color: #fffdf5;
+    color: $main-color;
+
+    svg {
+      path {
+        fill: $main-color;
+      }
+    }
+  }
+}

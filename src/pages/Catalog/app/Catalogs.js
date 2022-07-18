@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import AppInputImg from "../app-inputImg/AppInputImg";
+import { useState } from "react";
+
+import AppMatching from "../app-mathing/AppMatching";
 import AppHeader from "../../main/app-header/AppHeader";
 import heartIcon from "../../../resources/icons/heart.svg";
 import packageIcon from "../../../resources/icons/package.svg";
@@ -12,131 +12,16 @@ import documentIcon from "../../../resources/icons/catalogIcons/document.svg";
 import "../../main/app-catalog-clothes/AppCatalogClothes";
 import "./templateCatalogs.scss";
 
-const _apiKey = "cce1c7efa33948a0043d290bb631d7ddac8e758b";
-
 const Catalogs = () => {
-  const [inputImgSrc, setInputImgSrc] = useState(null);
-  const [inputImgBase64, setInputImgBase64] = useState("");
-  const [infoInputImg, setInfoInputImg] = useState([]);
   const [itemProducts, setItemProducts] = useState([]);
-  const [sameProduct, setSameProduct] = useState([]);
-  const [infoItemProducts, setInfoItemProducts] = useState([]);
+  const [showToggleMathing, setShowToggleMathing] = useState(false);
 
-  useEffect(() => {
-    if (inputImgBase64) getDataBase64(inputImgBase64);
-  }, [inputImgBase64]);
-
-  useEffect(() => {
-    if (infoInputImg.length > 0) {
-      for (let i = 0; i < itemProducts.length; i++) {
-        getDataUrl(itemProducts[i].image, itemProducts[i].id);
-      }
-    }
-  }, [infoInputImg]);
-
-  useEffect(() => {
-    getItemProducts();
-  }, []);
-
-  async function getDataUrl(imgSrc, productId) {
-    let header = {
-      "Content-Type": "application/json",
-      Authorization: "Token " + _apiKey,
-    };
-
-    const dataString = `{
-      "records":[
-        {
-          "_url": "${imgSrc}"
-        }
-      ]
-    }`;
-
-    const response = await fetch(
-      "https://api.ximilar.com/tagging/fashion/v2/tags",
-      {
-        method: "POST",
-        cache: "reload",
-        headers: header,
-        body: dataString,
-      }
-    );
-    const metaData = await response.json();
-    let products = [...metaData.records];
-
-    products[productId] = { ...products[productId] };
-
-    const firstEl = products[0];
-    const lastEl = products.length - 1;
-    const newProducts = {
-      id: lastEl,
-      data: firstEl,
-    };
-    setInfoItemProducts((infoItemProducts) => [
-      ...infoItemProducts,
-      newProducts,
-    ]);
-  }
-
-  async function getDataBase64(imgBase) {
-    let header = {
-      "Content-Type": "application/json",
-      Authorization: "Token " + _apiKey,
-    };
-
-    const dataString = `{
-      "records":[
-        {
-          "_base64": "${imgBase}"
-        }
-      ]
-    }`;
-
-    const response = await fetch(
-      "https://api.ximilar.com/tagging/fashion/v2/tags",
-      {
-        method: "POST",
-        cache: "reload",
-        headers: header,
-        body: dataString,
-      }
-    );
-    const metaData = await response.json();
-
-    setInfoInputImg(metaData.records);
-  }
-
-  const getItemProducts = () => {
-    axios.get("http://localhost:5000/products").then((res) => {
-      setItemProducts(res.data);
-    });
+  const getItemCatalogProducts = (items) => {
+    setItemProducts(items);
   };
 
-  const findSameColors = () => {
-    if (infoInputImg.length !== 0 && infoItemProducts.length !== 0) {
-      for (let i = 0; i < infoItemProducts.length; i++) {
-        if (infoItemProducts[i].data._tags.Color) {
-          if (
-            infoItemProducts[i].data._tags.Color[0].name ===
-            infoInputImg[0]._tags.Color[0].name
-          ) {
-            const res = itemProducts.filter(
-              (product) => product.id === infoItemProducts[i].id
-            );
-            // console.log(res);
-            setSameProduct((sameProduct) => [...res, ...sameProduct]);
-          }
-        }
-      }
-    }
-  };
-
-  const getImgBase = (imgBase64) => {
-    setInputImgBase64(imgBase64);
-  };
-
-  const getImgSrc = (imgSrc) => {
-    setInputImgSrc(imgSrc);
+  const hideToggleMathcing = () => {
+    setShowToggleMathing(!showToggleMathing);
   };
 
   return (
@@ -155,18 +40,21 @@ const Catalogs = () => {
                   <img src={viewsIcon} alt="package icon" />
                 </div>
 
-                <div className="filters-block_text">
-                  Соответствие <span className="circle-number"></span>
-                  <div class="filter-block_mathing" style={{ display: "none" }}>
-                    <AppInputImg
-                      getImgSrc={getImgSrc}
-                      getImgBase={getImgBase}
-                    />
-                    <img src={inputImgSrc} alt="img user" />
-                    <button onClick={findSameColors}>
-                      Найди такую же одежду с похожими цветами
-                    </button>
-                  </div>
+                <div
+                  className="filters-block_text"
+                  onClick={hideToggleMathcing}
+                >
+                  Соответствие
+                </div>
+                <div
+                  className="filters-block_matching"
+                  style={{
+                    display: `${showToggleMathing ? "block" : "none"}`,
+                  }}
+                >
+                  <AppMatching
+                    getItemCatalogProducts={getItemCatalogProducts}
+                  />
                 </div>
               </div>
               <div className="filters-block">
@@ -242,7 +130,10 @@ const Catalogs = () => {
             <div className="catalog__section-list">
               {itemProducts.map((clothe) => {
                 return (
-                  <div className="catalog__wrapper catalog__section-list_wrapper">
+                  <div
+                    key={clothe.id}
+                    className="catalog__wrapper catalog__section-list_wrapper"
+                  >
                     <div className="catalog__wrapper_img">
                       <img
                         src={clothe.image}
