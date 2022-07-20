@@ -1,13 +1,9 @@
 /**
- * 
+ *
  * @TODO -- create bot and model window
  */
 const AppAssistentBot = () => {
-    return(
-        <div className="">
+  return <div className="botAssistent"></div>;
+};
 
-        </div>
-    );
-}
-
-export default AppAssistentBot; 
+export default AppAssistentBot;

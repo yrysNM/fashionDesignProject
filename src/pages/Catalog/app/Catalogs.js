@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import AppMatching from "../app-mathing/AppMatching";
+import AppMatching2 from "../app-mathing/AppMatching2";
 import AppHeader from "../../main/app-header/AppHeader";
 import heartIcon from "../../../resources/icons/heart.svg";
 import packageIcon from "../../../resources/icons/package.svg";
@@ -52,7 +52,7 @@ const Catalogs = () => {
                     display: `${showToggleMathing ? "block" : "none"}`,
                   }}
                 >
-                  <AppMatching
+                  <AppMatching2
                     getItemCatalogProducts={getItemCatalogProducts}
                   />
                 </div>
