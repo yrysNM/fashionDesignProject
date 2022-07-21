@@ -21,7 +21,7 @@ class MainApp extends Component {
     }
 
     getProducts = () => {
-        axios.get("http://localhost:5000/products")
+        axios.get("https://fast-hamlet-56846.herokuapp.com/products")
             .then(res => this.setState(({ products: res.data })));
     }
 

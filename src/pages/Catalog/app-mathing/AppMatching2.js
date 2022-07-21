@@ -16,14 +16,9 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
     useEffect(() => {
         if (inputImgBase64.length > 0) {
             getDataBase64(inputImgBase64);
-            axios.post("http://localhost:5000/uploadImg", {
-                title: "test2",
-                img: {
-                    data: inputImgBase64,
-                    contentType: inputImgBase64.type,
-                }
-            }).then(res => console.log(res));
+
         }
+        getDataBase64(inputImgBase64);
     }, [inputImgBase64]);
 
     async function getDataBase64(imgBase) {
@@ -31,13 +26,13 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
         const encodedParams = new FormData();
         encodedParams.append('tag_group', 'fashion_attributes');
         encodedParams.append('limit', '10');
-        encodedParams.append("file", `${imgBase}`);
+        encodedParams.append("url", "https://fast-hamlet-56846.herokuapp.com/file/1658444580940-any-name-catalogImg4.png");
         const options = {
             method: 'POST',
             url: 'https://virecognition.visenze.com/v1/image/recognize',
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'multipart/form-data',
+                // 'Content-Type': 'multipart/form-data',
                 Authorization: "Basic " + _apikey,
             },
             data: encodedParams,
@@ -132,7 +127,7 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
     }
 
     const getItemProducts = async () => {
-        axios.get("http://localhost:5000/products").then((res) => {
+        axios.get("https://fast-hamlet-56846.herokuapp.com/products").then((res) => {
             setItemProducts(res.data);
             getItemCatalogProducts(res.data);
         });
