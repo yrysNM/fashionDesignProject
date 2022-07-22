@@ -2,19 +2,25 @@
     position: relative;
 }
 .closeBot { 
-    // position: absolute; 
-    // change size z and position
+    position: absolute; 
+    z-index: 100;
     display: flex;
     justify-content: center;
     align-items: center;    
     top: -10px; 
     right: -10px; 
     padding: 20px; 
-    background: #514A7E;
+    background: #fffdf5;
 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 100%;
     width: 47px;
     height: 47px;
-    color: #FFFDF5;
+    color: #514A7E;
+    cursor: pointer;
     z-index: 110; 
+}
+
+.rsc {
+    position: relative;
+    z-index: 55;
 }

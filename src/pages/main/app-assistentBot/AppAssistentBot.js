@@ -28,7 +28,9 @@ const AppAssistentBot = ({ hideBotActive }) => {
   return (
     <div className="botAssistent">
       <div className="closeBot" onClick={hideChatBotActive}>
-        &times;
+        <span style={{ "fontSize": 30 }}>
+          &times;
+        </span>
       </div>
       <ChatBot steps={steps} />
     </div>

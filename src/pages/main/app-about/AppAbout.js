@@ -8,15 +8,15 @@ const AppAbout = () => {
   const [active, setActive] = useState(false);
   const [showChatBotActive, setShowChatBotActive] = useState(false);
   const theme = {
-    background: '#514A7E',
+    background: '#fffdf5',
     fontFamily: 'Helvetica Neue',
-    headerBgColor: '#EF6C00',
+    headerBgColor: 'rgba(81, 74, 126)',
     headerFontColor: '#fff',
     headerFontSize: '15px',
-    botBubbleColor: '#EF6C00',
+    botBubbleColor: '#514A7E',
     botFontColor: '#fff',
     userBubbleColor: '#fff',
-    userFontColor: '#4a4a4a',
+    userFontColor: '#514A7E',
   };
 
   useEffect(() => {
