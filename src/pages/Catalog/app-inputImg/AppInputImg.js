@@ -3,10 +3,10 @@ import axios from "axios";
 
 import "./appMatching.scss";
 
-const AppInputImg = ({ getImgSrc, getImgBase }) => {
+const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg }) => {
   const [imgSrc, setImgSrc] = useState("");
   const [imgFile, setImgFile] = useState({});
-  const [urlImg, setUrlImg] = useState([]);
+
 
   const getSrcImg = (e) => {
     const file = e.target.files[0];
@@ -14,37 +14,28 @@ const AppInputImg = ({ getImgSrc, getImgBase }) => {
     // setUrlImg(file);
     setImgSrc(URL.createObjectURL(file));
 
-    // const reader = new FileReader();
-    // reader.onloadend = function () {
-    //   // let imgBase = reader.result.slice(reader.result.indexOf(',') + 1);
-    //   axios.get("http://localhost:5000/file/" + file.name).then(res => console.log(res));
-    //   // getImgBase(file);
-    // };
-    // reader.readAsDataURL(file);
+    newTaggingImg([]);
   };
 
   useEffect(() => {
     getImgSrc(imgSrc);
-    // const fileName = urlImg.slice(urlImg.lastIndexOf("/"), urlImg.length);
-    // console.log(fileName);
-    // getImgBase(`https://fast-hamlet-56846.herokuapp.com/file${fileName}`);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imgSrc]);
 
 
   const handleSubmit = async (e) => {
-    // console.log(e.target[0])
     e.preventDefault();
-    // getSrcImg(e);
+
+    /**
+     * @param {upload img in backend}
+     */
     const formdata = new FormData()
     formdata.append("title", "user img");
     formdata.append("name", imgFile.name);
     formdata.append("type", imgFile.type);
     formdata.append("image", imgFile);
-    // console.log(imgFile.name);
-    // await axios.post("https://fast-hamlet-56846.herokuapp.com/uploadImg", formdata,
-    //   {
-    //     header: { "Content-Type": "multipart/form-data" }
-    //   }).then(res => setUrlImg(res.data));
+
     await axios.post("https://fast-hamlet-56846.herokuapp.com/uploadImg", formdata,
       {
         header: { "Content-Type": "multipart/form-data" }
@@ -54,7 +45,7 @@ const AppInputImg = ({ getImgSrc, getImgBase }) => {
         getImgBase(`https://fast-hamlet-56846.herokuapp.com/file${fileName}`);
       });
 
-    // axios.get(`https://fast-hamlet-56846.herokuapp.com/file${fileName}`).then(res => console.log(res));
+
   }
 
   return (
@@ -71,7 +62,7 @@ const AppInputImg = ({ getImgSrc, getImgBase }) => {
           type="file"
           name="image"
         />
-        <button type="submit">Submit</button>
+        <button className="form-btn matchingBtn" type="submit">Submit</button>
       </form>
     </>
   );
