@@ -1,10 +1,23 @@
 import Fade from "react-reveal/Fade";
 import { useEffect, useState } from "react";
-
+import AppAssistentBot from "../app-assistentBot/AppAssistentBot";
+import { ThemeProvider } from 'styled-components';
 import "./appAbout.scss";
 
 const AppAbout = () => {
   const [active, setActive] = useState(false);
+  const [showChatBotActive, setShowChatBotActive] = useState(false);
+  const theme = {
+    background: '#514A7E',
+    fontFamily: 'Helvetica Neue',
+    headerBgColor: '#EF6C00',
+    headerFontColor: '#fff',
+    headerFontSize: '15px',
+    botBubbleColor: '#EF6C00',
+    botFontColor: '#fff',
+    userBubbleColor: '#fff',
+    userFontColor: '#4a4a4a',
+  };
 
   useEffect(() => {
     // window.scrollTo(0, 0);
@@ -20,6 +33,14 @@ const AppAbout = () => {
   const scrollTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
+
+  const showBotActive = () => {
+    setShowChatBotActive(true);
+  }
+
+  const hideBotActive = (valueHideBotActive) => {
+    setShowChatBotActive(valueHideBotActive);
+  }
 
   return (
     <section className="about mt150">
@@ -80,9 +101,21 @@ const AppAbout = () => {
           </div>
         </div>
 
+        <div className="top left" style={{ zIndex: 100 }}>
+          <div style={{ "display": `${showChatBotActive ? "block" : "none"}`, }}>
+
+            <ThemeProvider theme={theme}>
+              <AppAssistentBot hideBotActive={hideBotActive} />
+
+            </ThemeProvider>
+          </div>
+        </div>
+
         <div className="top left">
-          <div className="about__topBtn">
+
+          <div className="about__topBtn" >
             <svg
+              onClick={showBotActive}
               width="36"
               height="36"
               viewBox="0 0 36 36"
@@ -107,6 +140,8 @@ const AppAbout = () => {
               />
             </svg>
           </div>
+
+
         </div>
       </Fade>
 

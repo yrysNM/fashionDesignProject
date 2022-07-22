@@ -100,6 +100,9 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
         formData.append("tag_group", "fashion_attributes");
         formData.append("url", imageURL);
 
+        /**
+         * @TODO_BUGS {convert request to back end fashion fixed bugs cors}
+         */
         return await fetch("https://virecognition.visenze.com/v1/image/recognize", {
             method: "POST",
             headers: {
