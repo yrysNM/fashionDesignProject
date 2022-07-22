@@ -3,7 +3,7 @@ import axios from "axios";
 
 import "./appMatching.scss";
 
-const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg }) => {
+const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg, newSetInfoCatalogImg }) => {
   const [imgSrc, setImgSrc] = useState("");
   const [imgFile, setImgFile] = useState({});
 
@@ -15,6 +15,7 @@ const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg }) => {
     setImgSrc(URL.createObjectURL(file));
 
     newTaggingImg([]);
+
   };
 
   useEffect(() => {

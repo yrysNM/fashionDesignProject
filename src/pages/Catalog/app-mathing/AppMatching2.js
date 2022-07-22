@@ -71,9 +71,7 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
                             const output = itemProducts.filter((product) =>
                                 product.id === infoCatalogImg[i].objectID
                             );
-                            /**
-                             * @BUG {solution use Set or ...}
-                             */
+
                             setTaggingImgRes((taggingImgRes) => [...output, ...taggingImgRes]);
 
                         }
@@ -171,7 +169,13 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
 
     const newTaggingImg = (taggingImg) => {
         setTaggingImgRes(taggingImg);
+        setInfoCatalogImg(taggingImg);
+        setInfoInputImg(taggingImg);
+        setInputImgBase64(taggingImg);
+
     }
+
+
 
 
     return (
