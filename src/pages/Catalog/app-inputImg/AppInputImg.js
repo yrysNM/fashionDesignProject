@@ -25,7 +25,9 @@ const AppInputImg = ({ getImgSrc, getImgBase }) => {
 
   useEffect(() => {
     getImgSrc(imgSrc);
-
+    // const fileName = urlImg.slice(urlImg.lastIndexOf("/"), urlImg.length);
+    // console.log(fileName);
+    // getImgBase(`https://fast-hamlet-56846.herokuapp.com/file${fileName}`);
   }, [imgSrc]);
 
 
@@ -39,14 +41,20 @@ const AppInputImg = ({ getImgSrc, getImgBase }) => {
     formdata.append("type", imgFile.type);
     formdata.append("image", imgFile);
     // console.log(imgFile.name);
+    // await axios.post("https://fast-hamlet-56846.herokuapp.com/uploadImg", formdata,
+    //   {
+    //     header: { "Content-Type": "multipart/form-data" }
+    //   }).then(res => setUrlImg(res.data));
     await axios.post("https://fast-hamlet-56846.herokuapp.com/uploadImg", formdata,
       {
         header: { "Content-Type": "multipart/form-data" }
-      }).then(res => setUrlImg(res.data));
+      }).then(res => {
 
-    const fileName = urlImg.slice(urlImg.lastIndexOf("/"), urlImg.length);
+        const fileName = res.data.slice(res.data.lastIndexOf("/"), res.data.length);
+        getImgBase(`https://fast-hamlet-56846.herokuapp.com/file${fileName}`);
+      });
 
-    axios.get(`https://fast-hamlet-56846.herokuapp.com/file${fileName}`).then(res => console.log(res));
+    // axios.get(`https://fast-hamlet-56846.herokuapp.com/file${fileName}`).then(res => console.log(res));
   }
 
   return (

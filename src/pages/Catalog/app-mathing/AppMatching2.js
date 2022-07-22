@@ -18,7 +18,7 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
             getDataBase64(inputImgBase64);
 
         }
-        getDataBase64(inputImgBase64);
+
     }, [inputImgBase64]);
 
     async function getDataBase64(imgBase) {
@@ -26,7 +26,7 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
         const encodedParams = new FormData();
         encodedParams.append('tag_group', 'fashion_attributes');
         encodedParams.append('limit', '10');
-        encodedParams.append("url", "https://fast-hamlet-56846.herokuapp.com/file/1658444580940-any-name-catalogImg4.png");
+        encodedParams.append("url", `${imgBase}`);
         const options = {
             method: 'POST',
             url: 'https://virecognition.visenze.com/v1/image/recognize',
