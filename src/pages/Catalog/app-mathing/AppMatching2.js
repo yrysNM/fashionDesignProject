@@ -9,7 +9,7 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
     const [inputImgSrc, setInputImgSrc] = useState(null);
     const [inputImgBase64, setInputImgBase64] = useState("");
     const [itemProducts, setItemProducts] = useState([]);
-    const [infoInputImg, setInfoInputImg] = useState([]);
+    const [infoInputImg, setInfoInputImg] = useState({});
     const [infoCatalogImg, setInfoCatalogImg] = useState([]);
     const [taggingImgRes, setTaggingImgRes] = useState([]);
 
@@ -54,8 +54,9 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
     }
 
     async function getDataBase64Input(imgBase) {
-        console.log(imgBase);
+        // console.log(imgBase);
         const classifiedImage = await getImageLabels(String(imgBase), "439784001", 0.3);
+
         if (classifiedImage) setInfoInputImg(classifiedImage.objects[0]);
     }
 
@@ -70,8 +71,8 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
                             const output = itemProducts.filter((product) =>
                                 product.id === infoCatalogImg[i].objectID
                             );
-
                             setTaggingImgRes((taggingImgRes) => [...output, ...taggingImgRes]);
+
 
                         }
                     }
@@ -80,8 +81,9 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
         } else {
             console.log("plase click submit");
         }
-        // setTaggingImgRes([]);
+
     }
+
 
     /**
      * 
@@ -120,9 +122,8 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
         setInfoCatalogImg(taggingImg);
         setInfoInputImg(taggingImg);
         setInputImgBase64(taggingImg);
-
+        // setIsHaveTaggingImg(isHaveTaggingImg => [true, ...isHaveTaggingImg])
     }
-
 
 
 
@@ -130,17 +131,46 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
         <>
             <AppInputImg getImgSrc={getImgSrc} newTaggingImg={newTaggingImg} getImgBase={getImgBase} />
             {inputImgSrc ? (
-                <img style={{ width: "100%" }} src={inputImgSrc} alt="img user" />
-            ) : null}
-            <button className="btn" onClick={findSameColors}>
-                Соответствие одежды
-            </button>
-            {taggingImgRes.map(item => {
-                return (
+                <>
+                    <img style={{ width: "100%" }} src={inputImgSrc} alt="img user" />
 
-                    <img key={item.id} style={{ width: "100%" }} src={item.image} alt={item.type_name} />
-                );
-            })}
+                    <div className="clotheCategory">
+                        {(Object.entries(infoInputImg).length > 0) ?
+                            <>
+                                <h3>
+                                    {infoInputImg.full_body_garment[0].label}: {infoInputImg.full_body_garment[0].score}%
+
+                                </h3>
+                                <h3>
+                                    {infoInputImg.product_color[0].label}: {infoInputImg.product_color[0].score}%
+                                </h3>
+                            </>
+                            : null
+                        }
+                    </div>
+                    <button className="btn" onClick={findSameColors}>
+                        Соответствие одежды
+                    </button>
+                </>
+            ) : null}
+
+
+
+            {
+
+
+                taggingImgRes.map(item => {
+
+
+                    return (
+                        <img key={item.id} style={{ width: "100%" }} src={item.image} alt={item.type_name} />
+                    );
+
+                })
+
+
+            }
+
         </>
     );
 }

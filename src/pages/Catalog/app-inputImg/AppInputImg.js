@@ -3,7 +3,7 @@ import axios from "axios";
 
 import "./appMatching.scss";
 
-const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg, newSetInfoCatalogImg }) => {
+const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg }) => {
   const [imgSrc, setImgSrc] = useState("");
   const [imgFile, setImgFile] = useState({});
 
@@ -20,14 +20,12 @@ const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg, newSetInfoCatalogIm
 
   useEffect(() => {
     getImgSrc(imgSrc);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imgSrc]);
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     /**
      * @param {upload img in backend}
      */
@@ -43,11 +41,13 @@ const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg, newSetInfoCatalogIm
       }).then(res => {
 
         const fileName = res.data.slice(res.data.lastIndexOf("/"), res.data.length);
+
         getImgBase(`https://fast-hamlet-56846.herokuapp.com/file${fileName}`);
       });
 
 
   }
+
 
   return (
     <>
@@ -63,7 +63,7 @@ const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg, newSetInfoCatalogIm
           type="file"
           name="image"
         />
-        <button className="form-btn matchingBtn" type="submit">Submit</button>
+        {imgSrc.length > 0 ? <button className="form-btn matchingBtn" type="submit">Получить информацию об изображении</button> : null}
       </form>
     </>
   );
