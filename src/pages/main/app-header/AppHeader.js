@@ -16,7 +16,7 @@ class AppHeader extends Component {
     isSubHeaderActive2: false,
     isSubHeaderActive3: false,
     isSubHeaderActive4: false,
-    // isSubHeaderActive5: false,
+    signUp: false,
   };
 
   switchHamburger = () => {
@@ -41,7 +41,7 @@ class AppHeader extends Component {
         isSubHeaderActive2: false,
         isSubHeaderActive3: false,
         isSubHeaderActive4: false,
-        // isSubHeaderActive5: false,
+
       });
     }
   };
@@ -55,7 +55,7 @@ class AppHeader extends Component {
       isSubHeaderActive2: false,
       isSubHeaderActive3: false,
       isSubHeaderActive4: false,
-      // isSubHeaderActive5: false,
+
     });
   };
 
@@ -65,7 +65,7 @@ class AppHeader extends Component {
       isSubHeaderActive2: false,
       isSubHeaderActive3: false,
       isSubHeaderActive4: false,
-      // isSubHeaderActive5: false,
+
     });
   };
   showSubHeader2 = () => {
@@ -74,7 +74,7 @@ class AppHeader extends Component {
       isSubHeaderActive1: false,
       isSubHeaderActive3: false,
       isSubHeaderActive4: false,
-      // isSubHeaderActive5: false,
+
     });
   };
   showSubHeader3 = () => {
@@ -83,7 +83,7 @@ class AppHeader extends Component {
       isSubHeaderActive2: false,
       isSubHeaderActive1: false,
       isSubHeaderActive4: false,
-      // isSubHeaderActive5: false,
+
     });
   };
   showSubHeader4 = () => {
@@ -92,18 +92,15 @@ class AppHeader extends Component {
       isSubHeaderActive2: false,
       isSubHeaderActive3: false,
       isSubHeaderActive1: false,
-      // isSubHeaderActive5: false,
+
     });
   };
-  // showSubHeader5 = () => {
-  //   this.setState({
-  //     isSubHeaderActive5: !this.state.isSubHeaderActive5,
-  //     isSubHeaderActive2: false,
-  //     isSubHeaderActive3: false,
-  //     isSubHeaderActive4: false,
-  //     isSubHeaderActive1: false,
-  //   });
-  // };
+
+  signUpModel = () => {
+    this.setState(({ signUp }) => ({
+      signUp: !signUp,
+    }))
+  }
 
   render() {
     const {
@@ -114,15 +111,15 @@ class AppHeader extends Component {
       isSubHeaderActive2,
       isSubHeaderActive3,
       isSubHeaderActive4,
+      signUp
     } = this.state;
     return (
       <header className="header">
         <div className="container">
           <div className="header__menu">
             <div
-              className={`hamburger ${
-                isActiveHamburger ? "hamburger_active" : ""
-              }`}
+              className={`hamburger ${isActiveHamburger ? "hamburger_active" : ""
+                }`}
               onClick={this.switchHamburger}
             >
               <span></span>
@@ -144,9 +141,36 @@ class AppHeader extends Component {
               </div>
 
               <div className="header__icons_otherIcons">
-                <img src={profileIcon} alt="profileIcon" />
+                <img src={profileIcon} alt="profileIcon" onClick={this.signUpModel} />
                 <img src={heartIcon} alt="heartIcon" />
                 <img src={packageIcon} alt="packageIcon" />
+                <Fade left opposite when={signUp}>
+                  <div className="header__icons-signIn">
+                    <div className="header__icons-signIn__profile">
+                      <div className="defaultCircleSigIn"></div>
+
+                      <button className="btn btn-signIn">
+                        Войти
+                      </button>
+                    </div>
+
+                    <div className="header__icons-signIn__other">
+                      <img src={packageIcon} alt="package icon" />
+
+                      <div className="header__icons-signIn__text">
+                        Корзина
+                      </div>
+                    </div>
+
+                    <div className="header__icons-signIn__other" style={{ "borderBottom": "none" }}>
+                      <img src={heartIcon} alt="package icon" />
+
+                      <div className="header__icons-signIn__text">
+                        Избранное
+                      </div>
+                    </div>
+                  </div>
+                </Fade>
               </div>
             </div>
           </div>
@@ -157,9 +181,8 @@ class AppHeader extends Component {
             style={{ zIndex: zIndex ? 200 : -1 }}
           >
             <div
-              className={`header__aside ${
-                isActiveMenu ? "header__aside_active" : ""
-              }`}
+              className={`header__aside ${isActiveMenu ? "header__aside_active" : ""
+                }`}
             >
               <div className="header__aside_menu">
                 <div className="header__aside_img">
@@ -172,16 +195,14 @@ class AppHeader extends Component {
                       <a
                         onClick={this.showSubHeader1}
                         href="#fomen"
-                        className={`link ${
-                          isSubHeaderActive1 ? "tagAHover" : null
-                        }`}
+                        className={`link ${isSubHeaderActive1 ? "tagAHover" : null
+                          }`}
                       >
                         Женщинам
                       </a>
                       <ul
-                        className={`header__aside-hiddenMenu_list ${
-                          isSubHeaderActive1 ? "active" : null
-                        }`}
+                        className={`header__aside-hiddenMenu_list ${isSubHeaderActive1 ? "active" : null
+                          }`}
                       >
                         <Fade left opposite when={isSubHeaderActive1}>
                           <li onClick={this.hiddenMenu}>
@@ -224,16 +245,14 @@ class AppHeader extends Component {
                       <a
                         onClick={this.showSubHeader2}
                         href="#man"
-                        className={`link ${
-                          isSubHeaderActive2 ? "tagAHover" : null
-                        }`}
+                        className={`link ${isSubHeaderActive2 ? "tagAHover" : null
+                          }`}
                       >
                         Мужчинам
                       </a>
                       <ul
-                        className={`header__aside-hiddenMenu_list ${
-                          isSubHeaderActive2 ? "active" : null
-                        }`}
+                        className={`header__aside-hiddenMenu_list ${isSubHeaderActive2 ? "active" : null
+                          }`}
                       >
                         <Fade left opposite when={isSubHeaderActive2}>
                           <li onClick={this.hiddenMenu}>
@@ -270,16 +289,14 @@ class AppHeader extends Component {
                       <a
                         href="#kids"
                         onClick={this.showSubHeader3}
-                        className={`link ${
-                          isSubHeaderActive3 ? "tagAHover" : null
-                        }`}
+                        className={`link ${isSubHeaderActive3 ? "tagAHover" : null
+                          }`}
                       >
                         Детям{" "}
                       </a>
                       <ul
-                        className={`header__aside-hiddenMenu_list ${
-                          isSubHeaderActive3 ? "active" : null
-                        }`}
+                        className={`header__aside-hiddenMenu_list ${isSubHeaderActive3 ? "active" : null
+                          }`}
                       >
                         <Fade left opposite when={isSubHeaderActive3}>
                           <li onClick={this.hiddenMenu}>
@@ -309,16 +326,14 @@ class AppHeader extends Component {
                       <a
                         href="#a"
                         onClick={this.showSubHeader4}
-                        className={`link ${
-                          isSubHeaderActive4 ? "tagAHover" : null
-                        }`}
+                        className={`link ${isSubHeaderActive4 ? "tagAHover" : null
+                          }`}
                       >
                         Обувь{" "}
                       </a>
                       <ul
-                        className={`header__aside-hiddenMenu_list ${
-                          isSubHeaderActive4 ? "active" : null
-                        }`}
+                        className={`header__aside-hiddenMenu_list ${isSubHeaderActive4 ? "active" : null
+                          }`}
                       >
                         <Fade left opposite when={isSubHeaderActive4}>
                           <li onClick={this.hiddenMenu}>

@@ -3,7 +3,6 @@ import axios from "axios";
 import Bottleneck from "bottleneck";
 import AppInputImg from "../app-inputImg/AppInputImg";
 
-const _apikey = "MDkyMGIxOWYxNGFlMWE1ZjBhODM2MTE2OWU2YTQ3Y2M6YjAyMTFmOTBjN2EyZTM0NDc3MDExMTQ4NmM2NWJkMDg";
 
 const AppMatching2 = ({ getItemCatalogProducts }) => {
     const [inputImgSrc, setInputImgSrc] = useState(null);
