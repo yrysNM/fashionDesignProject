@@ -55,9 +55,8 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
 
     async function getDataBase64Input(imgBase) {
         console.log(imgBase);
-        const classifiedImage = await getImageLabels(String(imgBase), "439784001", 0.3)
-
-        setInfoInputImg(classifiedImage.objects[0]);
+        const classifiedImage = await getImageLabels(String(imgBase), "439784001", 0.3);
+        if (classifiedImage) setInfoInputImg(classifiedImage.objects[0]);
     }
 
 
@@ -93,66 +92,12 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
      */
     const getImageLabels = async (imageURL, objectID, scoreLimit) => {
 
+        return await axios.post("https://fast-hamlet-56846.herokuapp.com/recognize", {
+            "imageURL": imageURL,
+            "objectID": objectID,
+            "scoreLimit": scoreLimit
+        }).then(res => res.data);
 
-        const formData = new FormData();
-
-        formData.append("limit", "30");
-        formData.append("tag_group", "fashion_attributes");
-        formData.append("url", imageURL);
-
-        /**
-         * @TODO_BUGS {convert request to back end fashion fixed bugs cors}
-         */
-        return await fetch("https://virecognition.visenze.com/v1/image/recognize", {
-            method: "POST",
-            headers: {
-                Authorization: "Basic " + _apikey,
-            },
-            body: formData,
-        })
-            .then((res) => res.json())
-            .then((res) => {
-                if (res.status !== "OK" && res.error[0]) {
-                    console.log("handle ViSenze - recognition error", res.error[0]);
-                    return;
-                }
-
-                const classifiedImage = {
-                    imageURL,
-                    objectID,
-                    objects: [],
-                };
-
-                // `res.result[0].objects` contains the objects detected in the image
-                res.result[0].objects.forEach((object, index) => {
-                    // Store coordinates of the current object
-                    classifiedImage.objects[index] = {
-                        x1: object.box[0],
-                        y1: object.box[1],
-                        x2: object.box[2],
-                        y2: object.box[3],
-                    };
-
-                    // Format categories, attributes and scores
-                    object.tags.forEach(({ tag, score }) => {
-                        const splittedTag = tag.split(":");
-                        score = parseFloat(score.toFixed(2));
-
-                        if (score > scoreLimit) {
-                            if (!(splittedTag[0] in classifiedImage.objects[index])) {
-                                classifiedImage.objects[index][splittedTag[0]] = [];
-                            }
-
-                            classifiedImage.objects[index][splittedTag[0]].push({
-                                label: splittedTag[1],
-                                score,
-                            });
-                        }
-                    });
-                });
-
-                return classifiedImage;
-            }).catch((err) => console.log("Image classification error", err));
     };
 
     const getItemProducts = async () => {
