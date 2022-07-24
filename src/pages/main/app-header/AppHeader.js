@@ -1,5 +1,6 @@
 import { Component } from "react";
 import Fade from "react-reveal/Fade";
+import AppAuthorization from "../../ModalWindows/Authorization/AppAuthorization";
 import searchIcon from "../../../resources/icons/search.svg";
 import heartIcon from "../../../resources/icons/heart.svg";
 import packageIcon from "../../../resources/icons/package.svg";
@@ -17,6 +18,7 @@ class AppHeader extends Component {
     isSubHeaderActive3: false,
     isSubHeaderActive4: false,
     signUp: false,
+    signIn: false,
   };
 
   switchHamburger = () => {
@@ -102,6 +104,18 @@ class AppHeader extends Component {
     }))
   }
 
+  signInModalShow = () => {
+    this.setState(({ signIn }) => ({
+      signIn: true,
+    }));
+  }
+
+  signInModalHide = () => {
+    this.setState({
+      signIn: false,
+    })
+  }
+
   render() {
     const {
       isActiveHamburger,
@@ -111,262 +125,268 @@ class AppHeader extends Component {
       isSubHeaderActive2,
       isSubHeaderActive3,
       isSubHeaderActive4,
-      signUp
+      signUp,
+      signIn
     } = this.state;
     return (
-      <header className="header">
-        <div className="container">
-          <div className="header__menu">
-            <div
-              className={`hamburger ${isActiveHamburger ? "hamburger_active" : ""
-                }`}
-              onClick={this.switchHamburger}
-            >
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-
-            <div className="header__icons">
-              <div className="header__icons_search">
-                <img src={searchIcon} alt="searchIcon" />
-                <form className="header__icons_form">
-                  <input
-                    type="search"
-                    name="search"
-                    className="header__icons_form_searchInput"
-                    placeholder="Поиск"
-                  />
-                </form>
+      <>
+        {signIn ?
+          <AppAuthorization signInModalHide={this.signInModalHide} singIn={signIn} /> : null
+        }
+        <header className="header">
+          <div className="container">
+            <div className="header__menu">
+              <div
+                className={`hamburger ${isActiveHamburger ? "hamburger_active" : ""
+                  }`}
+                onClick={this.switchHamburger}
+              >
+                <span></span>
+                <span></span>
+                <span></span>
               </div>
 
-              <div className="header__icons_otherIcons">
-                <img src={profileIcon} alt="profileIcon" onClick={this.signUpModel} />
-                <img src={heartIcon} alt="heartIcon" />
-                <img src={packageIcon} alt="packageIcon" />
-                <Fade left opposite when={signUp}>
-                  <div className="header__icons-signIn">
-                    <div className="header__icons-signIn__profile">
-                      <div className="defaultCircleSigIn"></div>
+              <div className="header__icons">
+                <div className="header__icons_search">
+                  <img src={searchIcon} alt="searchIcon" />
+                  <form className="header__icons_form">
+                    <input
+                      type="search"
+                      name="search"
+                      className="header__icons_form_searchInput"
+                      placeholder="Поиск"
+                    />
+                  </form>
+                </div>
 
-                      <button className="btn btn-signIn">
-                        Войти
-                      </button>
-                    </div>
+                <div className="header__icons_otherIcons">
+                  <img src={profileIcon} alt="profileIcon" onClick={this.signUpModel} />
+                  <img src={heartIcon} alt="heartIcon" />
+                  <img src={packageIcon} alt="packageIcon" />
+                  <Fade left opposite when={signUp}>
+                    <div className="header__icons-signIn">
+                      <div className="header__icons-signIn__profile">
+                        <div className="defaultCircleSigIn"></div>
 
-                    <div className="header__icons-signIn__other">
-                      <img src={packageIcon} alt="package icon" />
+                        <button className="btn btn-signIn" onClick={this.signInModalShow}>
+                          Войти
+                        </button>
+                      </div>
 
-                      <div className="header__icons-signIn__text">
-                        Корзина
+                      <div className="header__icons-signIn__other">
+                        <img src={packageIcon} alt="package icon" />
+
+                        <div className="header__icons-signIn__text">
+                          Корзина
+                        </div>
+                      </div>
+
+                      <div className="header__icons-signIn__other" style={{ "borderBottom": "none" }}>
+                        <img src={heartIcon} alt="package icon" />
+
+                        <div className="header__icons-signIn__text">
+                          Избранное
+                        </div>
                       </div>
                     </div>
-
-                    <div className="header__icons-signIn__other" style={{ "borderBottom": "none" }}>
-                      <img src={heartIcon} alt="package icon" />
-
-                      <div className="header__icons-signIn__text">
-                        Избранное
-                      </div>
-                    </div>
+                  </Fade>
+                </div>
+              </div>
+            </div>
+            <div
+              className="overlay"
+              onClick={this.hiddenMenuOverlay}
+              ref={(e) => this.setAsideRef(e)}
+              style={{ zIndex: zIndex ? 200 : -1 }}
+            >
+              <div
+                className={`header__aside ${isActiveMenu ? "header__aside_active" : ""
+                  }`}
+              >
+                <div className="header__aside_menu">
+                  <div className="header__aside_img">
+                    <img src={logoImg} alt="logo img" />
                   </div>
-                </Fade>
-              </div>
-            </div>
-          </div>
-          <div
-            className="overlay"
-            onClick={this.hiddenMenuOverlay}
-            ref={(e) => this.setAsideRef(e)}
-            style={{ zIndex: zIndex ? 200 : -1 }}
-          >
-            <div
-              className={`header__aside ${isActiveMenu ? "header__aside_active" : ""
-                }`}
-            >
-              <div className="header__aside_menu">
-                <div className="header__aside_img">
-                  <img src={logoImg} alt="logo img" />
-                </div>
 
-                <nav className="header__aside_nav">
-                  <ul className="header__aside_list">
-                    <li>
-                      <a
-                        onClick={this.showSubHeader1}
-                        href="#fomen"
-                        className={`link ${isSubHeaderActive1 ? "tagAHover" : null
-                          }`}
-                      >
-                        Женщинам
-                      </a>
-                      <ul
-                        className={`header__aside-hiddenMenu_list ${isSubHeaderActive1 ? "active" : null
-                          }`}
-                      >
-                        <Fade left opposite when={isSubHeaderActive1}>
-                          <li onClick={this.hiddenMenu}>
-                            <a href="#a">Майки</a>
-                          </li>
-                          <li>
-                            <a href="#a">Костюмы</a>
-                          </li>
-                          <li>
-                            <a href="#a">Брюки</a>
-                          </li>
-                          <li>
-                            <a href="#a">Джинсы</a>
-                          </li>
-                          <li>
-                            <a href="#a">Юбки</a>
-                          </li>
-                          <li>
-                            <a href="#a">Шорты</a>
-                          </li>
-                          <li>
-                            <a href="#a">Свитшоты, худи</a>
-                          </li>
-                          <li>
-                            <a href="#a">Блузки и рубашки</a>
-                          </li>
-                          <li>
-                            <a href="#a">Пиджаки и жакеты</a>
-                          </li>
-                          <li>
-                            <a href="#a">Платья и сарафаны</a>
-                          </li>
-                          <li>
-                            <a href="#a">Верхняя одежда</a>
-                          </li>
-                        </Fade>
-                      </ul>
-                    </li>
-                    <li>
-                      <a
-                        onClick={this.showSubHeader2}
-                        href="#man"
-                        className={`link ${isSubHeaderActive2 ? "tagAHover" : null
-                          }`}
-                      >
-                        Мужчинам
-                      </a>
-                      <ul
-                        className={`header__aside-hiddenMenu_list ${isSubHeaderActive2 ? "active" : null
-                          }`}
-                      >
-                        <Fade left opposite when={isSubHeaderActive2}>
-                          <li onClick={this.hiddenMenu}>
-                            <a href="#a">Майки</a>
-                          </li>
-                          <li>
-                            <a href="#a">Костюмы</a>
-                          </li>
-                          <li>
-                            <a href="#a">Брюки</a>
-                          </li>
-                          <li>
-                            <a href="#a">Джинсы</a>
-                          </li>
+                  <nav className="header__aside_nav">
+                    <ul className="header__aside_list">
+                      <li>
+                        <a
+                          onClick={this.showSubHeader1}
+                          href="#fomen"
+                          className={`link ${isSubHeaderActive1 ? "tagAHover" : null
+                            }`}
+                        >
+                          Женщинам
+                        </a>
+                        <ul
+                          className={`header__aside-hiddenMenu_list ${isSubHeaderActive1 ? "active" : null
+                            }`}
+                        >
+                          <Fade left opposite when={isSubHeaderActive1}>
+                            <li onClick={this.hiddenMenu}>
+                              <a href="#a">Майки</a>
+                            </li>
+                            <li>
+                              <a href="#a">Костюмы</a>
+                            </li>
+                            <li>
+                              <a href="#a">Брюки</a>
+                            </li>
+                            <li>
+                              <a href="#a">Джинсы</a>
+                            </li>
+                            <li>
+                              <a href="#a">Юбки</a>
+                            </li>
+                            <li>
+                              <a href="#a">Шорты</a>
+                            </li>
+                            <li>
+                              <a href="#a">Свитшоты, худи</a>
+                            </li>
+                            <li>
+                              <a href="#a">Блузки и рубашки</a>
+                            </li>
+                            <li>
+                              <a href="#a">Пиджаки и жакеты</a>
+                            </li>
+                            <li>
+                              <a href="#a">Платья и сарафаны</a>
+                            </li>
+                            <li>
+                              <a href="#a">Верхняя одежда</a>
+                            </li>
+                          </Fade>
+                        </ul>
+                      </li>
+                      <li>
+                        <a
+                          onClick={this.showSubHeader2}
+                          href="#man"
+                          className={`link ${isSubHeaderActive2 ? "tagAHover" : null
+                            }`}
+                        >
+                          Мужчинам
+                        </a>
+                        <ul
+                          className={`header__aside-hiddenMenu_list ${isSubHeaderActive2 ? "active" : null
+                            }`}
+                        >
+                          <Fade left opposite when={isSubHeaderActive2}>
+                            <li onClick={this.hiddenMenu}>
+                              <a href="#a">Майки</a>
+                            </li>
+                            <li>
+                              <a href="#a">Костюмы</a>
+                            </li>
+                            <li>
+                              <a href="#a">Брюки</a>
+                            </li>
+                            <li>
+                              <a href="#a">Джинсы</a>
+                            </li>
 
-                          <li>
-                            <a href="#a">Шорты</a>
-                          </li>
-                          <li>
-                            <a href="#a">Свитшоты, худи</a>
-                          </li>
+                            <li>
+                              <a href="#a">Шорты</a>
+                            </li>
+                            <li>
+                              <a href="#a">Свитшоты, худи</a>
+                            </li>
 
-                          <li>
-                            <a href="#a">Пиджаки и жакеты</a>
-                          </li>
+                            <li>
+                              <a href="#a">Пиджаки и жакеты</a>
+                            </li>
 
-                          <li>
-                            <a href="#a">Верхняя одежда</a>
-                          </li>
-                        </Fade>
-                      </ul>
-                    </li>
-                    <li>
-                      <a
-                        href="#kids"
-                        onClick={this.showSubHeader3}
-                        className={`link ${isSubHeaderActive3 ? "tagAHover" : null
-                          }`}
-                      >
-                        Детям{" "}
-                      </a>
-                      <ul
-                        className={`header__aside-hiddenMenu_list ${isSubHeaderActive3 ? "active" : null
-                          }`}
-                      >
-                        <Fade left opposite when={isSubHeaderActive3}>
-                          <li onClick={this.hiddenMenu}>
-                            <a href="#a">Майки</a>
-                          </li>
-                          <li>
-                            <a href="#a">Костюмы</a>
-                          </li>
-                          <li>
-                            <a href="#a">Брюки</a>
-                          </li>
-                          <li>
-                            <a href="#a">Джинсы</a>
-                          </li>
+                            <li>
+                              <a href="#a">Верхняя одежда</a>
+                            </li>
+                          </Fade>
+                        </ul>
+                      </li>
+                      <li>
+                        <a
+                          href="#kids"
+                          onClick={this.showSubHeader3}
+                          className={`link ${isSubHeaderActive3 ? "tagAHover" : null
+                            }`}
+                        >
+                          Детям{" "}
+                        </a>
+                        <ul
+                          className={`header__aside-hiddenMenu_list ${isSubHeaderActive3 ? "active" : null
+                            }`}
+                        >
+                          <Fade left opposite when={isSubHeaderActive3}>
+                            <li onClick={this.hiddenMenu}>
+                              <a href="#a">Майки</a>
+                            </li>
+                            <li>
+                              <a href="#a">Костюмы</a>
+                            </li>
+                            <li>
+                              <a href="#a">Брюки</a>
+                            </li>
+                            <li>
+                              <a href="#a">Джинсы</a>
+                            </li>
 
-                          <li>
-                            <a href="#a">Шорты</a>
-                          </li>
+                            <li>
+                              <a href="#a">Шорты</a>
+                            </li>
 
-                          <li>
-                            <a href="#a">Верхняя одежда</a>
-                          </li>
-                        </Fade>
-                      </ul>
-                    </li>
-                    <li>
-                      <a
-                        href="#a"
-                        onClick={this.showSubHeader4}
-                        className={`link ${isSubHeaderActive4 ? "tagAHover" : null
-                          }`}
-                      >
-                        Обувь{" "}
-                      </a>
-                      <ul
-                        className={`header__aside-hiddenMenu_list ${isSubHeaderActive4 ? "active" : null
-                          }`}
-                      >
-                        <Fade left opposite when={isSubHeaderActive4}>
-                          <li onClick={this.hiddenMenu}>
-                            <a href="#a">Кроссовки</a>
-                          </li>
-                          <li>
-                            <a href="#a">Туфли</a>
-                          </li>
-                          <li>
-                            <a href="#a">Кеды</a>
-                          </li>
-                        </Fade>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="#a">Аксессуары </a>
-                    </li>
-                    <li>
-                      <a href="#a">Дополнительно </a>
-                    </li>
-                    <li>
-                      <a href="#a">Акции </a>
-                    </li>
-                  </ul>
-                </nav>
-                <div className="header__aside-hiddenMenu">
-                  <nav className="header__aside-hiddenMenu_nav"></nav>
+                            <li>
+                              <a href="#a">Верхняя одежда</a>
+                            </li>
+                          </Fade>
+                        </ul>
+                      </li>
+                      <li>
+                        <a
+                          href="#a"
+                          onClick={this.showSubHeader4}
+                          className={`link ${isSubHeaderActive4 ? "tagAHover" : null
+                            }`}
+                        >
+                          Обувь{" "}
+                        </a>
+                        <ul
+                          className={`header__aside-hiddenMenu_list ${isSubHeaderActive4 ? "active" : null
+                            }`}
+                        >
+                          <Fade left opposite when={isSubHeaderActive4}>
+                            <li onClick={this.hiddenMenu}>
+                              <a href="#a">Кроссовки</a>
+                            </li>
+                            <li>
+                              <a href="#a">Туфли</a>
+                            </li>
+                            <li>
+                              <a href="#a">Кеды</a>
+                            </li>
+                          </Fade>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#a">Аксессуары </a>
+                      </li>
+                      <li>
+                        <a href="#a">Дополнительно </a>
+                      </li>
+                      <li>
+                        <a href="#a">Акции </a>
+                      </li>
+                    </ul>
+                  </nav>
+                  <div className="header__aside-hiddenMenu">
+                    <nav className="header__aside-hiddenMenu_nav"></nav>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
+      </>
     );
   }
 }
