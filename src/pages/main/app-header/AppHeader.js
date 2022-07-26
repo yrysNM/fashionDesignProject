@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Fade from "react-reveal/Fade";
-import AppAuthorization from "../../ModalWindows/Authorization/AppAuthorization";
+import AppSignIn from "../../ModalWindows/SignIn/AppSignIn";
 import searchIcon from "../../../resources/icons/search.svg";
 import heartIcon from "../../../resources/icons/heart.svg";
 import packageIcon from "../../../resources/icons/package.svg";
@@ -130,9 +130,9 @@ class AppHeader extends Component {
     } = this.state;
     return (
       <>
-        {signIn ?
-          <AppAuthorization signInModalHide={this.signInModalHide} singIn={signIn} /> : null
-        }
+
+        <AppSignIn signInModalHide={this.signInModalHide} singIn={signIn} />
+
         <header className="header">
           <div className="container">
             <div className="header__menu">
