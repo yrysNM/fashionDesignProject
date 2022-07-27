@@ -14,7 +14,7 @@ const SignIn = ({ singIn, signInModalHide }) => {
 
     return (
         <>
-            <div className="overlayModal w450" style={{ "opacity": `${singIn ? "1" : "0"}`, "zIndex": `${singIn ? "150" : "0"}` }}>
+            <div className="overlayModal w450" style={{ "opacity": `${singIn ? "1" : "0"}`, "zIndex": `${singIn ? "150" : "-1"}` }}>
                 <div className="modal w450" style={{ "top": `${singIn ? '50%' : "-50%"}` }}>
                     <div className="modal__close" onClick={signInModalHide}>&times;</div>
                     <div className="modal__subtitle">Вход в личный кабинет</div>

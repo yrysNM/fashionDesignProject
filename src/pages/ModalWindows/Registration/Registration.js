@@ -4,7 +4,7 @@ const AppRegistration = ({ isRegistration, hideRegistrationModal }) => {
 
     return (
 
-        <div className="overlayModal " style={{ "opacity": `${isRegistration ? "1" : "0"}`, "zIndex": `${isRegistration ? "150" : "0"}` }}>
+        <div className="overlayModal " style={{ "opacity": `${isRegistration ? "1" : "-1"}`, "zIndex": `${isRegistration ? "150" : "-1"}` }}>
             <div className="modal w900" style={{ "top": `${isRegistration ? '50%' : "-50%"}` }} >
                 <div className="modal__close" onClick={hideRegistrationModal}>&times;</div>
                 <div className="modal__subtitle">Регистрация</div>

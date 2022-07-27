@@ -20,9 +20,31 @@ class MainApp extends Component {
         this.getProducts();
     }
 
-    getProducts = () => {
-        axios.get("https://fast-hamlet-56846.herokuapp.com/products")
-            .then(res => this.setState(({ products: res.data })));
+    getProducts = async () => {
+        let obj = {
+            products: []
+        }
+        await axios.get("http://localhost:5000/productsTShirt")
+            .then(res => {
+                obj.products.push(...res.data);
+            });
+
+        await axios.get("http://localhost:5000/productsEmbro")
+            .then(res => {
+                obj.products.push(...res.data);
+            });
+
+        await axios.get("http://localhost:5000/productsShoes")
+            .then(res => {
+                obj.products.push(...res.data);
+            });
+
+        await axios.get("http://localhost:5000/productsMug")
+            .then(res => {
+                obj.products.push(...res.data);
+            });
+
+        this.setState(({ products: obj.products }))
     }
 
     render() {
