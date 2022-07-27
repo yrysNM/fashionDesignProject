@@ -36,13 +36,16 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
 
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inputImgSrc]);
 
     useEffect(() => {
         if (inputImgBase64.length > 0) {
+
             getDataBase64Input(inputImgBase64);
         }
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inputImgBase64]);
 
 
@@ -53,7 +56,7 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
     }
 
     async function getDataBase64Input(imgBase) {
-        // console.log(imgBase);
+
         const classifiedImage = await getImageLabels(String(imgBase), "439784001", 0.3);
 
         if (classifiedImage) setInfoInputImg(classifiedImage.objects[0]);
@@ -102,13 +105,37 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
     };
 
     const getItemProducts = async () => {
-        await axios.get("https://fast-hamlet-56846.herokuapp.com/products").then((res) => {
-            setItemProducts(res.data);
-            getItemCatalogProducts(res.data);
-        });
+        let obj = {
+            products: []
+        }
+        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsTShirt")
+            .then(res => {
+                obj.products.push(...res.data);
+            });
+
+        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsEmbro")
+            .then(res => {
+                obj.products.push(...res.data);
+            });
+
+        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsShoes")
+            .then(res => {
+                obj.products.push(...res.data);
+            });
+
+        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsMug")
+            .then(res => {
+                obj.products.push(...res.data);
+            });
+
+
+        setItemProducts(obj.products);
+        getItemCatalogProducts(obj.products);
+
     };
 
     const getImgBase = (imgBase64) => {
+
         setInputImgBase64(imgBase64);
     };
 
@@ -137,8 +164,10 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
                         {(Object.entries(infoInputImg).length > 0) ?
                             <>
                                 <h3>
-                                    {infoInputImg.full_body_garment[0].label}: {infoInputImg.full_body_garment[0].score}%
-
+                                    {infoInputImg.full_body_garment ?
+                                        <span>{infoInputImg.full_body_garment[0].label}: {infoInputImg.full_body_garment[0].score}%</span>
+                                        : null
+                                    }
                                 </h3>
                                 <h3>
                                     {infoInputImg.product_color[0].label}: {infoInputImg.product_color[0].score}%

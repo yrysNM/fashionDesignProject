@@ -6,15 +6,18 @@
     // justify-content: space-between;
 
     &-filters {
-      width: 178px;
+      width: 200px;
     }
+
     &-list {
       width: calc(100% - 178px);
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
+
       &_wrapper {
         margin-top: 70px;
+
         &:nth-child(1),
         &:nth-child(2),
         &:nth-child(3) {
@@ -45,22 +48,37 @@
     align-items: center;
     cursor: pointer;
   }
+
   &_text {
     cursor: pointer;
     margin-left: 15px;
     transition: all 1.6s ease;
     display: flex;
     flex-wrap: wrap;
+
     &:hover {
       text-decoration: underline;
     }
+
     a {
       cursor: pointer;
       transition: all 1.6s ease;
+
       &:hover {
         text-decoration: underline;
       }
     }
   }
+
   // width: 100%;
+}
+
+.downlist {
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-top: 2px;
+    margin-left: 5px;
+  }
 }

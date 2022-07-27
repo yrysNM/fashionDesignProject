@@ -26,24 +26,33 @@ const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    /**
-     * @param {upload img in backend}
-     */
-    const formdata = new FormData()
-    formdata.append("title", "user img");
-    formdata.append("name", imgFile.name);
-    formdata.append("type", imgFile.type);
-    formdata.append("image", imgFile);
+    const targetUrlImg = e.target.elements.urlImage.value;
 
-    await axios.post("https://fast-hamlet-56846.herokuapp.com/uploadImg", formdata,
-      {
-        header: { "Content-Type": "multipart/form-data" }
-      }).then(res => {
+    if (targetUrlImg) {
+      getImgBase(targetUrlImg);
+      getImgSrc(targetUrlImg);
+    } else
+      /**
+       * @param {upload img in backend}
+       */
+      if (imgSrc) {
+        getImgSrc(imgSrc);
+        const formdata = new FormData()
+        formdata.append("title", "user img");
+        formdata.append("name", imgFile.name);
+        formdata.append("type", imgFile.type);
+        formdata.append("image", imgFile);
 
-        const fileName = res.data.slice(res.data.lastIndexOf("/"), res.data.length);
+        await axios.post("https://fast-hamlet-56846.herokuapp.com/uploadImg", formdata,
+          {
+            header: { "Content-Type": "multipart/form-data" }
+          }).then(res => {
 
-        getImgBase(`https://fast-hamlet-56846.herokuapp.com/file${fileName}`);
-      });
+            const fileName = res.data.slice(res.data.lastIndexOf("/"), res.data.length);
+
+            getImgBase(`https://fast-hamlet-56846.herokuapp.com/file${fileName}`);
+          });
+      }
 
 
   }
@@ -63,7 +72,9 @@ const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg }) => {
           type="file"
           name="image"
         />
-        {imgSrc.length > 0 ? <button className="form-btn matchingBtn" type="submit">Получить информацию об изображении</button> : null}
+        <input type="url" id="urlImg" placeholder="Загрузить с URL-адреса" className="catalog-input form-input" name="urlImage" />
+        <button className="form-btn matchingBtn" type="submit">Загрузить изображение</button>
+
       </form>
     </>
   );

@@ -12,7 +12,7 @@ import "swiper/css/bundle";
 import "swiper/css/navigation";
 import "./productMap.scss";
 
-const _url = 'https://search.visenze.com/v1/product/recommendations/5?app_key=6261b9a4b2ff47561387bf848cd1945a&placement_id=1281&page=1&limit=10&alt_limit=5&facets_limit=10&facets_show_count=false&score=false&score_min=0&score_max=1&dedup=false';
+
 
 const ProductMap = () => {
 
@@ -32,6 +32,7 @@ const ProductMap = () => {
 
         window.scrollTo(0, 0);
         const options = { method: 'GET', headers: { Accept: 'application/json' } };
+        const _url = `https://search.visenze.com/v1/product/recommendations/${productId}?app_key=6261b9a4b2ff47561387bf848cd1945a&placement_id=1281&page=1&limit=10&alt_limit=5&facets_limit=10&facets_show_count=false&score=false&score_min=0&score_max=1&dedup=false`;
 
         fetch(_url, options)
             .then(response => response.json())

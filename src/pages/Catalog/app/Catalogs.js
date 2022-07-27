@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Fade } from "react-reveal";
 import AppMatching2 from "../app-mathing/AppMatching2";
 import AppHeader from "../../main/app-header/AppHeader";
 import heartIcon from "../../../resources/icons/heart.svg";
@@ -41,21 +41,28 @@ const Catalogs = () => {
                 </div>
 
                 <div
-                  className="filters-block_text"
+                  className="filters-block_text downlist"
                   onClick={hideToggleMathcing}
                 >
                   Соответствие
+                  <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 1.04907e-06L7 5L12 1.74846e-07L14 1L7 8L-6.11959e-07 1L2 1.04907e-06Z" fill="#514A7E" />
+                  </svg>
                 </div>
-                <div
-                  className="filters-block_matching"
-                  style={{
-                    display: `${showToggleMathing ? "block" : "none"}`,
-                  }}
-                >
-                  <AppMatching2
-                    getItemCatalogProducts={getItemCatalogProducts}
-                  />
-                </div>
+                <Fade top when={showToggleMathing}>
+
+                  <div
+                    className="filters-block_matching"
+                    style={{
+                      display: `${showToggleMathing ? "block" : "none"}`,
+                    }}
+                  >
+
+                    <AppMatching2
+                      getItemCatalogProducts={getItemCatalogProducts}
+                    />
+                  </div>
+                </Fade>
               </div>
               <div className="filters-block">
                 <div className="filters-block_img">
