@@ -36,7 +36,7 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
 
             }
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+
     }, [inputImgSrc]);
 
     useEffect(() => {
@@ -45,7 +45,7 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
             getDataBase64Input(inputImgBase64);
         }
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+
     }, [inputImgBase64]);
 
 

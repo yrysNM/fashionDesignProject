@@ -24,22 +24,22 @@ class MainApp extends Component {
         let obj = {
             products: []
         }
-        await axios.get("http://localhost:5000/productsTShirt")
+        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsTShirt")
             .then(res => {
                 obj.products.push(...res.data);
             });
 
-        await axios.get("http://localhost:5000/productsEmbro")
+        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsEmbro")
             .then(res => {
                 obj.products.push(...res.data);
             });
 
-        await axios.get("http://localhost:5000/productsShoes")
+        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsShoes")
             .then(res => {
                 obj.products.push(...res.data);
             });
 
-        await axios.get("http://localhost:5000/productsMug")
+        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsMug")
             .then(res => {
                 obj.products.push(...res.data);
             });

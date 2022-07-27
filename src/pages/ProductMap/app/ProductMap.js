@@ -25,7 +25,7 @@ const ProductMap = () => {
     useEffect(() => {
         const productId = location.pathname.slice(location.pathname.lastIndexOf("/") + 1, location.pathname.length);
 
-        axios.get(`http://localhost:5000/product/${productId}`).then(res => {
+        axios.get(`https://fast-hamlet-56846.herokuapp.com/product/${productId}`).then(res => {
             setProductType(res.data.type_name);
             setProductInfo([res.data]);
         });
