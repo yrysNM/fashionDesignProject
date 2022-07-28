@@ -14,7 +14,7 @@ import "../../main/app-catalog-clothes/AppCatalogClothes";
 import "./templateCatalogs.scss";
 
 const Catalogs = () => {
-  const [itemProducts, setItemProducts] = useState(Array.from(new Set([])));
+  const [itemProducts, setItemProducts] = useState([]);
   const [showToggleMathing, setShowToggleMathing] = useState(false);
   const [offset, setOffset] = useState(0);
 
@@ -43,8 +43,19 @@ const Catalogs = () => {
       <AppHeader />
       <section className="catalog">
         <div className="container">
+          <div className="productMap_subtitle">
+
+
+            <div className="productMap_link catalog_link">
+              <Link to="/">
+                Главная/
+              </Link>
+              <span className="catalog_nowPath">Каталог</span>
+
+            </div>
+          </div>
           <div className="title mt94">
-            <h2 className="title_text">Просмотренные товары</h2>
+            <h2 className="title_text">Каталог</h2>
           </div>
 
           <div className="catalog__section">

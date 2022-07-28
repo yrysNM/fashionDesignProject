@@ -1,4 +1,4 @@
-import { useToggleDescr } from "../../../hooks/toggleDescr";
+import { useToggleDescr } from "../../../hooks/toggleDescr.hook";
 import Fade from "react-reveal/Fade";
 import "./appOftenQuestions.scss";
 import plusIcon from "../../../resources/icons/plus.svg";

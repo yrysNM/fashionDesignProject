@@ -1,5 +1,6 @@
 import { Component } from "react";
-import Fade from "react-reveal/Fade";
+import { Link } from "react-router-dom";
+import Fade from "react-reveal/Fade"
 import AppSignIn from "../../ModalWindows/SignIn/AppSignIn";
 import searchIcon from "../../../resources/icons/search.svg";
 import heartIcon from "../../../resources/icons/heart.svg";
@@ -9,6 +10,7 @@ import logoImg from "../../../resources/img/logoImg.png";
 import "./appHeaders.scss";
 
 class AppHeader extends Component {
+
   state = {
     isActiveHamburger: false,
     isActiveMenu: false,
@@ -225,7 +227,7 @@ class AppHeader extends Component {
                         >
                           <Fade left opposite when={isSubHeaderActive1}>
                             <li onClick={this.hiddenMenu}>
-                              <a href="#a">Майки</a>
+                              <Link to="/filter/womensTShirt">Майки</Link>
                             </li>
                             <li>
                               <a href="#a">Костюмы</a>

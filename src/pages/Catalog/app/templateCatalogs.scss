@@ -1,6 +1,25 @@
 .catalog {
   position: relative;
 
+  &_link {
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 23px;
+    margin-bottom: 60px;
+
+    color: #7D7D7D;
+  }
+
+  &_nowPath {
+
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 23px;
+
+
+    color: #514A7E;
+  }
+
   &__section {
     display: flex;
     // justify-content: space-between;
