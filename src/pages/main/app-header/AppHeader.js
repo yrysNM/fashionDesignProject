@@ -164,7 +164,7 @@ class AppHeader extends Component {
                   <img src={heartIcon} alt="heartIcon" />
                   <img src={packageIcon} alt="packageIcon" />
                   <Fade left opposite when={signUp}>
-                    <div className="header__icons-signIn">
+                    <div className="header__icons-signIn" style={{ "display": `${signUp ? "block" : "none"}` }}>
                       <div className="header__icons-signIn__profile">
                         <div className="defaultCircleSigIn"></div>
 

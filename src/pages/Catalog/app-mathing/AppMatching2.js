@@ -4,17 +4,23 @@ import Bottleneck from "bottleneck";
 import AppInputImg from "../app-inputImg/AppInputImg";
 
 
-const AppMatching2 = ({ getItemCatalogProducts }) => {
+const AppMatching2 = ({ getItemCatalogProducts, getOffSet }) => {
     const [inputImgSrc, setInputImgSrc] = useState(null);
     const [inputImgBase64, setInputImgBase64] = useState("");
     const [itemProducts, setItemProducts] = useState([]);
     const [infoInputImg, setInfoInputImg] = useState({});
     const [infoCatalogImg, setInfoCatalogImg] = useState([]);
     const [taggingImgRes, setTaggingImgRes] = useState([]);
+    const [offset, setOffset] = useState(0);
+
+
 
     useEffect(() => {
+        setOffset(getOffSet() + 1);
+
         getItemProducts();
-    }, []);
+
+    }, [getOffSet()])
 
     /**
      * @param {package for delay time request api} limiter
@@ -105,34 +111,66 @@ const AppMatching2 = ({ getItemCatalogProducts }) => {
     };
 
     const getItemProducts = async () => {
-        let obj = {
-            products: []
-        }
-        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsTShirt")
+
+        await axios.get(`http://localhost:5000/productsOffsetTShirt/${offset + 3}`)
             .then(res => {
-                obj.products.push(...res.data);
+                res.data.forEach(async (productId) => {
+                    await axios.get("http://localhost:5000/product/" + productId._id).then(result => {
+
+                        if (result.data) {
+                            setItemProducts(itemProducts => [...itemProducts, result.data]);
+                            getItemCatalogProducts(result.data);
+
+                        }
+                    });
+
+                })
             });
 
-        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsEmbro")
+        await axios.get("http://localhost:5000/productsOffsetEmbro/" + offset + 2)
             .then(res => {
-                obj.products.push(...res.data);
+                res.data.forEach(async (productId) => {
+                    await axios.get("http://localhost:5000/product/" + productId._id).then(result => {
+                        if (result.data) {
+                            setItemProducts(itemProducts => [...itemProducts, result.data]);
+                            getItemCatalogProducts(result.data);
+                        }
+                    })
+                })
             });
 
-        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsShoes")
+        await axios.get("http://localhost:5000/productsOffsetShoes/" + offset + 2)
             .then(res => {
-                obj.products.push(...res.data);
+                res.data.forEach(async (productId) => {
+                    await axios.get("http://localhost:5000/product/" + productId._id).then(result => {
+                        if (result.data) {
+                            setItemProducts(itemProducts => [...itemProducts, result.data]);
+                            getItemCatalogProducts(result.data);
+                        }
+                    })
+                })
             });
 
-        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsMug")
+        await axios.get("http://localhost:5000/productsOffsetMug/" + offset + 2)
             .then(res => {
-                obj.products.push(...res.data);
+                res.data.forEach(async (productId) => {
+                    await axios.get("http://localhost:5000/product/" + productId._id).then(result => {
+                        if (result.data) {
+                            setItemProducts(itemProducts => [...itemProducts, result.data]);
+                            getItemCatalogProducts(result.data);
+                        }
+                    })
+                })
             });
 
 
-        setItemProducts(obj.products);
-        getItemCatalogProducts(obj.products);
+
+
+
+
 
     };
+
 
     const getImgBase = (imgBase64) => {
 

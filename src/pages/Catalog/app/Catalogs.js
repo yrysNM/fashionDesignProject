@@ -14,16 +14,29 @@ import "../../main/app-catalog-clothes/AppCatalogClothes";
 import "./templateCatalogs.scss";
 
 const Catalogs = () => {
-  const [itemProducts, setItemProducts] = useState([]);
+  const [itemProducts, setItemProducts] = useState(Array.from(new Set([])));
   const [showToggleMathing, setShowToggleMathing] = useState(false);
+  const [offset, setOffset] = useState(0);
 
   const getItemCatalogProducts = (items) => {
-    setItemProducts(items);
+    setItemProducts(itemProducts => [...itemProducts, items]);
+
   };
 
   const hideToggleMathcing = () => {
     setShowToggleMathing(!showToggleMathing);
   };
+
+  const offsetProducts = () => {
+
+    setOffset(offset => offset + 1);
+    getOffSet();
+  }
+
+  const getOffSet = () => {
+    return offset;
+  }
+
 
   return (
     <>
@@ -59,7 +72,7 @@ const Catalogs = () => {
                     }}
                   >
 
-                    <AppMatching2
+                    <AppMatching2 getOffSet={getOffSet}
                       getItemCatalogProducts={getItemCatalogProducts}
                     />
                   </div>
@@ -136,10 +149,10 @@ const Catalogs = () => {
             </div>
 
             <div className="catalog__section-list">
-              {itemProducts.map((clothe) => {
+              {itemProducts.map((clothe, i) => {
                 return (
                   <div
-                    key={clothe.id}
+                    key={i}
                     className="catalog__wrapper catalog__section-list_wrapper"
                   >
                     <div className="catalog__wrapper_img">
@@ -255,6 +268,10 @@ const Catalogs = () => {
               })}
             </div>
           </div>
+
+          <button onClick={offsetProducts} className="more">
+            Ещё
+          </button>
         </div>
       </section>
     </>
