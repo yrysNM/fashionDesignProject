@@ -1,5 +1,5 @@
 class ProductService {
-    offset = 3;
+    offset = 210;
     getFilterWomens = async (url) => {
         const res = await fetch(url);
 

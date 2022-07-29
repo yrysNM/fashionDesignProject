@@ -17,7 +17,7 @@ const AppFilterMatching = ({ getItemCatalogProducts, getOffSet }) => {
     const productService = new ProductService();
 
     useEffect(() => {
-        setOffset(getOffSet() + 1);
+        setOffset(getOffSet());
 
         getItemProducts();
 

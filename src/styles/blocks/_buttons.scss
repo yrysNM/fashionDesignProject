@@ -15,14 +15,18 @@
   transition: all 0.6s ease;
   box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
   margin-top: 20px;
+
   &.mt40 {
     margin-top: 40px;
   }
+
   &.mt60 {
     margin-top: 60px;
   }
+
   svg {
     margin-left: 10px;
+
     path {
       fill: #fffdf5;
     }
@@ -42,6 +46,38 @@
   &-signIn {
     width: 110px;
     padding: 8px 35px;
+
+  }
+
+  &-more {
+    position: absolute;
+    margin-top: 61px;
+
+    left: 50%;
+    transform: translateX(-50%);
+    width: 132px;
+    height: 132px;
+    border: 1px solid #514A7E;
+    border-radius: 100%;
+    background-color: inherit;
+    color: #514A7E;
+    display: block;
+
+    svg {
+      path {
+        fill: #514A7E;
+
+      }
+    }
+
+    &:hover {
+      background-color: #514A7E;
+      color: #FFFDF5;
+
+      svg path {
+        fill: #FFFDF5;
+      }
+    }
 
   }
 }
