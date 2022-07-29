@@ -1,5 +1,5 @@
 class ProductService {
-    offset = 210;
+    offset = 3;
     getFilterWomens = async (url) => {
         const res = await fetch(url);
 
@@ -49,6 +49,15 @@ class ProductService {
         const res = await this.getFilterWomens(`http://localhost:5000/productsFilterWomens/${offset}`);
 
         return res;
+    }
+
+    getTShirtProducts = async (offset = this.offset) => {
+        const data = await this.getFilteredProducts(offset).then(res => {
+            return res.filter(items => items.type === "T-SHIRT");
+        });
+
+        return data;
+        // return data;
     }
 
 }

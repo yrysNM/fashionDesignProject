@@ -51,8 +51,6 @@
 
   &-more {
     position: absolute;
-    margin-top: 61px;
-
     left: 50%;
     transform: translateX(-50%);
     width: 132px;
@@ -61,7 +59,6 @@
     border-radius: 100%;
     background-color: inherit;
     color: #514A7E;
-    display: block;
 
     svg {
       path {

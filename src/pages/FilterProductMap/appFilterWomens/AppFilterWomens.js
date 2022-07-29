@@ -251,7 +251,7 @@ const AppFilterWomens = () => {
                             }
                         </div>
                     </div>
-                    <div style={{ "marginBottom": 66 }}>
+                    <div style={{ "minHeight": 130, "marginBottom": "66px", "marginTop": "61px" }}>
 
                         <button onClick={offsetProducts} className="btn btn-more">
                             Ещё
