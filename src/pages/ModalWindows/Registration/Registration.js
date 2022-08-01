@@ -1,21 +1,98 @@
-
+import { useState } from "react";
+import axios from "axios";
 
 const AppRegistration = ({ isRegistration, hideRegistrationModal }) => {
+    const [validateEmailState, setValidateEmailState] = useState(true);
+
+    const [data, setData] = useState({
+        username: "",
+        email: "",
+        password: "",
+        address: "",
+        phone: ""
+    })
+    const onSubmit = (data) => {
+        const formData = new FormData();
+
+        if (validateEmail(data.email)) {
+            formData.append("username", data.username);
+            formData.append("email", data.email);
+            formData.append("password", data.password);
+            formData.append("phone", data.phone);
+            formData.append("addresses", data.address);
+
+            fetch("http://localhost:5000/auth/registration", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+
+                },
+                body: formData
+            }).then(res => console.log(res));
+            setValidateEmailState(true);
+        } else if (!validateEmail(data.email)) {
+            setValidateEmailState(false);
+        }
+    };
+
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
+
+    const handleChange = ({ currentTarget: input }) => {
+        setData({ ...data, [input.name]: input.value });
+
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (validateEmail(data.email)) {
+
+            axios.post("http://localhost:5000/auth/registration", data).then(res => console.log(res));
+            setValidateEmailState(true);
+        } else if (!validateEmail(data.email)) {
+            setValidateEmailState(false);
+        }
+        setData({});
+    }
+
 
     return (
 
-        <div className="overlayModal " style={{ "opacity": `${isRegistration ? "1" : "-1"}`, "zIndex": `${isRegistration ? "150" : "-1"}` }}>
+        <div className="overlayModal " style={{ "opacity": `${isRegistration ? "1" : "-1"}`, "zIndex": `${isRegistration ? "150" : "-1"}` }} onSubmit={(handleSubmit)}>
             <div className="modal w900" style={{ "top": `${isRegistration ? '50%' : "-50%"}` }} >
                 <div className="modal__close" onClick={hideRegistrationModal}>&times;</div>
                 <div className="modal__subtitle">Регистрация</div>
                 <form className="form form-modal">
                     <div className="form-modal_registration">
-                        <input name="userName" type="text" required placeholder="ФИО" className="form-input" style={{ "marginTop": "25px" }} />
-                        <input name="phone" type="phone" required placeholder="Контактный телефон"
-                            className="form-input" />
-                        <input name="indexCity" type="number" required placeholder="Индекс" className="form-input" />
-                        <input name="address" type="text" required placeholder="Ваш полный адрес (только РБ)" className="form-input" />
-                        <input name="email" type="email" required placeholder="Электронная почта" className="form-input" />
+                        <input name="username" type="text"
+                            required placeholder="ФИО"
+                            className="form-input" style={{ "marginTop": "25px" }}
+                            value={data.username} onChange={handleChange} />
+                        <input name="phone" type="phone"
+                            required placeholder="Контактный телефон"
+                            className="form-input" value={data.phone}
+                            onChange={handleChange} />
+                        <input name="email" type="email"
+                            id="email" required
+                            placeholder="Электронная почта" className="form-input"
+                            value={data.email} onChange={handleChange} />
+
+                        <label htmlFor="email" style={{ "display": `${validateEmailState ? 'none' : 'block'}` }}>Ввeдите корректую почту</label>
+
+                        <input name="address" type="text"
+                            required placeholder="Ваш полный адрес (только РБ)"
+                            className="form-input" value={data.addresses}
+                            onChange={handleChange} />
+                        <input name="password" type="password"
+                            required placeholder="Пароль" autoComplete="current-password webauthn"
+                            className="form-input" value={data.password}
+                            onChange={handleChange} />
+
                     </div>
 
                     <div className="form_btns">
