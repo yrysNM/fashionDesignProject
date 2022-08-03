@@ -6,9 +6,9 @@ const useProductService = () => {
     const _baseOffset = 3;
 
     const getFilteredProducts = async (offset = _baseOffset) => {
-        const res = await request(`http:localhost:5000/productsFilterWomens/${offset}`);
+        const res = await request(`http://localhost:5000/productsFilterWomens/${offset}`);
 
-        return res.data.map(_transformPoducts);
+        return res.map(_transformPoducts);
     }
 
     const getProduct = async (productId) => {

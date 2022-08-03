@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Fade } from "react-reveal";
 import axios from "axios";
 import Bottleneck from "bottleneck";
 import useProductService from "../../../services/ProductService";
@@ -146,7 +147,7 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet }) => {
         <>
             <AppInputImg getImgSrc={getImgSrc} newTaggingImg={newTaggingImg} getImgBase={getImgBase} />
             {inputImgSrc ? (
-                <>
+                <Fade top when={inputImgSrc}>
                     <img style={{ width: "100%" }} src={inputImgSrc} alt="img user" />
 
                     <div className="clotheCategory">
@@ -168,14 +169,13 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet }) => {
                     <button className="btn" onClick={findSameColors}>
                         Соответствие одежды
                     </button>
-                </>
-            ) : null}
+                </Fade>
+            ) : null
+            }
 
 
 
             {
-
-
                 taggingImgRes.map(item => {
 
 
@@ -184,8 +184,6 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet }) => {
                     );
 
                 })
-
-
             }
 
         </>

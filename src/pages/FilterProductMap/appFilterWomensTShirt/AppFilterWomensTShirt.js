@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Fade } from "react-reveal";
 import { Link } from "react-router-dom";
 import AppHeader from "../../main/app-header/AppHeader";
-import ProductService from "../../../services/ProductService";
+import useProductService from "../../../services/ProductService";
 import heartIcon from "../../../resources/icons/heart.svg";
 import packageIcon from "../../../resources/icons/package.svg";
 import viewsIcon from "../../../resources/icons/catalogIcons/views.svg";
@@ -13,8 +13,9 @@ import documentIcon from "../../../resources/icons/catalogIcons/document.svg";
 
 const AppFilterWomensTShirt = () => {
     const [dataFilterProduct, setDataFilterProduct] = useState([]);
-    const productService = new ProductService();
     const [offset, setOffset] = useState(0);
+
+    const { loading, error, getFilteredProducts } = useProductService();
 
     useEffect(() => {
         getDataFilterWomensTShirt();
@@ -29,7 +30,7 @@ const AppFilterWomensTShirt = () => {
 
 
     const getDataFilterWomensTShirt = () => {
-        productService.getTShirtProducts(offset).then(res => setDataFilterProduct(dataFilterProduct => [...dataFilterProduct, ...res]));
+        getFilteredProducts(offset).then(res => setDataFilterProduct(dataFilterProduct => [...dataFilterProduct, ...res]));
     }
 
     const offsetProducts = () => {

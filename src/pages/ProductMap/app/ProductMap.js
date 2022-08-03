@@ -56,10 +56,7 @@ const ProductMap = () => {
         window.location.href = href;
     }
 
-    //TODO replace * text for break <br />
-    // const modifiedText = () => {
 
-    // }
 
 
     const renderItems = () => {

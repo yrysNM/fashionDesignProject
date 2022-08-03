@@ -76,11 +76,11 @@ const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg }) => {
         <span className="required">
           <input type="url" id="urlImg" placeholder="Загрузить с URL-адреса" className="catalog-input form-input" name="urlImage" />
         </span>
-        <Fade bottom when={imgSrc.length > 0}>
 
-          <button className="form-btn matchingBtn" type="submit" style={{ display: `${imgSrc.length > 0 ? 'block' : "none"}` }}>Загрузить изображение</button>
 
-        </Fade>
+        <button className="form-btn matchingBtn" type="submit" style={{ display: `${imgSrc.length > 0 ? 'block' : "none"}` }}>Загрузить изображение</button>
+
+
 
       </form>
     </>
