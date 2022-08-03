@@ -1,5 +1,7 @@
-import { Component } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import Spinner from "../../../components/spinner/Spinner";
+import ErrorMessage from "../../../components/errorMessage/ErrorMessage";
+import useProductService from "../../../services/ProductService";
 import AppHeader from "../app-header/AppHeader";
 import AppPromo from "../app-promo/AppPromo";
 import AppAbout from "../app-about/AppAbout";
@@ -10,69 +12,62 @@ import AppCooperation from "../app-cooperation/AppCooperation";
 import AppFormDelivery from "../app-form-delivery/AppFormDelivery";
 import AppFooter from "../app-footer/AppFooter";
 
-class MainApp extends Component {
+const MainApp = () => {
 
-    state = {
-        products: []
+    const { loading, error, getdiscountProducts } = useProductService();
+
+    const [products, setProducts] = useState([]);
+
+
+    useEffect(() => {
+        getProducts();
+    }, []);
+
+    const getProducts = async () => {
+        getdiscountProducts().then(res => setProducts(res));
+
+    }
+
+    const renderItems = () => {
+        return (
+            <AppCatalogClothes products={products} />
+        );
     };
 
-    componentDidMount() {
-        this.getProducts();
-    }
-
-    getProducts = async () => {
-        let obj = {
-            products: []
-        }
-        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsTShirt")
-            .then(res => {
-                obj.products.push(...res.data);
-            });
-
-        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsEmbro")
-            .then(res => {
-                obj.products.push(...res.data);
-            });
-
-        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsShoes")
-            .then(res => {
-                obj.products.push(...res.data);
-            });
-
-        await axios.get("https://fast-hamlet-56846.herokuapp.com/productsMug")
-            .then(res => {
-                obj.products.push(...res.data);
-            });
-
-        this.setState(({ products: obj.products }))
-    }
-
-    render() {
-
-        return (
-
-            <div className="app">
-                <AppHeader />
-
-                <AppPromo />
-
-                <AppAbout />
-
-                <AppCatalogClothes products={this.state.products} />
-
-                <AppReview />
-
-                <AppOftenQuestion />
-
-                <AppCooperation />
-
-                <AppFormDelivery />
-
-                <AppFooter />
+    const items = renderItems();
+    const errorMessage = error ? <ErrorMessage /> : null;
+    const spinner = loading ? <Spinner /> : null;
+    const content = !(loading || error || !products) ? items : null;
 
 
-            </div>
-        );
-    }
+    return (
+
+        <div className="app">
+            <AppHeader />
+
+            <AppPromo />
+
+            <AppAbout />
+
+            <>
+                {errorMessage}
+                {spinner}
+                {content}
+            </>
+
+            <AppReview />
+
+            <AppOftenQuestion />
+
+            <AppCooperation />
+
+            <AppFormDelivery />
+
+            <AppFooter />
+
+
+        </div>
+    );
+
 }
 export default MainApp;

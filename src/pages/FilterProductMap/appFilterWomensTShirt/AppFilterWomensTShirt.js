@@ -109,15 +109,7 @@ const AppFilterWomensTShirt = () => {
                                     Личные данные <span className="circle-number"></span>
                                 </div>
                             </div>
-                            <div className="filters-block btLine pb20">
-                                <div className="filters-block_img">
-                                    <img src={documentIcon} alt="package icon" />
-                                </div>
 
-                                <div className="filters-block_text">
-                                    История покупок <span className="circle-number"></span>
-                                </div>
-                            </div>
                             <div className="filters-block">
                                 <div className="filters-block_img">
                                     <a href="./">
@@ -151,10 +143,7 @@ const AppFilterWomensTShirt = () => {
                                         <div className="catalog__info">
                                             <div className="catalog__item">
                                                 <div className="catalog__cost">
-                                                    {clothe.variant_count} $
-                                                    <span className="catalog__oldCost">
-                                                        {clothe.variant_count + 10} $
-                                                    </span>
+                                                    {clothe.variant_count}$
                                                 </div>
 
                                                 <div className="catalog__descr">

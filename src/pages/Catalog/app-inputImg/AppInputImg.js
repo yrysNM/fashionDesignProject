@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { Fade } from "react-reveal";
 import "./appMatching.scss";
 
 const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg }) => {
@@ -62,8 +62,9 @@ const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg }) => {
     <>
       <form className="form form_matching" onSubmit={handleSubmit}>
         <label htmlFor="files" className="form-btn matchingBtn">
-          Вебрать файл
+          Вебрать файлx
         </label>
+
         <input
 
           onChange={(e) => getSrcImg(e)}
@@ -72,8 +73,14 @@ const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg }) => {
           type="file"
           name="image"
         />
-        <input type="url" id="urlImg" placeholder="Загрузить с URL-адреса" className="catalog-input form-input" name="urlImage" />
-        <button className="form-btn matchingBtn" type="submit">Загрузить изображение</button>
+        <span className="required">
+          <input type="url" id="urlImg" placeholder="Загрузить с URL-адреса" className="catalog-input form-input" name="urlImage" />
+        </span>
+        <Fade bottom when={imgSrc.length > 0}>
+
+          <button className="form-btn matchingBtn" type="submit" style={{ display: `${imgSrc.length > 0 ? 'block' : "none"}` }}>Загрузить изображение</button>
+
+        </Fade>
 
       </form>
     </>

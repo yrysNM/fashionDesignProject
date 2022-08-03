@@ -45,9 +45,9 @@ const AppCatalogClothes = (props) => {
                       <div className="catalog__info">
                         <div className="catalog__item">
                           <div className="catalog__cost">
-                            {item.variant_count} $
+                            {item.price} $
                             <span className="catalog__oldCost">
-                              {item.variant_count + 10} $
+                              {item.price + 10} $
                             </span>
                           </div>
 

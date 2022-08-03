@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Bottleneck from "bottleneck";
+import useProductService from "../../../services/ProductService";
 import AppInputImg from "../app-inputImg/AppInputImg";
 
 
@@ -13,7 +14,7 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet }) => {
     const [taggingImgRes, setTaggingImgRes] = useState([]);
     const [offset, setOffset] = useState(0);
 
-
+    const { getItemProductsCatalog } = useProductService();
 
     useEffect(() => {
         setOffset(getOffSet() + 1);
@@ -112,62 +113,10 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet }) => {
 
     const getItemProducts = async () => {
 
-        await axios.get(`http://localhost:5000/productsOffsetTShirt/${offset + 3}`)
-            .then(res => {
-                res.data.forEach(async (productId) => {
-                    await axios.get("http://localhost:5000/product/" + productId._id).then(result => {
-
-                        if (result.data) {
-                            setItemProducts(itemProducts => [...itemProducts, result.data]);
-                            getItemCatalogProducts(result.data);
-
-                        }
-                    });
-
-                })
-            });
-
-        await axios.get("http://localhost:5000/productsOffsetEmbro/" + offset + 2)
-            .then(res => {
-                res.data.forEach(async (productId) => {
-                    await axios.get("http://localhost:5000/product/" + productId._id).then(result => {
-                        if (result.data) {
-                            setItemProducts(itemProducts => [...itemProducts, result.data]);
-                            getItemCatalogProducts(result.data);
-                        }
-                    })
-                })
-            });
-
-        await axios.get("http://localhost:5000/productsOffsetShoes/" + offset + 2)
-            .then(res => {
-                res.data.forEach(async (productId) => {
-                    await axios.get("http://localhost:5000/product/" + productId._id).then(result => {
-                        if (result.data) {
-                            setItemProducts(itemProducts => [...itemProducts, result.data]);
-                            getItemCatalogProducts(result.data);
-                        }
-                    })
-                })
-            });
-
-        await axios.get("http://localhost:5000/productsOffsetMug/" + offset + 2)
-            .then(res => {
-                res.data.forEach(async (productId) => {
-                    await axios.get("http://localhost:5000/product/" + productId._id).then(result => {
-                        if (result.data) {
-                            setItemProducts(itemProducts => [...itemProducts, result.data]);
-                            getItemCatalogProducts(result.data);
-                        }
-                    })
-                })
-            });
-
-
-
-
-
-
+        getItemProductsCatalog().then(res => {
+            setItemProducts(itemProducts => [...itemProducts, res]);
+            getItemCatalogProducts(res);
+        });
 
     };
 
@@ -188,6 +137,8 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet }) => {
         setInputImgBase64(taggingImg);
         // setIsHaveTaggingImg(isHaveTaggingImg => [true, ...isHaveTaggingImg])
     }
+
+
 
 
 
