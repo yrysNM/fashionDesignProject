@@ -6,7 +6,6 @@ import { Navigation } from "swiper";
 import useProductService from "../../../services/ProductCatalogService";
 import ErrorMessage from "../../../components/errorMessage/ErrorMessage";
 import Spinner from "../../../components/spinner/Spinner";
-import axios from "axios";
 import AppHeader from "../../main/app-header/AppHeader";
 import AppReview from "../../main/app-review/AppReview";
 import heartIcon from "../../../resources/icons/heart.svg";
