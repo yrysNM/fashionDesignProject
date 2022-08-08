@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import ProductService from "../../../services/ProductService";
+import { Fade } from "react-reveal";
+import useProductService from "../../../services/ProductCatalogService";
 import AppHeader from "../../main/app-header/AppHeader";
 import heartIcon from "../../../resources/icons/heart.svg";
 import packageIcon from "../../../resources/icons/package.svg";
@@ -11,8 +12,9 @@ import documentIcon from "../../../resources/icons/catalogIcons/document.svg";
 import "./appFilterWomens.scss";
 const AppFilterWomens = () => {
     const [dataFilterProduct, setDataFilterProduct] = useState([]);
-    const productService = new ProductService();
+    const productService = useProductService();
     const [offset, setOffset] = useState(0);
+    const [active, setActive] = useState(false);
 
     useEffect(() => {
         getDataFilterProducts();
@@ -34,6 +36,22 @@ const AppFilterWomens = () => {
         setOffset(offset => offset + 3);
 
     }
+
+    useEffect(() => {
+        // window.scrollTo(0, 0);
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 450) {
+                setActive(true);
+            } else {
+                setActive(false);
+            }
+        });
+    }, []);
+
+    const scrollTop = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    };
+
 
 
 
@@ -140,11 +158,14 @@ const AppFilterWomens = () => {
                                         <div className="catalog__info">
                                             <div className="catalog__item">
                                                 <div className="catalog__cost">
-                                                    {clothe.variant_count}$
+                                                    {clothe.price}$
+                                                    <div style={{ display: "inline", marginLeft: "10px", lineHeight: "20px", fontSize: "12px" }}>
+                                                        {clothe.title}
+                                                    </div>
                                                 </div>
 
                                                 <div className="catalog__descr">
-                                                    {/* {`${clothe.description.slice(0, 30)}...`} */}
+                                                    {`${clothe.description.slice(0, 30)}...`}
                                                 </div>
 
                                                 <Link to={`/productMap/${clothe.id}`}>
@@ -249,6 +270,24 @@ const AppFilterWomens = () => {
                             </svg>
                         </button>
                     </div>
+                    <Fade bottom opposite when={active}>
+                        <div className="top right" onClick={scrollTop}>
+                            <div className="about__topBtn">
+                                <svg
+                                    width="8"
+                                    height="27"
+                                    viewBox="0 0 8 27"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M4.35355 0.646446C4.15829 0.451185 3.84171 0.451185 3.64645 0.646446L0.464467 3.82843C0.269205 4.02369 0.269205 4.34027 0.464467 4.53553C0.659729 4.7308 0.976312 4.7308 1.17157 4.53553L4 1.70711L6.82843 4.53553C7.02369 4.7308 7.34027 4.7308 7.53553 4.53553C7.7308 4.34027 7.7308 4.02369 7.53553 3.82843L4.35355 0.646446ZM4.5 27L4.5 1L3.5 1L3.5 27L4.5 27Z"
+                                        fill="#FFFDF5"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+                    </Fade>
                 </div>
             </section>
         </>

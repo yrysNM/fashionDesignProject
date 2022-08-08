@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Fade } from "react-reveal";
 import "./appMatching.scss";
 
 const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg }) => {
@@ -77,10 +76,7 @@ const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg }) => {
           <input type="url" id="urlImg" placeholder="Загрузить с URL-адреса" className="catalog-input form-input" name="urlImage" />
         </span>
 
-
-        <button className="form-btn matchingBtn" type="submit" style={{ display: `${imgSrc.length > 0 ? 'block' : "none"}` }}>Загрузить изображение</button>
-
-
+        <button className="form-btn matchingBtn" type="submit" >Загрузить изображение</button>
 
       </form>
     </>

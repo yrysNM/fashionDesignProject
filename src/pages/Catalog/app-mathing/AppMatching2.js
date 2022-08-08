@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import { Fade } from "react-reveal";
 import axios from "axios";
 import Bottleneck from "bottleneck";
-import useProductService from "../../../services/ProductService";
+import ErrorMessage from "../../../components/errorMessage/ErrorMessage";
+import Error from "../../ModalWindows/Error/Error";
+import Spinner from "../../../components/spinner/Spinner";
+import useProductService from "../../../services/ProductCatalogService";
 import AppInputImg from "../app-inputImg/AppInputImg";
 
 
-const AppMatching2 = ({ getItemCatalogProducts, getOffSet }) => {
+const AppMatching2 = ({ getItemCatalogProducts, getOffSet, getValueErrorModal }) => {
     const [inputImgSrc, setInputImgSrc] = useState(null);
     const [inputImgBase64, setInputImgBase64] = useState("");
     const [itemProducts, setItemProducts] = useState([]);
@@ -15,7 +18,7 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet }) => {
     const [taggingImgRes, setTaggingImgRes] = useState([]);
     const [offset, setOffset] = useState(0);
 
-    const { getItemProductsCatalog } = useProductService();
+    const { loadingAxios, errorAxios, getItemProductsCatalog, getRecognize } = useProductService();
 
     useEffect(() => {
         setOffset(getOffSet() + 1);
@@ -32,6 +35,7 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet }) => {
         minTime: 1000
     });
 
+    //TODO change catalog service
 
     useEffect(() => {
         // getInitializeDataCatalogs();
@@ -58,22 +62,23 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet }) => {
 
 
     async function getDataCatalogs(imgSrc, productId) {
-        const classCatalogFieldImg = await getImageLabels(imgSrc, productId, 0.3);
-        setInfoCatalogImg(infoCatalogImg => [...infoCatalogImg, classCatalogFieldImg]);
 
+
+        const classCatalogFieldImg = await getRecognize(String(imgSrc), productId, 0.3);
+        setInfoCatalogImg(infoCatalogImg => [...infoCatalogImg, ...classCatalogFieldImg]);
     }
 
     async function getDataBase64Input(imgBase) {
 
-        const classifiedImage = await getImageLabels(String(imgBase), "439784001", 0.3);
+        const classifiedImage = await getRecognize(String(imgBase), "439784001", 0.3);
 
-        if (classifiedImage) setInfoInputImg(classifiedImage.objects[0]);
+        if (classifiedImage) setInfoInputImg(classifiedImage[0].objects[0]);
     }
 
 
     const findSameColors = () => {
 
-        if (infoInputImg.length !== 0 && infoCatalogImg.length !== 0) {
+        if (infoInputImg.length !== 0 && infoCatalogImg.length !== 0 && infoCatalogImg.length < 6) {
             for (let i = 0; i < infoCatalogImg.length; i++) {
                 if (infoCatalogImg[i]) {
                     if (infoCatalogImg[i].objects[0] && infoCatalogImg[i].objects[0].product_color) {
@@ -88,8 +93,12 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet }) => {
                     }
                 }
             }
+        } else if (infoCatalogImg.length > 6) {
+            getValueErrorModal(true, "Количество товаров не менее 6 для распознавания одежды необходимо обновить страницу");
+        } else if (infoInputImg.length === 0) {
+            getValueErrorModal(true, "Пожалуйста, нажмите кнопку загрузить изображение");
         } else {
-            console.log("plase click submit");
+            getValueErrorModal(true, "Ошибка повторите попытку через минуту");
         }
 
     }
@@ -104,18 +113,22 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet }) => {
      */
     const getImageLabels = async (imageURL, objectID, scoreLimit) => {
 
+
         return await axios.post("https://fast-hamlet-56846.herokuapp.com/recognize", {
             "imageURL": imageURL,
             "objectID": objectID,
             "scoreLimit": scoreLimit
-        }).then(res => res.data);
+        }).then(res => res.data).catch((e) => {
+
+        });
+
 
     };
 
     const getItemProducts = async () => {
 
         getItemProductsCatalog().then(res => {
-            setItemProducts(itemProducts => [...itemProducts, res]);
+            setItemProducts(itemProducts => [...itemProducts, ...res]);
             getItemCatalogProducts(res);
         });
 
@@ -140,47 +153,61 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet }) => {
     }
 
 
+    const renderItems = () => {
+        return (
+            <>
+                {inputImgSrc ? (
+                    <Fade top when={inputImgSrc}>
+                        <img style={{ width: "100%" }} src={inputImgSrc} alt="img user" />
 
+                        <div className="clotheCategory">
+                            {(Object.entries(infoInputImg).length > 0) ?
+                                <>
+                                    <h3>
+                                        {infoInputImg.full_body_garment ?
+                                            <span>{infoInputImg.full_body_garment[0].label}: {infoInputImg.full_body_garment[0].score}%</span>
+                                            : null
+                                        }
+                                    </h3>
+                                    <h3>
+                                        {infoInputImg.product_color[0].label}: {infoInputImg.product_color[0].score}%
+                                    </h3>
+                                </>
+                                : null
+                            }
+                        </div>
+                        <button className="btn" onClick={findSameColors}>
+                            Соответствие одежды
+                        </button>
+                    </Fade>
+                ) : null
+                }
+            </>
+
+        );
+
+    }
+
+    const items = renderItems();
+    const errorMessage = errorAxios ? <ErrorMessage width={{ width: "100%" }} /> : null;
+    const spinner = loadingAxios ? <Spinner /> : null;
+    const content = !(loadingAxios || errorAxios || !(itemProducts)) ? items : null;
 
 
     return (
         <>
             <AppInputImg getImgSrc={getImgSrc} newTaggingImg={newTaggingImg} getImgBase={getImgBase} />
-            {inputImgSrc ? (
-                <Fade top when={inputImgSrc}>
-                    <img style={{ width: "100%" }} src={inputImgSrc} alt="img user" />
 
-                    <div className="clotheCategory">
-                        {(Object.entries(infoInputImg).length > 0) ?
-                            <>
-                                <h3>
-                                    {infoInputImg.full_body_garment ?
-                                        <span>{infoInputImg.full_body_garment[0].label}: {infoInputImg.full_body_garment[0].score}%</span>
-                                        : null
-                                    }
-                                </h3>
-                                <h3>
-                                    {infoInputImg.product_color[0].label}: {infoInputImg.product_color[0].score}%
-                                </h3>
-                            </>
-                            : null
-                        }
-                    </div>
-                    <button className="btn" onClick={findSameColors}>
-                        Соответствие одежды
-                    </button>
-                </Fade>
-            ) : null
-            }
-
-
+            {errorMessage}
+            {spinner}
+            {content}
 
             {
                 taggingImgRes.map(item => {
 
 
                     return (
-                        <img key={item.id} style={{ width: "100%" }} src={item.image} alt={item.type_name} />
+                        <img key={item.id} style={{ width: "100%", marginTop: 20 }} src={item.image} alt={item.type_name} />
                     );
 
                 })

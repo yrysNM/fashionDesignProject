@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Spinner from "../../../components/spinner/Spinner";
 import ErrorMessage from "../../../components/errorMessage/ErrorMessage";
-import useProductService from "../../../services/ProductService";
+import useProductService from "../../../services/ProductCatalogService";
 import AppHeader from "../app-header/AppHeader";
 import AppPromo from "../app-promo/AppPromo";
 import AppAbout from "../app-about/AppAbout";

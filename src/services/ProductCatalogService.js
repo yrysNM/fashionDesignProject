@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { useHttp } from "../hooks/http.hook";
-
+import axios from "axios";
 
 const useProductService = () => {
     const { loading, request, error, clearError } = useHttp();
+    const [loadingAxios, setLoadingAxios] = useState(false);
+    const [errorAxios, setErrorAxios] = useState(0);
+
     const _baseOffset = 3;
 
     const getFilteredProducts = async (offset = _baseOffset) => {
@@ -98,6 +102,31 @@ const useProductService = () => {
         return obj.products.map(_transformPoducts);
     }
 
+
+    //Catalog service
+    const getRecognize = async (imageURL, objectID, scoreLimit) => {
+
+        let obj = {
+            products: [],
+        }
+        setLoadingAxios(true);
+
+        await axios.post("https://fast-hamlet-56846.herokuapp.com/recognize", {
+            "imageURL": imageURL,
+            "objectID": objectID,
+            "scoreLimit": scoreLimit
+        })
+            .then(res => obj.products.push(res.data))
+            .catch((e) => {
+                setLoadingAxios(false);
+                setErrorAxios(e.message);
+                throw e;
+            });
+
+        setLoadingAxios(false);
+        return obj.products;
+    }
+
     const _transformPoducts = (product) => {
         return {
             id: product.id,
@@ -113,11 +142,14 @@ const useProductService = () => {
     return {
         loading,
         error,
+        loadingAxios,
+        errorAxios,
         clearError,
         getFilteredProducts,
         getdiscountProducts,
         getItemProductsCatalog,
-        getProduct
+        getProduct,
+        getRecognize
     };
 }
 

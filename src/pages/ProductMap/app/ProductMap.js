@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Navigation } from "swiper";
-import useProductService from "../../../services/ProductService";
+import useProductService from "../../../services/ProductCatalogService";
 import ErrorMessage from "../../../components/errorMessage/ErrorMessage";
 import Spinner from "../../../components/spinner/Spinner";
 import axios from "axios";
@@ -38,6 +38,7 @@ const ProductMap = () => {
 
         window.scrollTo(0, 0);
 
+
     }, []);
 
     useEffect(() => {
@@ -55,7 +56,6 @@ const ProductMap = () => {
     const windowLocation = (href) => {
         window.location.href = href;
     }
-
 
 
 
@@ -163,8 +163,10 @@ const ProductMap = () => {
                                             Описание
                                         </div>
 
-                                        <div className="productMap__descrText">
+                                        <div style={{ "whiteSpace": "break-spaces" }} className="productMap__descrText">
+
                                             {product.description}
+
                                         </div>
                                     </div>
                                 </div>

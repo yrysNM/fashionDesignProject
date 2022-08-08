@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Bottleneck from "bottleneck";
-import ProductService from "../../../services/ProductService";
+import useProductService from "../../../services/ProductCatalogService";
 import AppFilterInputImg from "../appFilterInputImg/AppFilterInputImg";
 
 
@@ -14,7 +14,7 @@ const AppFilterMatching = ({ getItemCatalogProducts, getOffSet }) => {
     const [taggingImgRes, setTaggingImgRes] = useState([]);
     const [offset, setOffset] = useState(0);
 
-    const productService = new ProductService();
+    const productService = useProductService();
 
     useEffect(() => {
         setOffset(getOffSet());

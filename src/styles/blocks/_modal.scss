@@ -1,10 +1,8 @@
-
-
 .overlayModal {
-    position: fixed; 
+    position: fixed;
     width: 100%;
     height: 100%;
-    top: 0; 
+    top: 0;
     background-color: rgba(0, 0, 0, 0.56);
     transition: all 0.2s;
 }
@@ -12,29 +10,31 @@
 .modal {
     overflow: hidden;
     position: absolute;
-    top: -50%; 
-    left: 50%; 
+    top: -50%;
+    left: 50%;
     width: 50%;
     transform: translate(-50%, -50%);
     min-height: 300px;
     background-color: #FFFDF5;
     transition: all 0.6s;
     padding: 75px 55px;
+
     &.w450 {
-        
+
         width: 40%;
     }
+
     &.w900 {
         width: 900px;
     }
-    
+
     &__close {
         display: flex;
-        justify-content: center; 
+        justify-content: center;
         align-items: center;
         position: absolute;
-        top: 25px; 
-        right:  55px;
+        top: 25px;
+        right: 55px;
         font-size: 27px;
         line-height: 21px;
         border-radius: 100%;
@@ -46,11 +46,13 @@
         cursor: pointer;
         transition: all 0.6s;
         border: 1px solid $main-color;
+
         &:hover {
-            color: $main-color; 
+            color: $main-color;
             background-color: #FFFDF5;
         }
     }
+
     &__subtitle {
         font-weight: 300;
         font-size: 40px;
@@ -58,10 +60,12 @@
         color: #121212;
 
     }
+
     &-btn {
         padding: 14px 25px;
-        margin-right: 48px; 
+        margin-right: 48px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+
         &:nth-child(2) {
             margin-right: 0;
         }
@@ -69,6 +73,14 @@
         &.fz14 {
             font-size: 14px;
         }
+    }
+
+    &__text {
+        font-weight: 400;
+        font-size: 20px;
+        text-align: center;
+        color: #121212;
+
     }
 }
 
@@ -78,9 +90,9 @@
     width: 100%;
 
     &_registration {
-        display: flex; 
-        flex-direction: row; 
-        flex-wrap: wrap; 
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         justify-content: space-between;
     }
 }

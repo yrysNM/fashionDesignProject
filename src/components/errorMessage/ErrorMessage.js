@@ -1,6 +1,12 @@
 import imgError from "./error.gif";
 
-const ErrorMessage = () => {
+const ErrorMessage = ({ width }) => {
+    if (width) {
+        return (
+            <img src={imgError} alt="error img"
+                style={{ display: "block", width: "100%", height: "250px", objectFit: "contain", margin: "0 auto", borderRadius: "100%" }} />
+        );
+    }
     return (
         <img src={imgError} alt="error img"
             style={{ display: "block", width: "250px", height: "250px", objectFit: "contain", margin: "0 auto", borderRadius: "100%" }} />
