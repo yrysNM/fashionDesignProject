@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { Fade } from "react-reveal";
-import axios from "axios";
 import Bottleneck from "bottleneck";
 import ErrorMessage from "../../../components/errorMessage/ErrorMessage";
-import Error from "../../ModalWindows/Error/Error";
 import Spinner from "../../../components/spinner/Spinner";
 import useProductService from "../../../services/ProductCatalogService";
 import AppInputImg from "../app-inputImg/AppInputImg";
@@ -34,8 +32,6 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet, getValueErrorModal })
         maxConcurrent: 10,
         minTime: 1000
     });
-
-    //TODO change catalog service
 
     useEffect(() => {
         // getInitializeDataCatalogs();
@@ -86,7 +82,7 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet, getValueErrorModal })
                             const output = itemProducts.filter((product) =>
                                 product.id === infoCatalogImg[i].objectID
                             );
-                            setTaggingImgRes((taggingImgRes) => [...output, ...taggingImgRes]);
+                            setTaggingImgRes((taggingImgRes) => Array.from(new Set([...output, ...taggingImgRes])));
 
 
                         }
@@ -101,29 +97,12 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet, getValueErrorModal })
             getValueErrorModal(true, "Ошибка повторите попытку через минуту");
         }
 
+
+        if (taggingImgRes.length === 0) {
+            getValueErrorModal(true, "Извините, но мы не можем найти тот же цвет, что и ваша одежда.");
+        }
+
     }
-
-
-    /**
-     * 
-     * @param {url image} imageURL 
-     * @param {some object id} objectID 
-     * @param { random 1 0 for is the threshold for how certain the platform must be about an object to include it in the classifications.} scoreLimit 
-     * @returns tagging info image
-     */
-    const getImageLabels = async (imageURL, objectID, scoreLimit) => {
-
-
-        return await axios.post("https://fast-hamlet-56846.herokuapp.com/recognize", {
-            "imageURL": imageURL,
-            "objectID": objectID,
-            "scoreLimit": scoreLimit
-        }).then(res => res.data).catch((e) => {
-
-        });
-
-
-    };
 
     const getItemProducts = async () => {
 

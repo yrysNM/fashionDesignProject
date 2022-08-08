@@ -366,7 +366,7 @@ const Catalogs = () => {
 
 
 
-      <Error taggingError={taggingModalError} messageError={messageError} />
+      <Error taggingError={taggingModalError} messageError={messageError} getValueErrorModal={getValueErrorModal} />
 
     </>
   );

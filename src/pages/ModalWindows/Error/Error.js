@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
 
 
-const Error = ({ taggingError, messageError }) => {
-
-
+const Error = ({ taggingError, messageError, getValueErrorModal }) => {
 
     const [taggingErrorModal, setTaggingErrorModal] = useState(false);
 
     useEffect(() => {
         setTaggingErrorModal(taggingError)
-    }, [taggingError])
+    }, [taggingError]);
 
     const hideErrorModal = () => {
+        getValueErrorModal(false, "");
         setTaggingErrorModal(false);
     }
 

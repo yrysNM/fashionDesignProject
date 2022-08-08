@@ -104,6 +104,13 @@ const useProductService = () => {
 
 
     //Catalog service
+    /**
+     * 
+     * @param {url image} imageURL 
+     * @param {some object id} objectID 
+     * @param { random 1 0 for is the threshold for how certain the platform must be about an object to include it in the classifications.} scoreLimit 
+     * @returns tagging info image
+    */
     const getRecognize = async (imageURL, objectID, scoreLimit) => {
 
         let obj = {
