@@ -1,0 +1,55 @@
+.pos {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+.bonus {
+    position: relative;
+
+    &__section {
+        display: flex;
+
+    }
+
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-left: 120px;
+
+        &-block {
+            width: 203px;
+            margin: 0 50px;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+    }
+
+    &__number {
+
+        font-weight: 300;
+        font-size: 40px;
+        line-height: 87.3%;
+
+
+        color: #121212;
+    }
+
+    &__descr {
+        margin-top: 18px;
+        font-family: 'Roboto';
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 19px;
+
+        color: #7D7D7D;
+    }
+}

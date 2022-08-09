@@ -1,10 +1,18 @@
 .rightCircle {
-    position: absolute; 
-    top: -217px; 
-    right: -217px; 
+    position: absolute;
+    top: -217px;
+    right: -217px;
 
     &-footer {
         top: -350px;
+    }
+
+    &-bonus {
+
+        position: absolute;
+        transform: rotate(-90deg);
+        right: 0;
+        bottom: -215px;
     }
 
     &.top255 {
@@ -12,19 +20,22 @@
     }
 
     &_circle {
-        border: 1px solid #514A7E; 
+        border: 1px solid #514A7E;
         border-radius: 100%;
+
         &.w429 {
             width: 429px;
             height: 429px;
 
         }
+
         &.w380 {
-            width: 380px; 
+            width: 380px;
             height: 380px;
 
         }
     }
+
     &_bgCircle {
 
         width: 200px;

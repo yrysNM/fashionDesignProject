@@ -301,7 +301,10 @@ const Catalogs = () => {
                 </div>
 
                 <div className="filters-block_text">
-                  Бонусы <span className="circle-number"></span>
+                  <Link to="/bonus">
+
+                    Бонусы <span className="circle-number"></span>
+                  </Link>
                 </div>
               </div>
               <div className="filters-block">
