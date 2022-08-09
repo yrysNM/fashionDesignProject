@@ -102,9 +102,12 @@ const ProductMap = () => {
                                         </div>
 
                                     </div>
-                                    <div className="productMap__table">
-                                        Таблица размеров
-                                    </div>
+                                    <Link to="/sizeProducts">
+                                        <div className="productMap__table">
+                                            Таблица размеров
+                                        </div>
+
+                                    </Link>
 
                                     <div className="productMap__busket">
                                         <button className="btn productMap__busket-btn">В корзину
