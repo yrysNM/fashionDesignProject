@@ -63,4 +63,42 @@
 }
 
 
-@media(max-width: 1200px) {}
+@media(max-width: 1200px) {
+    .container {
+        width: 950px;
+    }
+
+    .circlePrev {
+        left: 150px;
+        z-index: 10;
+    }
+
+    .circleNext {
+        right: 150px;
+
+    }
+
+    .swiper-button-next {
+        right: 135px !important;
+
+    }
+
+    .swiper-button-prev {
+        left: 65px !important;
+    }
+
+    .formDelivery__bg {
+        margin-left: 0;
+        width: 70%;
+    }
+
+    .formDelivery_wrapper-descr {
+        font-size: 18px;
+    }
+}
+
+@media(max-width: 991px) {
+    .container {
+        width: 750px;
+    }
+}

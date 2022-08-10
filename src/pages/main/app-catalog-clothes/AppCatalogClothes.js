@@ -27,8 +27,17 @@ const AppCatalogClothes = (props) => {
             <Swiper
               breakpoints={{
                 1200: {
-                  slidesPerView: 3,
-                }
+                  slidesPerView: 3
+                },
+                991: {
+                  slidesPerView: 2,
+                },
+                750: {
+                  slidesPerView: 2,
+                },
+                700: {
+                  slidesPerView: 2,
+                },
               }}
               slidesPerView={4}
               navigation={true}

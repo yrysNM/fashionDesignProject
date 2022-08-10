@@ -17,9 +17,10 @@ const AppReview = () => {
                 <div className="review__blocks">
                     <Swiper
                         breakpoints={{
-                            1200: {
+                            750: {
                                 slidesPerView: 1,
-                            }
+                            },
+
                         }}
                         slidesPerView={2}
                         navigation={{

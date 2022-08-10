@@ -74,7 +74,7 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet, getValueErrorModal })
 
     const findSameColors = () => {
 
-        if (infoInputImg.length !== 0 && infoCatalogImg.length !== 0 && infoCatalogImg.length < 6) {
+        if (Object.entries(infoInputImg).length !== 0 && infoCatalogImg.length !== 0) {
             for (let i = 0; i < infoCatalogImg.length; i++) {
                 if (infoCatalogImg[i]) {
                     if (infoCatalogImg[i].objects[0] && infoCatalogImg[i].objects[0].product_color) {
@@ -89,17 +89,11 @@ const AppMatching2 = ({ getItemCatalogProducts, getOffSet, getValueErrorModal })
                     }
                 }
             }
-        } else if (infoCatalogImg.length > 6) {
-            getValueErrorModal(true, "Количество товаров не менее 6 для распознавания одежды необходимо обновить страницу");
-        } else if (infoInputImg.length === 0) {
+        }
+        else if (infoInputImg.length === 0) {
             getValueErrorModal(true, "Пожалуйста, нажмите кнопку загрузить изображение");
         } else {
             getValueErrorModal(true, "Ошибка повторите попытку через минуту");
-        }
-
-
-        if (taggingImgRes.length === 0) {
-            getValueErrorModal(true, "Извините, но мы не можем найти тот же цвет, что и ваша одежда.");
         }
 
     }

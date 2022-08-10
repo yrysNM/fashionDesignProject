@@ -61,7 +61,7 @@ const AppInputImg = ({ getImgSrc, getImgBase, newTaggingImg }) => {
     <>
       <form className="form form_matching" onSubmit={handleSubmit}>
         <label htmlFor="files" className="form-btn matchingBtn">
-          Вебрать файлx
+          Вебрать файл
         </label>
 
         <input
