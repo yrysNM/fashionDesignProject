@@ -98,7 +98,7 @@ const AppMatching = ({ getItemCatalogProducts }) => {
   }
 
   const getItemProducts = async () => {
-    axios.get("http://localhost:5000/products").then((res) => {
+    axios.get("https://fast-hamlet-56846.herokuapp.com/products").then((res) => {
       setItemProducts(res.data);
       getItemCatalogProducts(res.data);
     });

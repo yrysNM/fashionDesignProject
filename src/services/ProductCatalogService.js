@@ -10,7 +10,7 @@ const useProductService = () => {
     const _baseOffset = 3;
 
     const getFilteredProducts = async (offset = _baseOffset) => {
-        const res = await request(`http://localhost:5000/productsFilterWomens/${offset}`);
+        const res = await request(`https://fast-hamlet-56846.herokuapp.com/productsFilterWomens/${offset}`);
 
         return res.map(_transformPoducts);
     }
@@ -49,11 +49,11 @@ const useProductService = () => {
 
         }
 
-        await request(`http://localhost:5000/productsOffsetTShirt/${offset + 3}`)
+        await request(`https://fast-hamlet-56846.herokuapp.com/productsOffsetTShirt/${offset + 3}`)
             .then(res => {
                 // console.log(res);
                 res.forEach(async (productId) => {
-                    await request("http://localhost:5000/product/" + productId._id).then(async result => {
+                    await request("https://fast-hamlet-56846.herokuapp.com/product/" + productId._id).then(async result => {
 
                         if (result) {
                             await obj.products.push(result)
@@ -65,10 +65,10 @@ const useProductService = () => {
             });
 
 
-        await request("http://localhost:5000/productsOffsetEmbro/" + offset + 2)
+        await request("https://fast-hamlet-56846.herokuapp.com/productsOffsetEmbro/" + offset + 2)
             .then(res => {
                 res.forEach(async (productId) => {
-                    await request("http://localhost:5000/product/" + productId._id).then(async result => {
+                    await request("https://fast-hamlet-56846.herokuapp.com/product/" + productId._id).then(async result => {
                         if (result) {
                             await obj.products.push(result);
                         }
@@ -77,10 +77,10 @@ const useProductService = () => {
             });
 
 
-        await request("http://localhost:5000/productsOffsetShoes/" + offset + 2)
+        await request("https://fast-hamlet-56846.herokuapp.com/productsOffsetShoes/" + offset + 2)
             .then(res => {
                 res.forEach(async (productId) => {
-                    await request("http://localhost:5000/product/" + productId._id).then(async result => {
+                    await request("https://fast-hamlet-56846.herokuapp.com/product/" + productId._id).then(async result => {
                         if (result) {
                             await obj.products.push(result);
                         }
@@ -88,10 +88,10 @@ const useProductService = () => {
                 })
             });
 
-        await request("http://localhost:5000/productsOffsetMug/" + offset + 2)
+        await request("https://fast-hamlet-56846.herokuapp.com/productsOffsetMug/" + offset + 2)
             .then(res => {
                 res.forEach(async (productId) => {
-                    await request("http://localhost:5000/product/" + productId._id).then(async result => {
+                    await request("https://fast-hamlet-56846.herokuapp.com/product/" + productId._id).then(async result => {
                         if (result) {
                             await obj.products.push(result);
                         }
