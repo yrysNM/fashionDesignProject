@@ -29,10 +29,10 @@ const AppOftenQuestion = () => {
           </h2>
         </div>
         <div className="oftenQuestions__wrap">
-          <div className="oftenQuestions__list">
+          <div className="oftenQuestions__list" onMouseOut={onMouseOutDescFucn} onMouseOver={onMouseOverDescFucn}>
             <div className="oftenQuestions__list_text">Как сделать заказ?</div>
             {/**close */}
-            <div className="oftenQuestions__list_plus alt" onMouseOut={onMouseOutDescFucn} onMouseOver={onMouseOverDescFucn}>
+            <div className={`oftenQuestions__list_plus alt ${toggleDescr ? 'oftenQuestions__list_plus-hoverBlock' : ''}`} >
               <img src={plusIcon} alt="plus icon" width="20" height="20" />
             </div>
             <Fade bottom when={toggleDescr}>
@@ -44,9 +44,9 @@ const AppOftenQuestion = () => {
               </div>
             </Fade>
           </div>
-          <div className="oftenQuestions__list">
+          <div className="oftenQuestions__list" onMouseOut={toggleDescr1.onMouseOutDescFucn} onMouseOver={toggleDescr1.onMouseOverDescFucn}>
             <div className="oftenQuestions__list_text">Способы оплаты</div>
-            <div className="oftenQuestions__list_plus alt" onMouseOut={toggleDescr1.onMouseOutDescFucn} onMouseOver={toggleDescr1.onMouseOverDescFucn}>
+            <div className={`oftenQuestions__list_plus alt ${toggleDescr1.toggleDescr ? 'oftenQuestions__list_plus-hoverBlock' : ''}`} >
               <img src={plusIcon} alt="plus icon" width="20" height="20" />
             </div>
             <Fade bottom when={toggleDescr1.toggleDescr}>
@@ -58,9 +58,9 @@ const AppOftenQuestion = () => {
               </div>
             </Fade>
           </div>
-          <div className="oftenQuestions__list">
+          <div className="oftenQuestions__list" onMouseOut={toggleDescr2.onMouseOutDescFucn} onMouseOver={toggleDescr2.onMouseOverDescFucn}>
             <div className="oftenQuestions__list_text">Доставка</div>
-            <div className="oftenQuestions__list_plus alt" onMouseOut={toggleDescr2.onMouseOutDescFucn} onMouseOver={toggleDescr2.onMouseOverDescFucn}>
+            <div className={`oftenQuestions__list_plus alt ${toggleDescr2.toggleDescr ? 'oftenQuestions__list_plus-hoverBlock' : ''}`} >
               <img src={plusIcon} alt="plus icon" width="20" height="20" />
             </div>
             <Fade bottom when={toggleDescr2.toggleDescr}>
@@ -72,9 +72,9 @@ const AppOftenQuestion = () => {
               </div>
             </Fade>
           </div>
-          <div className="oftenQuestions__list">
+          <div className="oftenQuestions__list" onMouseOut={toggleDescr3.onMouseOutDescFucn} onMouseOver={toggleDescr3.onMouseOverDescFucn}>
             <div className="oftenQuestions__list_text">Сроки доставки</div>
-            <div className="oftenQuestions__list_plus alt" onMouseOut={toggleDescr3.onMouseOutDescFucn} onMouseOver={toggleDescr3.onMouseOverDescFucn}>
+            <div className={`oftenQuestions__list_plus alt ${toggleDescr3.toggleDescr ? 'oftenQuestions__list_plus-hoverBlock' : ''}`} >
               <img src={plusIcon} alt="plus icon" width="20" height="20" />
             </div>
             <Fade bottom when={toggleDescr3.toggleDescr}>
@@ -86,9 +86,9 @@ const AppOftenQuestion = () => {
               </div>
             </Fade>
           </div>
-          <div className="oftenQuestions__list">
+          <div className="oftenQuestions__list" onMouseOut={toggleDescr4.onMouseOutDescFucn} onMouseOver={toggleDescr4.onMouseOverDescFucn}>
             <div className="oftenQuestions__list_text">Как сделать обмен?</div>
-            <div className="oftenQuestions__list_plus alt" onMouseOut={toggleDescr4.onMouseOutDescFucn} onMouseOver={toggleDescr4.onMouseOverDescFucn}>
+            <div className={`oftenQuestions__list_plus alt ${toggleDescr4.toggleDescr ? 'oftenQuestions__list_plus-hoverBlock' : ''}`} >
               <img src={plusIcon} alt="plus icon" width="20" height="20" />
             </div>
             <Fade bottom when={toggleDescr4.toggleDescr}>
@@ -100,11 +100,11 @@ const AppOftenQuestion = () => {
               </div>
             </Fade>
           </div>
-          <div className="oftenQuestions__list">
+          <div className="oftenQuestions__list" onMouseOut={toggleDescr5.onMouseOutDescFucn} onMouseOver={toggleDescr5.onMouseOverDescFucn}>
             <div className="oftenQuestions__list_text">
-              Как сделать возврат?
+              Как сделать возврат ?
             </div>
-            <div className="oftenQuestions__list_plus alt" onMouseOut={toggleDescr5.onMouseOutDescFucn} onMouseOver={toggleDescr5.onMouseOverDescFucn}>
+            <div className={`oftenQuestions__list_plus alt ${toggleDescr5.toggleDescr ? 'oftenQuestions__list_plus-hoverBlock' : ''}`} >
               <img src={plusIcon} alt="plus icon" width="20" height="20" />
             </div>
             <Fade bottom when={toggleDescr5.toggleDescr}>
@@ -116,11 +116,11 @@ const AppOftenQuestion = () => {
               </div>
             </Fade>
           </div>
-          <div className="oftenQuestions__list">
+          <div className="oftenQuestions__list" onMouseOut={toggleDescr6.onMouseOutDescFucn} onMouseOver={toggleDescr6.onMouseOverDescFucn}>
             <div className="oftenQuestions__list_text">
-              Куда и когда вернутся деньги за возвращённый товар?
+              Куда и когда вернутся деньги за возвращённый  товар?
             </div>
-            <div className="oftenQuestions__list_plus alt" onMouseOut={toggleDescr6.onMouseOutDescFucn} onMouseOver={toggleDescr6.onMouseOverDescFucn}>
+            <div className={`oftenQuestions__list_plus alt ${toggleDescr6.toggleDescr ? 'oftenQuestions__list_plus-hoverBlock' : ''}`} >
               <img src={plusIcon} alt="plus icon" width="20" height="20" />
             </div>
             <Fade bottom when={toggleDescr6.toggleDescr}>

@@ -123,6 +123,17 @@
         & .imgHeartIcon {
             margin-top: 20px;
             margin-left: 23px;
+
+            & svg path {
+                transition: all 0.6s;
+
+            }
+
+            &:hover {
+                & svg path {
+                    fill: darken(#fff, 20%);
+                }
+            }
         }
 
     }
@@ -238,6 +249,7 @@
 }
 
 .recomendedProduct {
+    position: relative;
     margin-bottom: 105px;
 
     &-title {

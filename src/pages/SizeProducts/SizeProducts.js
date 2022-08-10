@@ -103,6 +103,9 @@ const SizeProducts = () => {
                     </div>
                 </div>
             </div>
+            <div className="rightCircle top255">
+                <div className="rightCircle_circle w429"></div>
+            </div>
         </section>
     );
 }

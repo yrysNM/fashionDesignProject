@@ -6,6 +6,7 @@ import AppFilterWomensTShirt from "../../pages/FilterProductMap/appFilterWomensT
 import AppFilterWomens from "../../pages/FilterProductMap/appFilterWomens/AppFilterWomens";
 import Bonus from "../../pages/Bonus/Bonus";
 import SizeProducts from "../../pages/SizeProducts/SizeProducts";
+import FavoritePage from "../../pages/favoritePage/FavoritePage";
 function App() {
   return (
     <Router>
@@ -17,6 +18,7 @@ function App() {
         <Route path="filter/womens" element={<AppFilterWomens />} />
         <Route path="bonus" element={<Bonus />} />
         <Route path="sizeProducts" element={<SizeProducts />} />
+        <Route path="favoriteProducts/" element={<FavoritePage />} />
       </Routes>
     </Router>
   );
