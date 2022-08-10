@@ -16,6 +16,11 @@ const AppReview = () => {
 
                 <div className="review__blocks">
                     <Swiper
+                        breakpoints={{
+                            1200: {
+                                slidesPerView: 1,
+                            }
+                        }}
                         slidesPerView={2}
                         navigation={{
                             prevEl: ".circlePrev",

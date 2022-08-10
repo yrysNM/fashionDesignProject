@@ -78,11 +78,6 @@ input::-webkit-inner-spin-button {
 
 
 img {
-  // // image-rendering: auto;
-  // // image-rendering: crisp-edges;
-  // image-rendering: crisp-edges;
-
-  /* Safari seems to support, but seems deprecated and does the same thing as the others. */
   image-rendering: -webkit-optimize-contrast;
 }
 
@@ -104,4 +99,5 @@ img {
 @import "./blocks/bgCircle";
 @import "./blocks/form";
 @import "./blocks//buttons";
-@import "./blocks/modal"
+@import "./blocks/modal";
+@import "./blocks//adaptive";

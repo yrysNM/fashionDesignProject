@@ -1,0 +1,66 @@
+@media(max-width: 1730px) {
+    .container {
+        width: 1025px;
+
+    }
+
+    .about {
+        &__topBtn {
+            width: 55px;
+            height: 55px;
+
+            svg {
+                width: 30px;
+                height: 30px;
+            }
+
+        }
+    }
+
+    .left {
+        right: 17px;
+    }
+
+    .right {
+        left: 17px;
+    }
+
+    .promo__wrapper_title {
+        font-size: 55px;
+    }
+
+    .about__descrBlocks_descr {
+        &:nth-child(4) {
+            margin-top: 98px !important;
+        }
+
+
+    }
+
+    .swiper-button-next {
+        position: absolute;
+        right: 0 !important;
+    }
+
+    .swiper-slide-active {
+        display: flex;
+        justify-content: center;
+    }
+
+    .circlePrev {
+        left: 250px;
+        z-index: 10;
+    }
+
+    .formDelivery_bgColor {
+        justify-content: normal;
+
+    }
+
+    .formDelivery_wrapper-descr {
+        font-size: 20px;
+    }
+}
+
+
+@media(max-width: 1200px) {}
