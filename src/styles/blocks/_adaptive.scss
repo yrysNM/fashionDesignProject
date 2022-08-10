@@ -95,10 +95,96 @@
     .formDelivery_wrapper-descr {
         font-size: 18px;
     }
+
+    .header__aside {
+        width: 40%;
+    }
 }
 
 @media(max-width: 991px) {
     .container {
         width: 750px;
+    }
+
+
+    .promo__wrapper_img2 {
+        img {
+            width: 400px;
+            height: 340px;
+        }
+    }
+
+    .promo__wrapper_welcome {
+        img {
+            width: 238px;
+            height: 202px;
+        }
+    }
+
+    .promo__wrapper_title {
+        font-size: 38px;
+    }
+
+    .about__descrBlocks_descr {
+        margin-top: 98px;
+        margin-right: 100px !important;
+
+
+    }
+
+    .swiper-button-next {
+        right: 37px !important;
+
+    }
+
+    .swiper-button-prev {
+        left: 13px !important;
+    }
+
+    .cooperation__descr_blocks {
+        justify-content: space-around;
+
+    }
+
+    .cooperation__descr_block:last-child {
+        margin-top: 50px;
+
+    }
+
+    .cooperation__descr {
+        line-height: 20px;
+    }
+
+    .formDelivery_wrapper {
+        padding-left: 0;
+        padding-right: 0;
+        width: 45%;
+
+        .form-input {
+            width: 100%;
+        }
+
+    }
+
+    .formDelivery_wrapper-descr {
+        font-size: 14px;
+    }
+
+    .footer_logoImg {
+        right: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .header__aside {
+        width: 55%;
+    }
+
+    .circleNext {
+        right: 40px;
+    }
+
+    .circlePrev {
+        left: 60px;
     }
 }
