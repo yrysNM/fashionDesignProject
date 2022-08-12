@@ -1,12 +1,26 @@
-import Fade from "react-reveal/Fade";
 import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+import { UIBreakPoints } from "../AdaptiveMain /UIBreakPoints";
+import Fade from "react-reveal/Fade";
+import useBreakpoint from "use-breakpoint";
 import AppAssistentBot from "../app-assistentBot/AppAssistentBot";
 import { ThemeProvider } from 'styled-components';
 import "./appAbout.scss";
+import "swiper/css/bundle";
+import "swiper/css/pagination";
 
 const AppAbout = () => {
   const [active, setActive] = useState(false);
   const [showChatBotActive, setShowChatBotActive] = useState(false);
+  const { breakpoint, maxWidth, minWidth } = useBreakpoint(UIBreakPoints, "");
+
+  const [breakPointSize, setBreakPointSize] = useState(false);
+
+  useEffect(() => {
+    setBreakPointSize(breakpoint === "mobile");
+  }, [minWidth]);
+
   const theme = {
     background: '#fffdf5',
     fontFamily: 'Helvetica Neue',
@@ -50,41 +64,91 @@ const AppAbout = () => {
         </div>
 
         <div className="about__descrBlocks">
-          <div className="about__descrBlocks_descr">
-            Скидки постоянным клиентам от 5%
-            <span className="circle__descrSmall"></span>
-          </div>
+          {
+            breakPointSize ?
+              <Swiper slidesPerView={2}
+                pagination={{
+                  clickable: true,
+                }}
+                spaceBetween={26}
+                modules={[Pagination]}>
+                <SwiperSlide>
+                  <div className="about__descrBlocks_descr">
+                    Скидки постоянным клиентам от 5%
 
-          <div className="about__descrBlocks_descr">
-            Предлагаем самые выгодные цены
-          </div>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="about__descrBlocks_descr">
+                    Предлагаем самые выгодные цены
 
-          <div className="about__descrBlocks_descr">
-            Наши покупатели всегда остаются довольны{" "}
-            <span className="circle__descrMiddle posTopRight"></span>
-          </div>
-          <div className="about__descrBlocks_descr" style={{ margin: 0 }}>
-            Ширикий ассортимент товаров для всей семьи
-          </div>
-          <div
-            className="about__descrBlocks_descr"
-            style={{ margin: 0, marginTop: 98 }}
-          >
-            Возможность доставки в любой город Беларуси{" "}
-            <span className="circle__descrMiddle"></span>
-          </div>
-          <div
-            className="about__descrBlocks_descr"
-            style={{ margin: 0, marginTop: 98 }}
-          >
-            Пункты выдачи заказов рядом с домом{" "}
-            <span className="circle__descrSmall posTopRight"></span>
-          </div>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="about__descrBlocks_descr">
+                    Наши покупатели всегда остаются довольны{" "}
+
+
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="about__descrBlocks_descr">
+                    Ширикий ассортимент товаров для всей семьи
+
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="about__descrBlocks_descr">
+                    Возможность доставки в любой город Беларуси{" "}
+
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="about__descrBlocks_descr">
+                    Пункты выдачи заказов рядом с домом{" "}
+
+                  </div>
+                </SwiperSlide>
+              </Swiper>
+              : <>
+                <div className="about__descrBlocks_descr">
+                  Скидки постоянным клиентам от 5%
+                  <span className="circle__descrSmall"></span>
+                </div>
+
+                <div className="about__descrBlocks_descr">
+                  Предлагаем самые выгодные цены
+                </div>
+
+                <div className="about__descrBlocks_descr">
+                  Наши покупатели всегда остаются довольны{" "}
+                  <span className="circle__descrMiddle posTopRight"></span>
+                </div>
+                <div className="about__descrBlocks_descr" style={{ margin: 0 }}>
+                  Ширикий ассортимент товаров для всей семьи
+                </div>
+                <div
+                  className="about__descrBlocks_descr"
+                  style={{ margin: 0, marginTop: 98 }}
+                >
+                  Возможность доставки в любой город Беларуси{" "}
+                  <span className="circle__descrMiddle"></span>
+                </div>
+                <div
+                  className="about__descrBlocks_descr"
+                  style={{ margin: 0, marginTop: 98 }}
+                >
+                  Пункты выдачи заказов рядом с домом{" "}
+                  <span className="circle__descrSmall posTopRight"></span>
+                </div>
+              </>
+          }
+
         </div>
       </div>
 
       <Fade bottom opposite when={active}>
-        <div className="top right" onClick={scrollTop}>
+        <div className={`top ${breakpoint ? "left" : "right"}`} onClick={scrollTop}>
           <div className="about__topBtn">
             <svg
               width="8"
@@ -101,7 +165,7 @@ const AppAbout = () => {
           </div>
         </div>
 
-        <div className="top left" style={{ zIndex: 100 }}>
+        <div className={`top left`} style={{ zIndex: 100 }}>
           <div style={{ "display": `${showChatBotActive ? "block" : "none"}`, }}>
 
             <ThemeProvider theme={theme}>
@@ -111,7 +175,7 @@ const AppAbout = () => {
           </div>
         </div>
 
-        <div className="top left">
+        <div className={`top left ${breakpoint ? "topAdaptive" : ""}`}>
 
           <div className="about__topBtn" >
             <svg

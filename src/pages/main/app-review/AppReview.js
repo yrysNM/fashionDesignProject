@@ -16,7 +16,7 @@ const AppReview = () => {
     const [breakPointSize, setBreakPointSize] = useState(false);
 
     useEffect(() => {
-        setBreakPointSize(breakpoint === "phablet");
+        setBreakPointSize(breakpoint === "phablet" || breakpoint === "mobile");
     }, [minWidth]);
 
     return (
@@ -33,7 +33,7 @@ const AppReview = () => {
                             1200: {
                                 slidesPerView: 2,
                             },
-                            576: {
+                            0: {
                                 slidesPerView: 1,
                             }
 

@@ -47,7 +47,7 @@ const AppPromo = () => {
             </div>
 
             { /** adaptive search panel */}
-            {breakpoint === "phablet" ?
+            {breakpoint === "phablet" || breakpoint === "mobile" ?
                 <div className="promo-search">
                     <form className="promo-search_header">
 
