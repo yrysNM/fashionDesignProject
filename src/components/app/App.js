@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainApp from "../../pages/main/app/MainApp";
+import BreakPoint from "../../pages/main/AdaptiveMain /BreakPoint";
 import Catalogs from "../../pages/Catalog/app/Catalogs";
 import ProductMap from "../../pages/ProductMap/app/ProductMap";
 import AppFilterWomensTShirt from "../../pages/FilterProductMap/appFilterWomensTShirt/AppFilterWomensTShirt";

@@ -1,6 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
+import { useState, useEffect } from "react";
+import { Navigation, Pagination } from "swiper";
 import { Link } from "react-router-dom";
+import { UIBreakPoints } from "../AdaptiveMain /UIBreakPoints";
+import useBreakpoint from "use-breakpoint";
 import catalogImg1 from "../../../resources/img/catalogImgs/catalogImg1.png";
 import catalogImg2 from "../../../resources/img/catalogImgs/catalogImg2.png";
 import catalogImg3 from "../../../resources/img/catalogImgs/catalogImg3.png";
@@ -10,12 +13,20 @@ import packageIcon from "../../../resources/icons/package.svg";
 import "swiper/css/bundle";
 import "./appCatalogClothes.scss";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const AppCatalogClothes = (props) => {
+  const { breakpoint, maxWidth, minWidth } = useBreakpoint(UIBreakPoints, "");
+
+  const [breakPointSize, setBreakPointSize] = useState(false);
+
+  useEffect(() => {
+    setBreakPointSize(breakpoint === "phablet");
+  }, [minWidth]);
   return (
     <section className="catalog mt150">
       <div className="container container_slide">
-        <div className="title">
+        <div className={`title ${breakpoint === "phablet" ? "container" : ""}`}>
           <h2 className="title_text mt60">
             Успей купить!
             <span className="subtitle pr270">Акции</span>
@@ -29,20 +40,16 @@ const AppCatalogClothes = (props) => {
                 1200: {
                   slidesPerView: 3
                 },
-                991: {
-                  slidesPerView: 2,
-                },
-                750: {
-                  slidesPerView: 2,
-                },
-                700: {
+
+                576: {
                   slidesPerView: 2,
                 },
               }}
               slidesPerView={4}
-              navigation={true}
+              navigation={!breakPointSize}
+              pagination={breakPointSize}
               spaceBetween={80}
-              modules={[Navigation]}
+              modules={[Navigation, Pagination]}
             >
               {props.products.map((item) => {
                 return (

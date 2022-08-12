@@ -1,7 +1,7 @@
 import React from "react";
 import useBreakpoint from "use-breakpoint";
 import MainApp from "../app/MainApp";
-
+import AdaptiveMainApp from "../app/AdaptiveMainApp";
 const UIBreakPoints = {
     mobile: 0,
     phablet: 575,
@@ -13,15 +13,9 @@ const BreakPoint = () => {
     const { breakpoint, maxWidth, minWidth } = useBreakpoint(UIBreakPoints, "")
     return (
         <>
-            {
-                breakpoint === "tablet" ?
-                    <div>
-                        <div>Hello response {breakpoint} {minWidth}</div>
-                    </div>
-                    : null
-            }
+            {breakpoint === "tablet" ? <AdaptiveMainApp /> : null}
 
-            {(breakpoint === "desktop") ? <MainApp /> : null}
+            {(breakpoint === "desktop" || breakpoint === "tablet") ? <MainApp /> : null}
         </>
     );
 

@@ -1,11 +1,24 @@
+import { useState, useEffect } from "react";
+import useBreakpoint from "use-breakpoint";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
-
+import { Navigation, Pagination } from "swiper";
+import { UIBreakPoints } from "../AdaptiveMain /UIBreakPoints";
 import profileImg1 from "../../../resources/img/profileImg/profileImg.png";
 import profileImg2 from "../../../resources/img/profileImg/profileImg2.png";
 import "./appReview.scss";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/bundle";
 
 const AppReview = () => {
+    const { breakpoint, maxWidth, minWidth } = useBreakpoint(UIBreakPoints, "");
+
+    const [breakPointSize, setBreakPointSize] = useState(false);
+
+    useEffect(() => {
+        setBreakPointSize(breakpoint === "phablet");
+    }, [minWidth]);
+
     return (
         <section className="review mt150">
             <div className="container">
@@ -17,9 +30,12 @@ const AppReview = () => {
                 <div className="review__blocks">
                     <Swiper
                         breakpoints={{
-                            750: {
-                                slidesPerView: 1,
+                            1200: {
+                                slidesPerView: 2,
                             },
+                            576: {
+                                slidesPerView: 1,
+                            }
 
                         }}
                         slidesPerView={2}
@@ -27,8 +43,9 @@ const AppReview = () => {
                             prevEl: ".circlePrev",
                             nextEl: ".circleNext"
                         }}
+                        pagination={breakPointSize}
                         spaceBetween={80}
-                        modules={[Navigation]}>
+                        modules={[Navigation, Pagination]}>
                         <SwiperSlide>
 
                             <div className="review__block">
@@ -174,16 +191,22 @@ const AppReview = () => {
                             </div>
                         </SwiperSlide>
                     </Swiper>
-                    <div className="circlePrev">
+
+
+
+                    <div className="circlePrev" style={{ "display": `${!breakPointSize ? "flex" : "none"}` }}>
                         <svg className="imgPrev" width="47" height="8" viewBox="0 0 47 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M46.3536 4.35355C46.5488 4.15829 46.5488 3.84171 46.3536 3.64645L43.1716 0.464466C42.9763 0.269204 42.6597 0.269204 42.4645 0.464466C42.2692 0.659728 42.2692 0.976311 42.4645 1.17157L45.2929 4L42.4645 6.82843C42.2692 7.02369 42.2692 7.34027 42.4645 7.53553C42.6597 7.7308 42.9763 7.7308 43.1716 7.53553L46.3536 4.35355ZM0 4.5H46V3.5H0V4.5Z" fill="#514A7E" />
                         </svg>
                     </div>
-                    <div className="circleNext">
+
+                    <div className="circleNext" style={{ "display": `${!breakPointSize ? "flex" : "none"}` }}>
                         <svg width="47" height="8" viewBox="0 0 47 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M46.3536 4.35355C46.5488 4.15829 46.5488 3.84171 46.3536 3.64645L43.1716 0.464466C42.9763 0.269204 42.6597 0.269204 42.4645 0.464466C42.2692 0.659728 42.2692 0.976311 42.4645 1.17157L45.2929 4L42.4645 6.82843C42.2692 7.02369 42.2692 7.34027 42.4645 7.53553C42.6597 7.7308 42.9763 7.7308 43.1716 7.53553L46.3536 4.35355ZM0 4.5H46V3.5H0V4.5Z" fill="#514A7E" />
                         </svg>
                     </div>
+
+
                 </div>
                 <button className="review__btn"><a href="#review" className="review__btn_link">Добавить отзыв</a></button>
             </div>
